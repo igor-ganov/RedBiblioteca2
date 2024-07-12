@@ -1,0 +1,12 @@
+.icon-button{
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+}
+
+.icon-button > *{
+    margin: 0px;
+    padding: 0px;
+}

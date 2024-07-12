@@ -1,0 +1,71 @@
+.text-view{
+    display: grid;
+    grid-template-areas: "text buttons";
+    justify-content: center;
+    /* display: flex;
+    flex-direction: row; */
+}
+.buttons-orientation-right{
+    grid-template-areas: "text buttons";
+    grid-auto-flow: row;
+    grid-template-columns: 1fr min-content;
+}
+.buttons-orientation-right .buttons{
+    transform: translate(0%, -20%);
+    grid-auto-flow: column;
+}
+.buttons-orientation-left{
+    grid-template-areas: "buttons text";
+    grid-auto-flow: row;
+    grid-template-columns: min-content 1fr;
+}
+.buttons-orientation-left .buttons{
+    transform: translate(-100%, -20%);
+    grid-auto-flow: column;
+}
+.buttons-orientation-top{
+    grid-template-areas: "buttons"
+                         "text";
+    grid-auto-flow: column;
+    grid-template-rows: min-content 1fr;
+}
+.buttons-orientation-top .buttons{
+    transform: translate(0%, -110%);
+    grid-auto-flow: column;
+}
+.buttons-orientation-bottom{
+    grid-template-areas: "buttons"
+                         "text";
+    grid-auto-flow: column;
+    grid-template-rows: 1fr min-content;
+}
+.read-buttons-container{
+    grid-area: buttons;
+}
+
+.edit-text:focus{
+    outline-offset: 0.2em;
+    outline: 2px solid var(--foreground-text);
+    background-color: var(--background-focused-button);
+    border-radius: 0.05em;
+    caret-color: auto;
+    caret-shape: block;
+}
+.inline{
+    display: inline;
+}
+.read-text, .edit-text{
+    grid-area: text;
+    width: 100%;
+}
+.buttons{
+    position: absolute;
+
+    display: grid;
+    grid-auto-flow: row;
+    justify-content: flex-end;
+}
+.buttons > * {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+}

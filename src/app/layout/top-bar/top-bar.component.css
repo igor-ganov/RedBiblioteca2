@@ -1,0 +1,34 @@
+.container{
+    padding: 0 0.5em 0 0.5em;
+    background-color: var(--background-card);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /*grid-auto-columns: 1fr;*/
+    align-items: center;
+    min-height: 48px;
+}
+
+.left{
+    height: 100%;
+    display: grid;
+    justify-content: flex-start;
+    align-items: center;
+    grid-auto-columns: max-content;
+    grid-template-rows: 1fr;
+    grid-auto-flow: column;
+}
+.center{
+    display: grid;
+    justify-content: center;
+}
+
+.home-button{
+    height: 100%;
+}
+
+.right{
+}
+.subline{
+    /* width: 100vw; */
+    border-bottom: 0.1em solid var(--primary-default);
+}

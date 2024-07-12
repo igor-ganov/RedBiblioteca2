@@ -1,0 +1,20 @@
+@if (getPermission() | async; as permission) {
+  <section class="layout">
+    <header class="header">
+      <app-top-bar/>
+    </header>
+    @if (permission.isPermited) {
+      <nav class="side-menu">
+        <app-side-menu/>
+      </nav>
+    }
+    <main class="main-body">
+      <app-main/>
+    </main>
+    @if (permission.isPermited) {
+      <footer class="footer">
+        <app-footer/>
+      </footer>
+    }
+  </section>
+}

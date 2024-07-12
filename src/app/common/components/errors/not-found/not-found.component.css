@@ -1,0 +1,11 @@
+.container{
+    height: 100%;
+    
+    display: grid;
+    align-content: center;
+    justify-items: center;
+}
+.text{
+    font-size: 5em;
+    font-weight: bold;
+}

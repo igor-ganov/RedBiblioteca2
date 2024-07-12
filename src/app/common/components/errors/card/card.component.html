@@ -1,0 +1,16 @@
+@if (templateRef) {
+  <ng-component>
+    @if (request$ | async; as request) {
+      <ng-container class="card">
+        @if (request.successeful) {
+          <ng-container [ngTemplateOutlet]="templateRef", [ngTemplateOutletContext]="request.result"/>
+        }
+        @if (!request.successeful) {
+          <app-errors [result]="request"/>
+        }
+      </ng-container>
+    } @else {
+      <app-loading/>
+    }
+  </ng-component>
+}

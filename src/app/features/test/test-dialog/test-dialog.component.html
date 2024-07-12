@@ -1,0 +1,10 @@
+<mat-dialog-actions align="end">
+    <button color="primary" (click)="onThemeSwitch()" mat-raised-button>Change Color</button>
+    <button color="primary" mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+
+    <button color="primary" mat-raised-button (click)="onThemeSwitch()">Change Theme</button>
+    <button color="basic" mat-raised-button (click)="onThemeSwitch()">Change Theme</button>
+    <button color="basic" mat-flat-button (click)="onThemeSwitch()">Change Theme</button>
+    <button color="basic" mat-stroked-button (click)="onThemeSwitch()">Change Theme</button>
+</mat-dialog-actions>

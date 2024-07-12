@@ -1,0 +1,25 @@
+.container{
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.text-block {
+    max-width: 40em;
+    text-align: justify;
+    display: grid;
+    grid-auto-flow: row;
+}
+.main-text{
+    margin-bottom: 3em;
+}
+.end-text{
+    font-size: large;
+    text-align: center;
+}
+@media (max-width: 1145px) {
+    .text-block {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}

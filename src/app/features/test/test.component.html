@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="slider-container">
+    @if (translation | async; as text) {
+      <button #testButton mat-raised-button (click)="onClick()">{{text.title}}</button>
+    }
+    <app-slider [direction]="'top'" [opened]="opened">
+      <button #testButton mat-raised-button (click)="onClick()">Test Text</button>
+    </app-slider>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.container{
+    padding: 0.5em;
+    background-color: var(--background-card);
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0;
+}
+
+.subline{
+    width: 100%;
+    border-bottom: 0.1em solid var(--background-border-line);
+}

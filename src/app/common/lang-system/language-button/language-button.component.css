@@ -1,0 +1,18 @@
+.container{
+    color: var(--foreground-icon);
+}
+.panel-button{
+    border: none;
+}
+
+.horizontal{
+    border-radius: 5em;
+}
+.vartical{
+    /* border-radius: 0; */
+    width: 100%;
+}
+
+::ng-deep button[color="basic"] > span, button[color="basic"] > mat-icon {
+    color: var(--foreground-icon);
+}
