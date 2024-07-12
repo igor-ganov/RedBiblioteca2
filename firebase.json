@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "dist/angular-ssr-test/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "ssr"
+      }
+    ]
+  },
+  "functions": {
+    "source": "dist/angular-ssr-test/server",
+    "runtime": "nodejs20",
+    "main": "server.mjs"
+  }
+}
