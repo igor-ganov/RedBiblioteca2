@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./dist/out-tsc",
     "paths": {
       "@common/*": ["app/common/*"],
       "@app/*": ["app/*"],
