@@ -24,9 +24,9 @@
     "@angular/platform-server": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@angular/ssr": "^18.1.0",
-    "express": "^4.18.2",
-    "ngx-csv-parser": "^1.3.1",
-    "rxjs": "~7.8.0",
+    "express": "^4.19.2",
+    "ngx-csv-parser": "^2.0.0",
+    "rxjs": "~7.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
@@ -34,7 +34,7 @@
     "@angular-devkit/build-angular": "^18.1.0",
     "@angular/cli": "^18.1.0",
     "@angular/compiler-cli": "^18.1.0",
-    "@types/express": "^4.17.17",
+    "@types/express": "^4.17.21",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "jasmine-core": "~5.1.0",
@@ -43,7 +43,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.2"
+    "typescript": "^5.5.3"
   },
   "overrides": {
     "undici": "6.19.2",
