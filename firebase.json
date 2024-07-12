@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/angular-ssr-test/browser",
+    "public": "dist/wemonpftest/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -14,7 +14,7 @@
     ]
   },
   "functions": {
-    "source": "dist/angular-ssr-test/server",
+    "source": "dist/wemonpftest/server",
     "runtime": "nodejs20",
     "main": "server.mjs"
   }
