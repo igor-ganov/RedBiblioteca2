@@ -67,7 +67,7 @@ export class FirestoreService{
     }
     public getAll<T>(table: string){
         const dataSet = this.getDataSet(table);
-        return collectionData(dataSet).pipe(map(list => list.map(i => i as T)));
+        return collectionData(dataSet).pipe(map((list: any[]) => list.map(i => i as T)));
     }
     private getDataSet(table: string) {
         return collection(this.firestore, table);
