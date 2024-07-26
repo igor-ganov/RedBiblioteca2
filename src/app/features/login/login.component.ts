@@ -1,16 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FirebaseModule } from '../../modules/firebase.module';
-import { Auth, AuthProvider } from '@angular/fire/auth';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { Observable, from } from 'rxjs';
 import { TextHost } from '../../common/lang-system/TextHost';
 import {} from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
 import { LocaleHost } from '../../common/lang-system/LocaleHost';
 import { SubscriptionManager } from '../../common/help/services/SubscriptionManager';
 import { EventMessageQueue } from '../../common/help/services/EventMassageQueue';
@@ -32,7 +23,6 @@ export class LoginComponent {
   private readonly localeHost = inject(LocaleHost);
 
   public readonly text$ = inject(TextHost).getText<LoginText>(LoginComponent);
-  private auth: Auth = inject(Auth);
   public hidePassword = true;
   private _userService = inject(UserService);
   public readonly user : ISignInData = {email: '', password: ''};
@@ -59,7 +49,7 @@ export class LoginComponent {
   private subscribe<T>(observable : Observable<T>, handler: ((value: T) => void) | undefined = undefined){
     this.subscriptionManager.createSubscriptionFor(observable, handler, (e) => this.alertError(e));
   }
-  
+
   private alertError(error: string | Error){
     this.eventMessageQueue.pushError(error);
   }

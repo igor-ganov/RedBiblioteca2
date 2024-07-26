@@ -1,34 +1,20 @@
-import { Injectable, inject } from "@angular/core";
-import { CollectionReference, DocumentReference, Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "@angular/fire/firestore";
-import { LocaleHost } from "@common/lang-system/LocaleHost";
-import { Observable, catchError, from, map, of, shareReplay, switchMap, take, tap } from "rxjs";
-import { Result } from "./Result";
-
-@Injectable({providedIn: 'root'})
-export class ContentService{
-    private readonly firestore = inject(FirestoreService);
-    private readonly localeHost = inject(LocaleHost);
-    private readonly contentPath = this.localeHost.getLanguageAsync().pipe(map(lang => `content/${lang}`), shareReplay(1));
-
-    findByPid<T>(table: string, pid: string){
-        return this.contentPath.pipe(switchMap(path => this.firestore.findByPid<T>(`${path}/${table}`, pid)));
-    }
-    getAll<T>(table: string) {
-        return this.contentPath.pipe(switchMap(path => this.firestore.getAll<T>(`${path}/${table}`)));
-    }
-    get<T>(table: string, id: string){
-        return this.contentPath.pipe(switchMap(path => this.firestore.get<T>(`${path}/${table}`, id)));
-    }
-    update<T extends {id: string;}>(table: string, book: T){
-        return this.contentPath.pipe(take(1), switchMap(path => this.firestore.update<T>(`${path}/${table}`, book)));
-    }
-    add<T extends {id: string;}>(table: string, book: T){
-        return this.contentPath.pipe(take(1), switchMap(path => this.firestore.add<T>(`${path}/${table}`, book)));
-    }
-    delete<T>(table: string, id: string){
-        return this.contentPath.pipe(take(1), switchMap(path => this.firestore.delete<T>(`${path}/${table}`, id)));
-    }
-}
+import {Injectable} from "@angular/core";
+import {catchError, from, map, Observable, of} from "rxjs";
+import {Result} from "./Result";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  setDoc,
+  updateDoc,
+  where
+} from 'firebase/firestore/lite'
+import {fromPromise} from "rxjs/internal/observable/innerFrom";
+import {FirebaseAppService} from "@common/help/services/firebase-app.service";
 
 function result404(errorMessage: string): Result<any> {
     return {
@@ -50,9 +36,14 @@ function toResult<T>(result: T): Result<T>{
         result,
     };
 }
+
 @Injectable({providedIn: 'root'})
 export class FirestoreService{
-    private readonly firestore: Firestore = inject(Firestore);
+  private readonly firestore;
+  constructor(firebaseService: FirebaseAppService) {
+    const app = firebaseService.appValue;
+    this.firestore = getFirestore(app);
+  }
 
     public findByPid<T>(table: string, pid: string): Observable<Result<T>>{
         const q = query(collection(this.firestore, table), where("pid", "==", pid));
@@ -66,8 +57,7 @@ export class FirestoreService{
         return from(getDoc(docRef)).pipe(map(d => d.data() as T));
     }
     public getAll<T>(table: string){
-        const dataSet = this.getDataSet(table);
-        return collectionData(dataSet).pipe(map((list: any[]) => list.map(i => i as T)));
+        return fromPromise(getDocs(collection(this.firestore, table))).pipe(map((list) => list.docs.map(i => i.data() as T)));
     }
     private getDataSet(table: string) {
         return collection(this.firestore, table);
@@ -92,7 +82,7 @@ export function generateId(): string {
     const result = guidToAlphabet(crypto.randomUUID());
     return result;
   }
-  
+
 export function guidToAlphabet(guid : string) {
     const hexNumber = BigInt('0x' + guid.replace(/-/g, ''));
     const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

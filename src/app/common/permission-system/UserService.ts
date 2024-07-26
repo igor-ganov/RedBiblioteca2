@@ -1,22 +1,34 @@
-import { Injectable, inject } from "@angular/core";
+import {Injectable, inject, Inject} from "@angular/core";
 import { User } from "./User";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { } from "firebase/compat/auth";
+import { getAuth, signInWithEmailAndPassword, UserInfo } from "firebase/auth";
 import { BehaviorSubject, ReplaySubject, from, map, of, skip, switchMap, tap } from "rxjs";
 import { ISignInData } from "./ISignInData";
 import { UserRoles } from "./UserRoles";
-import { UserCredential, UserInfo, user } from "@angular/fire/auth";
 import { UserData, UserDataRepository } from "./UserDataRepository";
+import {FirebaseAppService} from "@common/help/services/firebase-app.service";
 
 @Injectable({ providedIn: 'root' })
 export class UserService{
-    private afAuth = inject(AngularFireAuth);
-    private userData = inject(UserDataRepository);
-    private userSubscription = this.afAuth.user.pipe(
+    private readonly afAuth;
+    private readonly user$;
+    private userSubscription;
+    constructor(firebase: FirebaseAppService) {
+      const app = firebase.appValue;
+      this.afAuth = getAuth(app);
+
+
+      this.user$ = new BehaviorSubject(this.afAuth.currentUser);
+      this.afAuth.onAuthStateChanged(u => this.user$.next(u));
+
+      this.userSubscription = this.user$.pipe(
         switchMap(u => u? this.userData.get(u.uid).pipe(
-            map(d => {return {user: u, data: d}})) : of(undefined)
+          map(d => {return {user: u, data: d}})) : of(undefined)
         )).subscribe(u => this.currentUser = toUser(u));
+    }
+    private userData = inject(UserDataRepository);
     singIn(signIndata: ISignInData){
-        return from(this.afAuth.signInWithEmailAndPassword(signIndata.email, signIndata.password)).pipe(
+        return from(signInWithEmailAndPassword(this.afAuth, signIndata.email, signIndata.password)).pipe(
             map(u => u.user),
             switchMap(u => u? this.userData.get(u.uid).pipe(
                 map(d => {return {user: u, data: d}})) : of(undefined)
@@ -26,7 +38,7 @@ export class UserService{
     singOut(){
         return from(this.afAuth.signOut()).pipe(tap(() => this.currentUser = undefined));
     }
-    
+
     private _currentUser?: User;
     // private readonly _currentUser$ = new ReplaySubject<User | undefined>(1);
     private readonly _currentUser$ = new BehaviorSubject<User | undefined>(undefined);
@@ -43,7 +55,7 @@ export class UserService{
 @Injectable({ providedIn: 'root' })
 export class PermissionService
 {
-    private readonly userService = inject(UserService); 
+    private readonly userService = inject(UserService);
     public isPermit(requiredRole: UserRoles){
         return this.userService.currentUser$.pipe(
             map(u => u?.roles ?? UserRoles.GUEST),

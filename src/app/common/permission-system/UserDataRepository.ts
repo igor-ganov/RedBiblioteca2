@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { ContentService, FirestoreService } from '@common/help/services/FirestoreService';
+import { FirestoreService } from '@common/help/services/firestore.service';
 import { UserRoles } from './UserRoles';
+import {ContentService} from "@common/help/services/content.service";
 
 @Injectable({ providedIn: 'root' })
 export class UserDataRepository {

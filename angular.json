@@ -131,13 +131,6 @@
             ],
             "scripts": []
           }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {
-            "version": 2,
-            "browserTarget": "wemonpftest:build:production"
-          }
         }
       }
     }

@@ -1,7 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { UserService } from '@common/permission-system/UserService';
-import { switchMap } from 'rxjs';
-import { UserDataRepository } from '../../common/permission-system/UserDataRepository';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admin-panel',

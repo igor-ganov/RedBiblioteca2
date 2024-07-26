@@ -19,8 +19,7 @@ import { TextDictionaryServcie } from '../lang-system/TextDictionaryService';
 import { UserRoles } from '../permission-system/UserRoles';
 import { BookComponent } from '@app/features/books/book/book.component';
 import { PermissionService, UserService } from '@common/permission-system/UserService';
-import { Observable, map, tap } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { map } from 'rxjs';
 
 export const rootPath = '/'
 
@@ -60,9 +59,9 @@ function createRouteData(requiredRole?: UserRoles, isMenuItem?: boolean) : Route
     }
 }
 function createContext<T>(requiredRole?: UserRoles) : {context: () => RouteContext} {
-   
+
     return {
-        context: () => { 
+        context: () => {
             const dependency : RouteContextDependency = {
                 localeHost: inject(LocaleHost),
                 textDictionaryServcie: inject(TextDictionaryServcie),
@@ -111,7 +110,7 @@ export interface RouteItem {
 export const routes = createRoutes([
     { component: HomeComponent, path: routsPaths.home, isMenuItem: true },
     { component: TestComponent, path: routsPaths.test, userRole: UserRoles.DEVELOPER },
-    { 
+    {
         path: routsPaths.newspapers,
         component: NewspapersComponent,
         isMenuItem: true,
@@ -121,7 +120,7 @@ export const routes = createRoutes([
         ],
 
      },
-    { 
+    {
         path: routsPaths.events,
         component: EventsComponent,
         isMenuItem: true,
@@ -131,7 +130,7 @@ export const routes = createRoutes([
         ],
 
     },
-    { 
+    {
         path: routsPaths.books,
         component: BooksComponent,
         isMenuItem: true,

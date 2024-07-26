@@ -4,11 +4,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule, DatePipe } from '@angular/common';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { FirestoreModule, provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -136,11 +131,8 @@ import { TopMenuComponent } from './layout/top-bar/top-menu/top-menu.component';
   ],
   imports: [
     AppRoutingModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     CommonModule,
-    FirestoreModule,
     FormsModule,
     MaterialModule,
     MatButtonModule,
@@ -155,9 +147,6 @@ import { TopMenuComponent } from './layout/top-bar/top-menu/top-menu.component';
   ],
   providers: [
     DatePipe,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
     provideHttpClient(withFetch()),
     // provideRouter(rootRoute),
     provideClientHydration(),

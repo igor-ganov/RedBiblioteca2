@@ -1,14 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, getDoc, getDocs, collection, DocumentData, QueryDocumentSnapshot } from '@angular/fire/firestore';
-import { FirestoreService, generateId } from '@common/help/services/FirestoreService';
+import {
+  Firestore,
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+  DocumentData,
+  QueryDocumentSnapshot,
+  getFirestore
+} from 'firebase/firestore/lite';
+import { FirestoreService, generateId } from '@common/help/services/firestore.service';
 import { firstValueFrom } from 'rxjs';
+import { FirebaseAppService } from "@common/help/services/firebase-app.service";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class CloneService {
-  constructor(private firestore: Firestore, private readonly firestoreService: FirestoreService) { }
+export class
+CloneService {
+  public readonly firestore;
+  constructor(firebaseAppService: FirebaseAppService, private readonly firestoreService: FirestoreService) {
+    this.firestore = getFirestore(firebaseAppService.appValue);
+  }
 
   public async import(element: {}, path: string) {
     for (const node of getNodes(element, path)) {

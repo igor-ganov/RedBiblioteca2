@@ -1,10 +1,10 @@
 import { Injectable, inject } from "@angular/core";
-import { ContentService } from "../../../common/help/services/FirestoreService";
 import { Book } from "../models/Book";
+import {ContentService} from "@common/help/services/content.service";
 
 @Injectable({providedIn: 'root'})
 export class BookRepository{
-    
+
     private readonly table = 'books'
     private readonly firestore = inject(ContentService);
 

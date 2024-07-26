@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
-import { ContentService } from "../../../common/help/services/FirestoreService";
 import { Newspaper } from "../models/Newspaper";
+import {ContentService} from "@common/help/services/content.service";
 
 @Injectable({providedIn: 'root'})
 export class NewspaperRepository{
