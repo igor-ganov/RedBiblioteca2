@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Newspaper } from '../models/Newspaper';
-import { map, tap } from 'rxjs';
-import { UserService } from '../../../common/permission-system/UserService';
-import { toBase64 } from '../../../common/help/help-fuctions';
+import { map } from 'rxjs';
+import { UserService } from '@common/permission-system/UserService';
+import { toBase64 } from '@common/help/help-fuctions';
 
 @Component({
   selector: 'app-newspaper-view',
@@ -21,7 +21,7 @@ export class NewspaperViewComponent {
     this._newspaper = value;
   }
   public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
-  
+
   onImageUploaded(event: Event, newspaper: Newspaper) {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;

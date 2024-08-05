@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { LocaleHost } from '../../common/lang-system/LocaleHost';
+import { LocaleHost } from '@common/lang-system/LocaleHost';
 import { Observable } from 'rxjs';
-import { UserRoles } from '@common/permission-system/UserRoles';
 import { PermissionService } from '@common/permission-system/UserService';
 
 @Component({

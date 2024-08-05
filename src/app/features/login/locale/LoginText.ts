@@ -1,6 +1,6 @@
-import { TextDictionary } from "../../../common/lang-system/TextDictionary";
-import { ITextFactory, ITitleFactory } from "../../../common/menu-system/IHasTitle";
-import { IMenuItem } from "../../../common/menu-system/IMenuItem";
+import { TextDictionary } from "@common/lang-system/TextDictionary";
+import { ITextFactory, ITitleFactory } from "@common/menu-system/IHasTitle";
+import { IMenuItem } from "@common/menu-system/IMenuItem";
 
 export class LoginTextFactory implements ITitleFactory, ITextFactory<LoginText>{
     constructor(){}

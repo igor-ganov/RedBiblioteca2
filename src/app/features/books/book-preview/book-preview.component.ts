@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, inject } from '@angular/core';
 import { Book } from '../models/Book';
 import { map } from 'rxjs';
-import { UserService } from '../../../common/permission-system/UserService';
+import { UserService } from '@common/permission-system/UserService';
 import { BookRepository } from '../services/BookRepository';
 import { SubscriptionHandler, SubscriptionHandlerProvider } from '@common/help/services/SubscriptionHandler';
 

@@ -1,6 +1,6 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable, Renderer2, RendererFactory2, afterNextRender, afterRender } from '@angular/core';
-import { Theme } from '../models/Theme';
+import {DOCUMENT} from '@angular/common';
+import {Inject, Injectable, RendererFactory2} from '@angular/core';
+import {Theme} from '../models/Theme';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class ThemeService {
   private cssFile?: string;
   // private readonly themeCSSID: string = 'themeCSS';
   private readonly renderer2;
+
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
     rendererFactory: RendererFactory2,
@@ -22,7 +23,7 @@ export class ThemeService {
 
   private _theme: Theme = 'light';
   public set theme(theme: Theme) {
-    if(theme) {
+    if (theme) {
       // this.insertThemeLink(theme);
       const currentTheme = this.document.getElementById(this._theme!);
       const newTheme = this.document.getElementById(theme);
@@ -31,18 +32,19 @@ export class ThemeService {
     // if(this._theme) this.removeExistingThemeStyle(this.renderer2, this._theme);
     this._theme = theme;
   }
+
   private insertThemeLink(theme: Theme) {
     const renderClass = "ng-star-inserted";
     {
       const element = this.document.getElementById(theme);
-      if(element) {
-        if(!element.classList?.contains(renderClass)){
+      if (element) {
+        if (!element.classList?.contains(renderClass)) {
           // element.classList.add(renderClass);
         }
         return;
       }
     }
-    
+
 
     this.cssFile = `${theme}.css`;
 
@@ -61,12 +63,14 @@ export class ThemeService {
     this.renderer2.insertBefore(this.document.head, this.style, firstLink, true);
   }
 
-  public get theme(){ return this._theme; }
-
-  private removeExistingThemeStyle(renderer2: Renderer2, themeCSSID: string) {
-    const themeIDHTMlElem = this.document.getElementById(themeCSSID);
-    if (themeIDHTMlElem) {
-      renderer2.removeChild(this.document.head, themeIDHTMlElem);
-    }
+  public get theme() {
+    return this._theme;
   }
+
+  // private removeExistingThemeStyle(renderer2: Renderer2, themeCSSID: string) {
+  //   const themeIDHTMlElem = this.document.getElementById(themeCSSID);
+  //   if (themeIDHTMlElem) {
+  //     renderer2.removeChild(this.document.head, themeIDHTMlElem);
+  //   }
+  // }
 }

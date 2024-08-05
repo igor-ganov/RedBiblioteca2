@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { rootRoute } from '../common/routes/root-route';
+import { rootRoute } from '@common/routes/root-route';
 import { scrollOffset } from '@app/Configuration';
 
 @NgModule({

@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { TextHost } from '@common/lang-system/TextHost';
-import { RouteService } from '@common/routes/RouteService';
-import { Observable, combineLatest, filter, map, of, switchMap } from 'rxjs';
+import {Component, inject} from '@angular/core';
+import {TextHost} from '@common/lang-system/TextHost';
+import {RouteService} from '@common/routes/RouteService';
+import {filter, map, Observable, of, switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-title',
@@ -12,6 +12,7 @@ export class TitleComponent {
   private routeService = inject(RouteService);
   private textHost = inject(TextHost);
   title?: Observable<string | undefined>;
+
   ngOnInit(): void {
     this.title = this.routeService.getActivatedRoute().pipe(
       filter(r => r.component !== undefined),
@@ -19,5 +20,5 @@ export class TitleComponent {
       map(i => i?.title)
     );
   }
-  
+
 }

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { NewspaperRepository } from './services/NewspaperRepository';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Newspaper } from './models/Newspaper';
-import { UserService } from '../../common/permission-system/UserService';
+import { UserService } from '@common/permission-system/UserService';
 
 @Component({
   selector: 'app-newspapers',
@@ -16,7 +16,7 @@ export class NewspapersComponent {
   ngOnInit(): void {
     setTimeout(() => {
       this.newspapers$ = this.newspapersRepository.getAll();
-    })    
+    })
   }
   public onClick() {
     this.newspapersRepository.getAll().subscribe();

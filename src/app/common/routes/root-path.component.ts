@@ -1,10 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Params, Router, RouterModule } from '@angular/router';
-import { Subscription, filter, map } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 import { LocaleHost } from '../lang-system/LocaleHost';
 import { RootHrefService } from './RootHrefService';
 import { PermissionService } from '@common/permission-system/UserService';
-import { UserRoles } from '@common/permission-system/UserRoles';
 
 @Component({
     selector: 'root-path',
@@ -19,9 +17,6 @@ import { UserRoles } from '@common/permission-system/UserRoles';
       `
 })
 export class RootPathComponent implements OnInit {
-
-  subs: Array<Subscription> = [];
-
   constructor(
     private activatedRoute : ActivatedRoute,
     private translateService: LocaleHost,

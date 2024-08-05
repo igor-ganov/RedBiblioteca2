@@ -1,4 +1,4 @@
-import { Inject, Injectable, Injector, Provider, inject } from "@angular/core";
+import { Injectable, Provider, inject } from "@angular/core";
 import { SubscriptionManager } from "./SubscriptionManager";
 import { Observable } from "rxjs";
 import { EventMessageQueue } from "./EventMassageQueue";

@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import {Component} from '@angular/core';
 
 import {Article} from "@app/features/home/article/article";
 

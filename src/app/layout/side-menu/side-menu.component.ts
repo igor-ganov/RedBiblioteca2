@@ -1,13 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { SideMenuService } from './services/SideMenuService';
-import { routsPaths } from '../../common/routes/routes';
-import { LocaleHost } from '../../common/lang-system/LocaleHost';
-import { Observable, combineLatest, filter, map, tap } from 'rxjs';
-import { MenuItemReach, MenuService, RootItem } from './services/MenuServices';
-import { UserService } from '@common/permission-system/UserService';
-import { UserRoles } from '@common/permission-system/UserRoles';
+import {Component, inject} from '@angular/core';
+import {SideMenuService} from './services/SideMenuService';
+import {routsPaths} from '@common/routes/routes';
+import {LocaleHost} from '@common/lang-system/LocaleHost';
+import {Observable} from 'rxjs';
+import {MenuItemReach, MenuService} from './services/MenuServices';
+import {UserService} from '@common/permission-system/UserService';
 
 @Component({
   selector: 'app-side-menu',
@@ -17,13 +14,16 @@ import { UserRoles } from '@common/permission-system/UserRoles';
 export class SideMenuComponent {
   public routes = routsPaths;
   public items?: Observable<(MenuItemReach)[]>;
-  constructor(public readonly sideMenuService: SideMenuService){}
+
+  constructor(public readonly sideMenuService: SideMenuService) {
+  }
 
   public menuService = inject(MenuService);
   public userService = inject(UserService);
 
   public localeHost = inject(LocaleHost);
-  public lang$? : Observable<string>;
+  public lang$?: Observable<string>;
+
   ngOnInit(): void {
     // this.menuService.items.subscribe(r => printAll(r));
     setTimeout(() => {
@@ -34,6 +34,3 @@ export class SideMenuComponent {
     })
   }
 }
-function printAll(items: (MenuItemReach | RootItem)[]): void {
-}
-

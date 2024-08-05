@@ -1,5 +1,5 @@
-import { ComponentRef, Directive, Input, TemplateRef, Type, ViewContainerRef } from '@angular/core';
-import { ErrorResult, Result, SuccessResult } from '@common/help/services/Result';
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ErrorResult, Result } from '@common/help/services/Result';
 import { ErrorsComponent } from './errors/errors.component';
 import { LoadingComponent } from '../loading/loading.component';
 
@@ -11,7 +11,7 @@ export class IfSuccess<T> {
   constructor(
     private templateRef: TemplateRef<IfSuccessContext<T>>,
     private viewContainer: ViewContainerRef,
-  ) { } 
+  ) { }
 
   private _data?: Result<T>;
   private context = new IfSuccessContext<T>();
@@ -31,7 +31,7 @@ export class IfSuccess<T> {
     }
     this.buildView();
   }
-  
+
   private _ifSuccessOnError?: TemplateRef<IfSuccessErrorContext> | undefined;
   @Input()
   public get ifSuccessOnError(): TemplateRef<IfSuccessErrorContext> | undefined {

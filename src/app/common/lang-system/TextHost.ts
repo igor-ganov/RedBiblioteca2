@@ -1,32 +1,30 @@
-import { Injectable, Type } from "@angular/core";
-import { map, switchMap } from "rxjs";
-import { LocaleHost } from "./LocaleHost";
-import { errorThrow } from "../help/help-fuctions";
-import { TextDictionaryServcie } from "./TextDictionaryService";
-import { TextDictionary } from "./TextDictionary";
-import { ITextFactory, ITitleFactory } from "../menu-system/IHasTitle";
-import { HomeComponent } from "app/features/home/home.component";
-import { HomeTextFactory } from "app/features/home/locale/HomeText";
-import { LoginTextFactory } from "app/features/login/locale/LoginText";
-import { LoginComponent } from "app/features/login/login.component";
-import { BookComponent } from "@app/features/books/book/book.component";
-import { BookTextFactory } from "@app/features/books/book/locale/BookText";
-import { BooksComponent } from "@app/features/books/books.component";
-import { BooksTextFactory } from "@app/features/books/locale/BooksText";
-import { NewBookTextFactory } from "@app/features/books/new-book/locale/NewBookText";
-import { NewBookComponent } from "@app/features/books/new-book/new-book.component";
-import { IMenuItem } from "@common/menu-system/IMenuItem";
-import { bugComponents } from "@common/routes/routes";
-import { NewspaperComponent } from "@app/features/newspapers/newspapers/newspaper.component";
-import { NewspaperTextFactory } from "@app/features/newspapers/newspapers/locale";
-import { NewspapersComponent } from "@app/features/newspapers/newspapers.component";
-import { NewspapersTextFactory } from "@app/features/newspapers/locale";
-import { NewNewspaperComponent } from "@app/features/newspapers/new-newspaper/new-newspaper.component";
-import { NewNewspaperTextFactory } from "@app/features/newspapers/new-newspaper/locale";
-import { AboutComponent } from "@app/feature/about/about.component";
-import { AboutTextFactory } from "@app/feature/about/locale";
-import { AdminPanelComponent } from "@app/features/admin-panel/admin-panel.component";
-import { AdminTextFactory } from "@app/features/admin-panel/locale";
+import {Injectable, Type} from "@angular/core";
+import {map, switchMap} from "rxjs";
+import {LocaleHost} from "./LocaleHost";
+import {TextDictionaryServcie} from "./TextDictionaryService";
+import {TextDictionary} from "./TextDictionary";
+import {ITextFactory, ITitleFactory} from "../menu-system/IHasTitle";
+import {HomeComponent} from "app/features/home/home.component";
+import {HomeTextFactory} from "app/features/home/locale/HomeText";
+import {LoginTextFactory} from "app/features/login/locale/LoginText";
+import {LoginComponent} from "app/features/login/login.component";
+import {BookComponent} from "@app/features/books/book/book.component";
+import {BookTextFactory} from "@app/features/books/book/locale/BookText";
+import {BooksComponent} from "@app/features/books/books.component";
+import {BooksTextFactory} from "@app/features/books/locale/BooksText";
+import {NewBookTextFactory} from "@app/features/books/new-book/locale/NewBookText";
+import {IMenuItem} from "@common/menu-system/IMenuItem";
+import {bugComponents} from "@common/routes/routes";
+import {NewspaperComponent} from "@app/features/newspapers/newspapers/newspaper.component";
+import {NewspaperTextFactory} from "@app/features/newspapers/newspapers/locale";
+import {NewspapersComponent} from "@app/features/newspapers/newspapers.component";
+import {NewspapersTextFactory} from "@app/features/newspapers/locale";
+import {NewNewspaperComponent} from "@app/features/newspapers/new-newspaper/new-newspaper.component";
+import {NewNewspaperTextFactory} from "@app/features/newspapers/new-newspaper/locale";
+import {AboutComponent} from "@app/feature/about/about.component";
+import {AboutTextFactory} from "@app/feature/about/locale";
+import {AdminPanelComponent} from "@app/features/admin-panel/admin-panel.component";
+import {AdminTextFactory} from "@app/features/admin-panel/locale";
 
 export const translationMap: Map<Type<any>, ITitleFactory | ITextFactory<any>> = new Map([
   [LoginComponent, new LoginTextFactory()],
@@ -41,82 +39,42 @@ export const translationMap: Map<Type<any>, ITitleFactory | ITextFactory<any>> =
   [AdminPanelComponent, new AdminTextFactory()],
 ]);
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class TextHost {
   static readonly SupportedLanguages = ['en', 'it', 'ru', 'fr'];
   static readonly DefaultLanguage = 'en';
 
   constructor(private localeHost: LocaleHost, private dictionaryServcie: TextDictionaryServcie) {
   }
-  
 
 
   private requestTextInstance<T>(langLable: string, fuctory: (dictionary: TextDictionary) => T) {
     return this.dictionaryServcie.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
   }
+
   private requestMenuInstance(langLable: string, fuctory: (dictionary: TextDictionary) => IMenuItem) {
     return this.dictionaryServcie.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
   }
-  
+
   private getTextInstanceAsync<T>(type: Type<any>) {
     const factory = (translationMap.get(type) as ITextFactory<T>)?.getText;
-    if(!factory) return;
+    if (!factory) return;
     return this.localeHost.getLanguageAsync()
       .pipe(switchMap(lable => this.requestTextInstance<T>(lable, factory)));
   }
+
   private getMenuInstanceAsync(type: Type<any>) {
     const factory = (translationMap.get(type) as ITitleFactory)?.getTitle;
-    if(!factory) return;
+    if (!factory) return;
     return this.localeHost.getLanguageAsync()
       .pipe(switchMap(lable => this.requestMenuInstance(lable, factory)));
   }
-  public getMenuItem(tag: Type<any>) { return this.getMenuInstanceAsync(tag);}
 
-  public getText<T>(tag: Type<any>) { return this.getTextInstanceAsync<T>(tag); };
-}
-
-
-
-// export function textHostFuctonryFn<T>() {
-//   return {a: inject(LocaleHost), b: inject(TextDictionaryServcie)};
-// }
-// export function textHostFuctonryFn<T>(textFactory: ITitleFactory | ITextFactory<T>) {
-//   return new TextHostFactory<T>(inject(LocaleHost), inject(TextDictionaryServcie), textFactory);
-// }
-
-export class TextHostFactory<T> {
-  static readonly SupportedLanguages = ['en', 'it', 'ru', 'fr'];
-  static readonly DefaultLanguage = 'en';
-
-  constructor(
-    private localeHost: LocaleHost,
-    private dictionaryServcie: TextDictionaryServcie,
-    private textFactory: ITitleFactory | ITextFactory<T>
-    ) {
+  public getMenuItem(tag: Type<any>) {
+    return this.getMenuInstanceAsync(tag);
   }
 
-  private requestInstance<T>(langLable: string, fuctory: (dictionary: TextDictionary) => T) {
-    // const commonFactory = (this.textFactory as ITextFactory<T>)?.getText ?? errorThrow("Factory wasn't founded")!;
-    return this.dictionaryServcie.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
-  }
-  private requestMenuInstance(langLable: string) {
-    const commonFactory = (this.textFactory as ITitleFactory)?.getTitle ?? errorThrow("Factory wasn't founded")!;
-    return this.dictionaryServcie.getTextDictionary(langLable).pipe(map(d => commonFactory(d)));
-  }
-  
-  private getTextInstanceAsync() {
-    const factory = (this.textFactory as ITextFactory<T>)?.getText;
-    if(!factory) return undefined;
-    return this.localeHost.getLanguageAsync()
-      .pipe(switchMap(lable => this.requestInstance(lable, factory)));
-  }
-  private getMenuInstanceAsync() {
-    const factory = (this.textFactory as ITitleFactory)?.getTitle;
-    if(!factory) return; 
-    return this.localeHost.getLanguageAsync()
-      .pipe(switchMap(lable => this.requestInstance(lable, factory)));
-  }
-  public getMenuItem() { return this.getMenuInstanceAsync();}
-
-  public getText() { return this.getTextInstanceAsync(); };
+  public getText<T>(tag: Type<any>) {
+    return this.getTextInstanceAsync<T>(tag);
+  };
 }

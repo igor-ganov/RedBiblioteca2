@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { Slide } from '@common/components/slide-show/Slides';
-import { Subscription, delay, of, repeat, timer } from 'rxjs';
-import { getFakeImage1, getFakeImage2, getFakeImage3 } from './getFakeImage1';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {Slide} from '@common/components/slide-show/Slides';
+import {repeat, Subscription, timer} from 'rxjs';
+import {getFakeImage1, getFakeImage2, getFakeImage3} from './getFakeImage1';
 
 @Component({
   selector: 'app-last-news',
@@ -10,7 +10,8 @@ import { getFakeImage1, getFakeImage2, getFakeImage3 } from './getFakeImage1';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LastNewsComponent {
-  constructor(private readonly detector: ChangeDetectorRef){}
+  constructor(private readonly detector: ChangeDetectorRef) {
+  }
 
   sources: LastNews[] = [
     {
@@ -37,23 +38,27 @@ export class LastNewsComponent {
   public get selected(): number {
     return this._selected;
   }
+
   public set selected(value: number) {
     this._selected = value;
   }
+
   slideChangeTimer?: Subscription;
 
   ngAfterViewInit(): void {
     this.slideChangeTimer = timer(4000).pipe(repeat()).subscribe(() => this.incrementPage());
   }
+
   incrementPage(): void {
     this.selected++;
     this.detector.detectChanges();
   }
+
   ngOnDestroy(): void {
     this.slideChangeTimer?.unsubscribe();
   }
 }
 
-export interface LastNews extends Slide{
+export interface LastNews extends Slide {
 }
 

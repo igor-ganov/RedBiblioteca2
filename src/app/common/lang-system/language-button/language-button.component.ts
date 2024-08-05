@@ -1,13 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Observable, last, map, merge, tap, zip } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { TextHost } from '../TextHost';
 import { LocaleHost } from '../LocaleHost';
 import { RouteService } from '../../routes/RouteService';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-language-button',

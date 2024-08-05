@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ThemeSwitcher } from '../common/theming/services/ThemeSwitcher';
+import { ThemeSwitcher } from '@common/theming/services/ThemeSwitcher';
 
 
 const serivces = [ThemeSwitcher];

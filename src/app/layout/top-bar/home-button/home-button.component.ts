@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LocaleHost } from '../../../common/lang-system/LocaleHost';
+import { LocaleHost } from '@common/lang-system/LocaleHost';
 
 @Component({
   selector: 'app-home-button',

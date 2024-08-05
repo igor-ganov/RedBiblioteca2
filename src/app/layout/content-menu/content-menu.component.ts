@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ContentMenuItems} from "@app/layout/content-menu/content-menu.items";
 
 @Component({

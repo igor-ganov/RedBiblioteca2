@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Book } from '../models/Book';
 import { getFakeImage } from './getFakeImage';
 import { BookRepository } from '../services/BookRepository';
-import { finalize, from } from 'rxjs';
+import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
-import { routsPaths } from '../../../common/routes/routes';
-import { LocaleHost } from '../../../common/lang-system/LocaleHost';
+import { routsPaths } from '@common/routes/routes';
+import { LocaleHost } from '@common/lang-system/LocaleHost';
 
 @Component({
   selector: 'app-new-book',

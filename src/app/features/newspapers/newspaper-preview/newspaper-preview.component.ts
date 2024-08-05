@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, inject } from '@angular/core';
 import { Newspaper } from '../models/Newspaper';
 import { map } from 'rxjs';
-import { UserService } from '../../../common/permission-system/UserService';
+import { UserService } from '@common/permission-system/UserService';
 import { NewspaperRepository } from '../services/NewspaperRepository';
 import { SubscriptionHandler, SubscriptionHandlerProvider } from '@common/help/services/SubscriptionHandler';
 
