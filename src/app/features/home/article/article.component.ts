@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Article} from "@app/features/home/article/article";
 
 @Component({
   selector: 'app-article',
@@ -10,10 +11,4 @@ export class ArticleComponent {
   public article!: Article;
 }
 
-
-export interface Article{
-  id: string;
-  title: string;
-  content: string;
-}
 

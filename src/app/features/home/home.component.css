@@ -7,6 +7,9 @@
 
 /*make it reusable*/
 .content {
+    display: grid;
+    grid-template: "ban  ban"
+                   "menu art";
     /* padding: 1em; */
     background: linear-gradient(var(--background-background), var(--background-card) 2%, var(--background-card) 98%, var(--background-background));
 
@@ -14,6 +17,12 @@
     border-left: 1px solid;
     border-image: linear-gradient(var(--background-card) 2%, var(--foreground-text) 15%, var(--foreground-text) 85%, var(--background-card) 98%) 10;
     /* max-width: 80em; */
+}
+.banner{
+  grid-area: ban;
+}
+.content-menu{
+  grid-area: menu;
 }
 .content-title{
     display: flex;
@@ -89,6 +98,7 @@ a:hover {
 }
 
 .articles{
+    grid-area: art;
     padding: 5em 5em 30% 5em;
     display: flex;
     flex-direction: column;

@@ -11,4 +11,4 @@ export interface SuccessResult<T>{
 export interface ErrorResult{
     readonly resultCode: 404 | 403 | 500;
     errorMessage: string;
-};
+}

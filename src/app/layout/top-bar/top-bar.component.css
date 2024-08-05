@@ -3,6 +3,7 @@
     background-color: var(--background-card);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    height: 100%;
     /*grid-auto-columns: 1fr;*/
     align-items: center;
     min-height: 48px;

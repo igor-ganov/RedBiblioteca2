@@ -70,6 +70,7 @@ import { IfSuccess } from './common/components/errors/if-success.directive';
 import { TopBannerComponent } from './features/home/top-banner/top-banner.component';
 import { ArticleComponent } from './features/home/article/article.component';
 import { TopMenuComponent } from './layout/top-bar/top-menu/top-menu.component';
+import { ContentMenuComponent } from './layout/content-menu/content-menu.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { TopMenuComponent } from './layout/top-bar/top-menu/top-menu.component';
     TopBannerComponent,
     ArticleComponent,
     TopMenuComponent,
+    ContentMenuComponent,
   ],
   imports: [
     AppRoutingModule,

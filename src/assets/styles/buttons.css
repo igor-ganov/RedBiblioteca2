@@ -1,17 +1,25 @@
-.link-buttone{
+.link-button{
     text-decoration:none;
     color: var(--foreground-text);
     background-color: var(--background-background);
 }
 
-.link-buttone:hover{
+.link-button:hover{
     filter: brightness(95%);
 }
-.link-buttone:hover {
+.link-button:hover {
     color: var(--primary-default);
 }
 @container style(--is-dark: true) {
-    .link-buttone:hover{
+    .link-button:hover{
         filter: brightness(105%);
     }
+}
+
+.icon-button > *{
+  margin: 0px;
+  padding: 0px;
+}
+.menu-item{
+  border: none;
 }

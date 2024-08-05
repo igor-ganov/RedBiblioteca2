@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
-import { Article } from './article/article.component';
+
+import {Article} from "@app/features/home/article/article";
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,7 @@ import { Article } from './article/article.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   public readonly about: Article = {
     id: 'about',
     title: 'What is about?',
@@ -35,7 +37,7 @@ E-mail:	istituto.motosi@ismoi.it
 Telephone:	+39 010 653 32 76
 Fax:	+39 010 601 436
 http://www.ismoi.eu
-Information:	
+Information:
 Marxist Study Centre
 BM Box MSC.UK
 London WC1N 3XX
@@ -43,4 +45,5 @@ E-mail: uk_msc@yahoo.co.uk
 
     `
   };
+  public items = [this.about, this.hotToUse, this.sergioMotosi, this.contacts];
 }

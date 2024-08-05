@@ -1,0 +1,22 @@
+@import "assets/styles/buttons.css";
+
+.container{
+  position: sticky;
+  top: calc(var(--header-offset));
+  max-height: calc(100vh - var(--header-offset));
+  height: 100%;
+  width: 30em;
+  padding-right: 3em;
+  overflow: hidden;
+}
+.box{
+  height: 100%;
+
+  background: var(--background-card);
+  box-shadow: 2px 0px 20px 0px var(--background-tooltip);
+  border-right: 1px solid var(--primary-default);
+
+  display: flex;
+  flex-direction: column;
+  padding: 3em 0;
+}
