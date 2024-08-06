@@ -24,25 +24,5 @@ export class HomeComponent {
     title: 'Sergio Motosi',
     content: "Suddenly, on 12th October 2002, we lost our comrade, Sergio Motosi. The following passages are taken from his funeral service. Nature can be harsh and cruel to her finest sons. In Sergio Motosi, we lost one of the most impressive representatives of that generation of revolutionaries who came to Marxist science at the end of the 1960s. These were the children of “Leninist tactics for the educational crisis”, a work of Cervetto’s that in the history of our party’s development represents a milestone, a «practical step» on the long road that has led us to the present day."
   };
-  public readonly contacts: Article = {
-    id: 'contacts',
-    title: 'Contacts',
-    content: `
-Address:
-Via De Cavero, 4H
-16152 Genova, ITALIA
-
-E-mail:	istituto.motosi@ismoi.it
-Telephone:	+39 010 653 32 76
-Fax:	+39 010 601 436
-http://www.ismoi.eu
-Information:
-Marxist Study Centre
-BM Box MSC.UK
-London WC1N 3XX
-E-mail: uk_msc@yahoo.co.uk
-
-    `
-  };
-  public items = [this.about, this.hotToUse, this.sergioMotosi, this.contacts];
+  public items = [this.about, this.hotToUse, this.sergioMotosi];
 }
