@@ -1,22 +1,25 @@
-.icon-button{
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
+.icon-button {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
 }
 
-.icon-button > *{
-    margin: 0px;
-    padding: 0px;
+.icon-button > * {
+  margin: 0;
+  padding: 0;
 }
-.theme-button{
-    border: none;
-    color: var(--foreground-icon);
+
+.theme-button {
+  border: none;
+  color: var(--foreground-icon);
 }
-.vertical{
-    width: 100%;
+
+.vertical {
+  width: 100%;
 }
-.vertical span{
-    white-space: nowrap;
+
+.vertical span {
+  white-space: nowrap;
 }

@@ -1,28 +1,32 @@
-.container{
-    position: absolute;
-    overflow: hidden;
-    z-index: 1000;
-    /*Find better solution*/
-    transition: height 0.5s ease-in;
-    height: 100%;
+.container {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1000;
+  /*Find better solution*/
+  transition: height 0.5s ease-in;
+  height: 100%;
 }
 
-.container-close{
-    height: 0%;
+.container-close {
+  height: 0;
 }
 
-.slider{
-    transition: transform 0.3s ease-in;
+.slider {
+  transition: transform 0.3s ease-in;
 }
+
 .slider-closed-left {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
+
 .slider-closed-top {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
+
 .slider-closed-right {
-    transform: translateX(+100%);
+  transform: translateX(+100%);
 }
+
 .slider-closed-bottom {
-    transform: translateY(+100%);
+  transform: translateY(+100%);
 }

@@ -1,9 +1,9 @@
 @import "assets/styles/buttons.css";
 
-.icon-button{
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
+.icon-button {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
 }

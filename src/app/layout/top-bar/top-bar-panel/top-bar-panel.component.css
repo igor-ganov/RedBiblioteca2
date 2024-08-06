@@ -1,54 +1,61 @@
-.icon-button{
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-}
-.icon-button > *{
-    margin: 0px;
-    padding: 0px;
-}
-.container-mobile{
-    display: none;
+.icon-button {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
 }
 
-.buttons{
-    display: grid;
-    justify-content: flex-end;
-    align-items: center;
-    grid-auto-columns: max-content;
-    grid-auto-flow: column;
+.icon-button > * {
+  margin: 0;
+  padding: 0;
 }
 
-::ng-deep .cdk-overlay-pane > .mat-mdc-menu-panel{
-    min-width: 80px;
+.container-mobile {
+  display: none;
 }
+
+.buttons {
+  display: grid;
+  justify-content: flex-end;
+  align-items: center;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+}
+
+::ng-deep .cdk-overlay-pane > .mat-mdc-menu-panel {
+  min-width: 80px;
+}
+
 /* .menu{
     min-width: 50px;
 } */
 @media (max-width: 650px) {
-    .container{
-        display: none;
-    }
-    .container-mobile{
-        display: block;
-    }
-    .menu-vert-container{
-        display: grid;
-        grid-template-rows: 1fr min-content;
-        grid-template-columns: 10em;
-    }
-    .menu-vert-container > button {
-        justify-self: flex-end;
-    }
-    .menu{
-        --border:  1px solid var(--primary-default);
-        background-color: var(--background-card);
-        border-left: var(--border);
-        border-right: var(--border);
-        border-bottom: var(--border);
-        border-bottom-left-radius: 0.5em;
-        border-bottom-right-radius: 0.5em;
-    }
+  .container {
+    display: none;
+  }
+
+  .container-mobile {
+    display: block;
+  }
+
+  .menu-vert-container {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    grid-template-columns: 10em;
+  }
+
+  .menu-vert-container > button {
+    justify-self: flex-end;
+  }
+
+  .menu {
+    --border: 1px solid var(--primary-default);
+    background-color: var(--background-card);
+    border-left: var(--border);
+    border-right: var(--border);
+    border-bottom: var(--border);
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+  }
 }

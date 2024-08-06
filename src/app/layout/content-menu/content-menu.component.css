@@ -1,6 +1,6 @@
 @import "assets/styles/buttons.css";
 
-.container{
+.container {
   position: sticky;
   top: calc(var(--header-offset));
   max-height: calc(100vh - var(--header-offset));
@@ -9,11 +9,12 @@
   padding-right: 3em;
   overflow: hidden;
 }
-.box{
+
+.box {
   height: 100%;
 
   background: var(--background-card);
-  box-shadow: 2px 0px 20px 0px var(--background-tooltip);
+  box-shadow: 2px 0 20px 0 var(--background-tooltip);
   border-right: 1px solid var(--primary-default);
 
   display: flex;

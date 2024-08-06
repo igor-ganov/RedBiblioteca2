@@ -3,7 +3,7 @@
     @if (request$ | async; as request) {
       <ng-container class="card">
         @if (request.successeful) {
-          <ng-container [ngTemplateOutlet]="templateRef", [ngTemplateOutletContext]="request.result"/>
+          <ng-container [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="request.result"/>
         }
         @if (!request.successeful) {
           <app-errors [result]="request"/>

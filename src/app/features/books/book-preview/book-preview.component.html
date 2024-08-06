@@ -1,14 +1,18 @@
 <div class="container">
   <div class="title">
-    <h1 class="title-text">{{book.title}}</h1>
+    <h1 class="title-text">{{ book.title }}</h1>
     <div class="title-panel">
       @if (!(readonly$ | async)) {
-        <button (click)="onDelete(book)" color="warn" mat-icon-button><mat-icon>delete</mat-icon></button>
+        <button (click)="onDelete(book)" color="warn" mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
       }
-      <a [routerLink]="[book.pid]" mat-icon-button><mat-icon>open_in_new</mat-icon></a>
+      <a [routerLink]="[book.pid]" mat-icon-button>
+        <mat-icon>open_in_new</mat-icon>
+      </a>
     </div>
   </div>
-  <div class="subtitle"><h2>{{book.author}}</h2></div>
-  <div class="image"><img [src]="book.image | base64toImage"></div>
-  <div class="description"><span>{{book.description}}</span></div>
+  <div class="subtitle"><h2>{{ book.author }}</h2></div>
+  <div class="image"><img [src]="book.image | base64toImage" fill></div>
+  <div class="description"><span>{{ book.description }}</span></div>
 </div>
