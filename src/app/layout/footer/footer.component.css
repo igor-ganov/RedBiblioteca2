@@ -1,13 +1,45 @@
-.container{
-    padding: 0.5em;
-    background-color: var(--background-card);
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+.subline {
+  width: 100%;
+  border-bottom: 0.1em solid var(--background-border-line);
 }
 
-.subline{
-    width: 100%;
-    border-bottom: 0.1em solid var(--background-border-line);
+.container {
+  padding: 1em;
+  background-color: var(--primary-background);
+  color: var(--primary-default-contrast);
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.img-title {
+  height: 6em;
+}
+
+.container-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+.info {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contacts {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.5em;
+}
+
+.copyright {
+  align-self: flex-end;
 }
