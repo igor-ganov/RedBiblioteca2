@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: row;
 }
+
 .menu-text {
     color: var(--foreground-icon);
 }
+
 .container > button {
     border: none;
 }

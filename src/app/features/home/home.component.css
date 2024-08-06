@@ -5,17 +5,18 @@
   justify-content: center;
 }
 
-/*make it reusable*/
+/* make it reusable */
 .content {
   display: grid;
   grid-template: "ban  ban"
                    "menu art";
+
   /* padding: 1em; */
   background: linear-gradient(var(--background-background), var(--background-card) 2%, var(--background-card) 98%, var(--background-background));
-
   border-right: 1px solid;
   border-left: 1px solid;
   border-image: linear-gradient(var(--background-card) 2%, var(--foreground-text) 15%, var(--foreground-text) 85%, var(--background-card) 98%) 10;
+
   /* max-width: 80em; */
 }
 
@@ -32,7 +33,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 4em 0 4em 0;
+  margin: 4em 0;
 }
 
 .content-title > * {
@@ -44,7 +45,7 @@
 }
 
 .content-title::before, .content-title::after {
-  margin: 0 1em 0 1em;
+  margin: 0 1em;
   flex-grow: 1;
   content: '';
   width: 100%;
@@ -56,7 +57,6 @@
   background: var(--background-background);
   border: 1px solid var(--foreground-text);
   border-radius: 0.5em;
-
   font-size: 1.2em;
 
   /* width: fit-content; */
@@ -66,7 +66,7 @@
   line-height: 1.5em;
 }
 
-/*make it reusable*/
+/* make it reusable */
 a {
   display: block;
   color: inherit;
@@ -91,6 +91,7 @@ a:hover {
   gap: 10em;
 
   --page-font-size: 1em;
+
   font-size: var(--page-font-size);
 }
 
@@ -104,16 +105,17 @@ a:hover {
 
 .articles {
   grid-area: art;
-  padding: 5em 5em 30% 5em;
+  padding: 5em 5em 30%;
   display: flex;
   flex-direction: column;
   gap: 10em;
 
   --page-font-size: 1em;
+
   font-size: var(--page-font-size);
 }
 
-@media (max-width: 1145px) {
+@media (width <= 1145px) {
   .articles {
     --page-font-size: 0.6em;
   }

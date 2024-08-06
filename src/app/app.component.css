@@ -1,4 +1,4 @@
-:host{
+:host {
   --header-offset: 4em;
 }
 
@@ -7,18 +7,18 @@
   width: 100%;
   height: fit-content;
   min-height: 100%;
-  grid-template-areas:
-    "head head"
-    "nav  main"
-    "nav  foot";
-  grid-template-rows: var(--header-offset) 1fr fit-content(3em);
-  grid-template-columns: fit-content(10%) 1fr;
+  grid-template:
+    "head head" var(--header-offset)
+    "nav  main" 1fr
+    "nav  foot" fit-content(3em)
+    / fit-content(10%) 1fr;
 }
 
 .header {
   position: sticky;
   top: 0;
   z-index: 1000;
+
   /* background-color: var(--theme-color-hieght); */
   background-color: var(--primary-default);
   grid-area: head;

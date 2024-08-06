@@ -1,4 +1,4 @@
-@import "assets/styles/buttons.css";
+@import url("assets/styles/buttons.css");
 
 .icon-button {
   padding: 0;

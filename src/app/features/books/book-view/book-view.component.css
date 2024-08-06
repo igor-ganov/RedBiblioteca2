@@ -7,9 +7,9 @@
 
 .card {
   padding: 1em;
+
   /* background-color: var(--background-card); */
   background: linear-gradient(var(--background-background), var(--background-card) 2%, var(--background-card) 98%, var(--background-background));
-
   border-right: 1px solid;
   border-left: 1px solid;
   border-image: linear-gradient(var(--background-card) 2%, var(--foreground-text) 15%, var(--foreground-text) 85%, var(--background-card) 98%) 10;
@@ -25,13 +25,10 @@
 
 .title {
   grid-area: title;
-
   display: grid;
-
   margin: 0;
   padding-left: 10%;
   padding-bottom: 1em;
-
   border-bottom: 1px solid var(--foreground-text);
 }
 
@@ -45,10 +42,8 @@
 
 .subtitle {
   grid-area: subtitle;
-
   display: grid;
   justify-content: center;
-
   padding: 1em;
 }
 
@@ -58,9 +53,7 @@
 
 .image {
   grid-area: image;
-
   padding: 3em;
-
   display: grid;
   justify-content: center;
   align-items: center;
@@ -94,7 +87,7 @@
   display: grid;
 }
 
-@media (max-width: 1145px) {
+@media (width <= 1145px) {
   .card {
     max-width: 90vw;
     grid-template-areas: "title"

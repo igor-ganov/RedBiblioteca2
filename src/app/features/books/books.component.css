@@ -3,10 +3,12 @@
     display: grid;
     justify-content: center;
 }
+
 .card{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+
 .title-panel{
     display: grid;
     justify-content: flex-end;

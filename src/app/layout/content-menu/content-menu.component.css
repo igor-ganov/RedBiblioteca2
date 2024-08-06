@@ -1,4 +1,4 @@
-@import "assets/styles/buttons.css";
+@import url("assets/styles/buttons.css");
 
 .container {
   position: sticky;
@@ -12,11 +12,9 @@
 
 .box {
   height: 100%;
-
   background: var(--background-card);
   box-shadow: 2px 0 20px 0 var(--background-tooltip);
   border-right: 1px solid var(--primary-default);
-
   display: flex;
   flex-direction: column;
   padding: 3em 0;

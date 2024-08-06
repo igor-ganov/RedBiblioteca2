@@ -1,5 +1,6 @@
 .container{
     width: 100%;
+
     /* height: 20em; */
     height: 100%;
     display: grid;
@@ -9,6 +10,7 @@
 .left{
     grid-area: left;
 }
+
 .right{
     grid-area: right;
 }
@@ -21,10 +23,10 @@
     position: absolute;
     z-index: 100;
     height: 100%;
-
     display: grid;
     align-content: center;
 }
+
 .right-panel {
     transform: translateX(-100%);
 }
@@ -32,6 +34,7 @@
 
 .center{
     position: relative;
+
     /* border: 1px red solid; */
     overflow: hidden;
     grid-area: center;
@@ -40,34 +43,32 @@
 .slide{
     color: red;
     -webkit-text-stroke: 1px #f3f3f3;
-    text-shadow: 2px 2px 3px rgb(40, 40, 40);
-
+    text-shadow: 2px 2px 3px rgb(40 40 40);
     display: grid;
     grid-template: "title" max-content
                    "description" 1fr
 }
+
 .title{
     font-weight: 900;
-
     grid-area: title;
     font-size: 3em;
     line-height: 1em;
-    padding: 0 0 1em 0;
+    padding: 0 0 1em;
 }
+
 .description{
     font-weight: bolder;
-
     grid-area: description;
     font-size: 2em;
     line-height: 1em;
-    padding: 0.5em 0 0.5em 0;
+    padding: 0.5em 0;
 }
 
 .slide{
     position: absolute;
     height: 100%;
     width: 100%;
-    
     visibility: hidden;
     padding: 2em;
 
@@ -85,15 +86,19 @@
 .slide.left-direction{
     transform: translateX(-100%);
 }
+
 .previous.left-direction{
     transform: translateX(100%);
 }
+
 .slide.right-direction{
     transform: translateX(100%);
 }
+
 .previous.right-direction{
     transform: translateX(-100%);
 }
+
 .slide.current{
     transform: translateX(0);
 }

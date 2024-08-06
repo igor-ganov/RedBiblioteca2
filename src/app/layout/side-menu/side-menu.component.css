@@ -3,14 +3,16 @@
     position: fixed;
     z-index: 1000;
 }
+
 .menu-container{
-    padding: 0.5em 0 0.5em 0;
+    padding: 0.5em 0;
     height: 100%;
+
     /* background-color: var(--background-app-bar); */
+
     /* opacity: 85%; */
     backdrop-filter: blur(10px);
     border-right: 1px solid var(--foreground-icon);
-
     display: grid;
     grid-auto-rows: max-content;
     grid-auto-columns: max-content;
@@ -19,6 +21,7 @@
 .menu-container > button {
     border: none;
 }
+
 .menu-text {
     color: var(--foreground-icon);
 }
@@ -30,6 +33,7 @@
     z-index: 1000;
     transition: transform 0.3s ease-in;
 }
+
 .slider-closed {
     transform: translateX(-100%);
 }

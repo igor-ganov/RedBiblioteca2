@@ -30,7 +30,7 @@
 /* .menu{
     min-width: 50px;
 } */
-@media (max-width: 650px) {
+@media (width <= 650px) {
   .container {
     display: none;
   }
@@ -51,6 +51,7 @@
 
   .menu {
     --border: 1px solid var(--primary-default);
+
     background-color: var(--background-card);
     border-left: var(--border);
     border-right: var(--border);
