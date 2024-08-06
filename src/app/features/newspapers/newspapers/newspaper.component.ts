@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Newspaper } from '../models/Newspaper';
 import { ActivatedRoute } from '@angular/router';
 import { NewspaperRepository } from '../services/NewspaperRepository';
@@ -11,7 +11,7 @@ import { Result } from "@common/help/services/Result";
   templateUrl: './newspaper.component.html',
   styleUrl: './newspaper.component.css'
 })
-export class NewspaperComponent {
+export class NewspaperComponent implements OnInit {
 
   public isUpdating = false;
   onPublish(value: Newspaper) {

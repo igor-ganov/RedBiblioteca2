@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, AfterViewInit, OnDestroy} from '@angular/core';
 import {Slide} from '@common/components/slide-show/Slides';
 import {repeat, Subscription, timer} from 'rxjs';
 import {getFakeImage1, getFakeImage2, getFakeImage3} from './getFakeImage1';
@@ -9,7 +9,7 @@ import {getFakeImage1, getFakeImage2, getFakeImage3} from './getFakeImage1';
   styleUrl: './last-news.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LastNewsComponent {
+export class LastNewsComponent implements AfterViewInit, OnDestroy {
   constructor(private readonly detector: ChangeDetectorRef) {
   }
 
@@ -34,7 +34,7 @@ export class LastNewsComponent {
       image: getFakeImage3(),
     },
   ]
-  private _selected: number = 0;
+  private _selected = 0;
   public get selected(): number {
     return this._selected;
   }

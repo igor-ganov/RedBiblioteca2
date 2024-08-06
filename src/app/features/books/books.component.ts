@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {BookRepository} from './services/BookRepository';
 import {map, Observable} from 'rxjs';
 import {Book} from './models/Book';
@@ -9,7 +9,7 @@ import {UserService} from '@common/permission-system/UserService';
   templateUrl: './books.component.html',
   styleUrl: './books.component.css'
 })
-export class BooksComponent {
+export class BooksComponent implements OnInit {
   public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
   public readonly booksRepository = inject(BookRepository);
   public books$?: Observable<Book[]>;

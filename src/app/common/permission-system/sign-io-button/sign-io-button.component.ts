@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, OnInit, OnDestroy } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EventMessageQueue } from '../../help/services/EventMassageQueue';
@@ -12,7 +12,7 @@ import { UserService } from '../UserService';
   styleUrl: './sign-io-button.component.css',
   providers: [SubscriptionManager]
 })
-export class SignIoButtonComponent {
+export class SignIoButtonComponent implements OnInit, OnDestroy {
   @Input() public horizontal = true;
 
   private readonly router = inject(Router);

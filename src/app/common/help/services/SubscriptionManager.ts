@@ -38,7 +38,7 @@ export class SubscriptionManager {
                                onError: ((value: Error) => void) | undefined = undefined,
                                onFinal: (() => void) | undefined = undefined,
                                retries: number | undefined = undefined,
-                               delay: number = 1000): void {
+                               delay = 1000): void {
     this.createSubscriptionFor(obs.pipe(
       catchError(error => {
         console.error('Retry');
@@ -49,7 +49,7 @@ export class SubscriptionManager {
   }
 
   public clearSubscriptions() {
-    for (let subscribtion of this.subscribtions) {
+    for (const subscribtion of this.subscribtions) {
       subscribtion.unsubscribe();
     }
     this.subscribtions.length = 0;

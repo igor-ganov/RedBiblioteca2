@@ -24,7 +24,7 @@ export class NewspaperViewComponent {
 
   onImageUploaded(event: Event, newspaper: Newspaper) {
     const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
+    const fileList: FileList | null = element.files;
     const image = fileList?.[0];
     if(image) toBase64(image, v => newspaper.cover = v);
   }

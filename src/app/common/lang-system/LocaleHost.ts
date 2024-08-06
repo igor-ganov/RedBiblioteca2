@@ -60,7 +60,7 @@ export class LocaleHost {
     return this.current;
   }
 
-  private current: string = "en";
+  private current = "en";
 
   getLanguageAsync() {
     return this.observable;

@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './slider.component.css'
 })
 export class SliderComponent {
-  @Input() public opened: boolean = true;
+  @Input() public opened = true;
   private _direction: Direction = 'left';
   @Input()
   public get direction(): Direction {

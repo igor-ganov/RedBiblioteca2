@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {SideMenuService} from './services/SideMenuService';
 import {routsPaths} from '@common/routes/routes';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
@@ -11,7 +11,7 @@ import {UserService} from '@common/permission-system/UserService';
   templateUrl: './side-menu.component.html',
   styleUrl: './side-menu.component.css'
 })
-export class SideMenuComponent {
+export class SideMenuComponent implements OnInit {
   public routes = routsPaths;
   public items?: Observable<(MenuItemReach)[]>;
 

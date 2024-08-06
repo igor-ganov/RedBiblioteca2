@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LocaleHost } from '@common/lang-system/LocaleHost';
 import { Observable } from 'rxjs';
 import { PermissionService } from '@common/permission-system/UserService';
@@ -8,7 +8,7 @@ import { PermissionService } from '@common/permission-system/UserService';
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.css'
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnInit {
   private readonly localeHost = inject(LocaleHost);
   public lang$? : Observable<string>;
 

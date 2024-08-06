@@ -24,7 +24,7 @@ export class BookViewComponent {
 
   onImageUploaded(event: Event, book: Book) {
     const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
+    const fileList: FileList | null = element.files;
     const image = fileList?.[0];
     if(image) toBase64(image, v => book.image = v);
   }

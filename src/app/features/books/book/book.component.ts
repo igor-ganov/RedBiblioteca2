@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Book } from '../models/Book';
 import { ActivatedRoute } from '@angular/router';
 import { BookRepository } from '../services/BookRepository';
@@ -11,7 +11,7 @@ import { Result } from "@common/help/services/Result";
   templateUrl: './book.component.html',
   styleUrl: './book.component.css'
 })
-export class BookComponent {
+export class BookComponent implements OnInit {
 
   public isUpdating = false;
   onPublish(value: Book) {

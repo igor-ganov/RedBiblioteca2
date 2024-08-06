@@ -12,8 +12,8 @@ import { CloneService, StoreRoot } from './CloneService';
 export class FirebasePanelComponent {
   private readonly cloneService = inject(CloneService);
   private readonly subscriptionHandler = inject(SubscriptionHandler);
-  public langFrom: string = 'it';
-  public langTo: string = 'en';
+  public langFrom = 'it';
+  public langTo = 'en';
   public readonly langList = ['it', 'en', 'ru', 'fr', 'de'];
 
 

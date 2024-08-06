@@ -27,7 +27,7 @@ export class CloneService {
 
   public async export(path: string, collectionDatas: StoreNode[]) {
     const exportJson = Object.create({}) as {};
-    for (let collectionData of collectionDatas) {
+    for (const collectionData of collectionDatas) {
       const elements = await this.getElements(collectionData, `${path}/${collectionData.name}`);
       addField(exportJson, collectionData.name, elements);
     }
@@ -38,7 +38,7 @@ export class CloneService {
     const elements = [];
     const collectionRef = collection(this.firestore, path);
     const docs = await getDocs(collectionRef);
-    for (let doc of docs.docs) {
+    for (const doc of docs.docs) {
       const element = await this.getCollectionElement(doc, data.fields, `${path}/${doc.id}`);
       elements.push(element);
     }
@@ -53,7 +53,7 @@ export class CloneService {
 
   private async addChildren<T>(element: T, fields: StoreNode[] | undefined, path: string) {
     if (!fields) return;
-    for (let field of fields.filter(f => f.type === 'collection' || f.type === 'object')) {
+    for (const field of fields.filter(f => f.type === 'collection' || f.type === 'object')) {
       const value = field.type === 'collection' ?
         await this.getElements(field, `${path}/${field.name}`) :
         await this.getObject(field, `${path}/${field.name}`);

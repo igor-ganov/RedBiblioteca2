@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {TextHost} from '@common/lang-system/TextHost';
 import {RouteService} from '@common/routes/RouteService';
 import {filter, map, Observable, of, switchMap} from 'rxjs';
@@ -8,7 +8,7 @@ import {filter, map, Observable, of, switchMap} from 'rxjs';
   templateUrl: './title.component.html',
   styleUrl: './title.component.css'
 })
-export class TitleComponent {
+export class TitleComponent implements OnInit {
   private routeService = inject(RouteService);
   private textHost = inject(TextHost);
   title?: Observable<string | undefined>;

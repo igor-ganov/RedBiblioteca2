@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { TextHost } from '../TextHost';
@@ -10,7 +10,7 @@ import { RouteService } from '../../routes/RouteService';
   templateUrl: './language-button.component.html',
   styleUrls: ['./language-button.component.css'],
 })
-export class LanguageButtonComponent {
+export class LanguageButtonComponent implements OnInit {
   @Input() public horizontal = true;
   languages = TextHost.SupportedLanguages;
   newLanguage? : string;

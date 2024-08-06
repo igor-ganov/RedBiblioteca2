@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnDestroy} from '@angular/core';
 import {Observable} from 'rxjs';
 import {TextHost} from '@common/lang-system/TextHost';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
@@ -15,7 +15,7 @@ import {LoginText} from './locale/LoginText';
   styleUrl: './login.component.css',
   providers: [SubscriptionManager]
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   // private readonly userService: inject(UserService),
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserData, UserDataRepository } from '@common/permission-system/UserDataRepository';
 import { UserRoles } from '@common/permission-system/UserRoles';
 import { UserService } from '@common/permission-system/UserService';
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   templateUrl: './users-panel.component.html',
   styleUrl: './users-panel.component.css'
 })
-export class UsersPanelComponent {
+export class UsersPanelComponent implements OnInit {
 
   public userRoles: Map<number, string>;
 

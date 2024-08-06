@@ -26,7 +26,7 @@ import {AboutTextFactory} from "@app/feature/about/locale";
 import {AdminPanelComponent} from "@app/features/admin-panel/admin-panel.component";
 import {AdminTextFactory} from "@app/features/admin-panel/locale";
 
-export const translationMap: Map<Type<any>, ITitleFactory | ITextFactory<any>> = new Map([
+export const translationMap = new Map<Type<any>, ITitleFactory | ITextFactory<any>>([
   [LoginComponent, new LoginTextFactory()],
   [HomeComponent, new HomeTextFactory()],
   [BookComponent, new BookTextFactory()],

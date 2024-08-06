@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MenuItemReach, MenuService } from '@app/layout/side-menu/services/MenuServices';
 import { LocaleHost } from '@common/lang-system/LocaleHost';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './top-menu.component.html',
   styleUrl: './top-menu.component.css'
 })
-export class TopMenuComponent {
+export class TopMenuComponent implements OnInit {
   public menuService = inject(MenuService);
   public items?: Observable<(MenuItemReach)[]>;
   public localeHost = inject(LocaleHost);

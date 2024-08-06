@@ -81,7 +81,7 @@ function getChildren(route: Route) {
 function skipForbiden(item: (MenuItemReach | RootItem), role: UserRoles): (MenuItemReach | RootItem) | undefined {
   if (item.type === 'item') return skipForbidenItem(item, role);
   const children = skipForbidenItems(item.children, role);
-  return children.length > 0 ? <RootItem>{type: 'root', children: children} : undefined;
+  return children.length > 0 ? {type: 'root', children: children} as RootItem : undefined;
 }
 
 function skipForbidenItems(items: MenuItemReach[], role: UserRoles): MenuItemReach[] {

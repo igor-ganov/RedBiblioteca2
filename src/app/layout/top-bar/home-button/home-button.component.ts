@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocaleHost } from '@common/lang-system/LocaleHost';
 
@@ -7,7 +7,7 @@ import { LocaleHost } from '@common/lang-system/LocaleHost';
   templateUrl: './home-button.component.html',
   styleUrl: './home-button.component.css'
 })
-export class HomeButtonComponent {
+export class HomeButtonComponent implements OnInit {
   private readonly localeHost = inject(LocaleHost);
   public lang$? : Observable<string>;
 

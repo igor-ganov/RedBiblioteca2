@@ -33,7 +33,7 @@ export class SlideShowComponent {
     this.current = 0;
   }
 
-  private _selected: number = 0;
+  private _selected = 0;
   @Input()
   public get selected(): number {
     return this._selected;
@@ -60,7 +60,7 @@ export class SlideShowComponent {
 
   private slideDirection: SlidAnimationDirectionClass = 'right-direction';
   private slideAnimation: SlidAnimationClass = 'transform-animation';
-  private current: number = 0;
+  private current = 0;
   private previous?: number;
 
   @HostListener('transitionend', ['$event'])

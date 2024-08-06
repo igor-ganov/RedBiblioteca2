@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginText} from '../login/locale/LoginText';
 import {Observable} from 'rxjs';
 
@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
 })
-export class TestComponent {
+export class TestComponent implements OnInit {
 
 
   constructor() {

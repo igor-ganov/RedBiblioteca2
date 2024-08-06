@@ -84,7 +84,7 @@ export function transform<TNode, TResultFunction>(node: TNode, func: (node: TNod
 
 export function toBase64(file: File, callback: (result: string) => void) {
 
-  var reader = new FileReader();
+  const reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onload = function () {
     callback(reader.result!.toString());
