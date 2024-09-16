@@ -8,17 +8,15 @@
         <li *ngFor="let article of articles"><a [routerLink]='"."' [fragment]="article.id">{{article.title}}</a></li>
     </ul> -->
 
-    <div class="articles">
-      <div class="first-content">
-        <div class="first-content-articles">
-          <app-article [article]="about"/>
-          <app-article [article]="hotToUse"/>
-        </div>
-        <div class="news">
-          <app-last-news/>
-        </div>
+    <div class="articles-with-news">
+      <div class="articles">
+        <app-article [article]="about"/>
+        <app-article [article]="hotToUse"/>
+        <app-article [article]="sergioMotosi"/>
       </div>
-      <app-article [article]="sergioMotosi"/>
+      <div class="news">
+        <app-last-news/>
+      </div>
     </div>
   </div>
 </div>

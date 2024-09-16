@@ -5,7 +5,7 @@
   top: calc(var(--header-offset));
   max-height: calc(100vh - var(--header-offset));
   height: 100%;
-  width: 30em;
+  width: 20em;
   padding-right: 3em;
   overflow: hidden;
 }

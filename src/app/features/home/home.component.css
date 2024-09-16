@@ -78,13 +78,9 @@ a:hover {
   cursor: pointer;
 }
 
-.first-content {
-  display: grid;
-  grid-template: "art news" / 1fr fit-content(10%);
-  gap: 5em;
-}
+.articles {
+  padding: 5em 5em 10em 5em;
 
-.first-content-articles {
   grid-area: art;
   display: flex;
   flex-direction: column;
@@ -99,24 +95,22 @@ a:hover {
   grid-area: news;
   width: 300px;
   float: left;
-  border-radius: 0.5em;
   overflow: hidden;
 }
 
-.articles {
+.articles-with-news {
   grid-area: art;
-  padding: 5em 5em 30%;
-  display: flex;
-  flex-direction: column;
-  gap: 10em;
 
   --page-font-size: 1em;
-
   font-size: var(--page-font-size);
+
+  display: grid;
+  grid-template: "art news" / 1fr fit-content(10%);
+  gap: 5em;
 }
 
 @media (width <= 1145px) {
-  .articles {
+  .articles-with-news {
     --page-font-size: 0.6em;
   }
 }
