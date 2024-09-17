@@ -46,7 +46,8 @@
     text-shadow: 2px 2px 3px rgb(40 40 40);
     display: grid;
     grid-template: "title" max-content
-                   "description" 1fr
+                   "description" 1fr;
+    background-size: cover;
 }
 
 .title{

@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {Article} from "@app/features/home/article/article";
+import { UserService } from '@common/permission-system/UserService';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-article',
@@ -7,8 +9,14 @@ import {Article} from "@app/features/home/article/article";
   styleUrl: './article.component.css'
 })
 export class ArticleComponent {
+  public onPublish(article: Article) {
+  }
   @Input({required: true})
   public article!: Article;
+
+  public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
+  public isUpdating!: boolean;
+
 }
 
 

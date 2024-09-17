@@ -2,12 +2,6 @@
   <div class="content">
     <app-top-banner class="banner"/>
     <app-content-menu [items]="items" class="menu"/>
-
-    <!-- <div class="content-title"><h1>Welcome!</h1></div> -->
-    <!-- <ul class="content-table">
-        <li *ngFor="let article of articles"><a [routerLink]='"."' [fragment]="article.id">{{article.title}}</a></li>
-    </ul> -->
-
     <div class="articles-with-news">
       <div class="articles">
         <app-article [article]="about"/>
@@ -15,7 +9,9 @@
         <app-article [article]="sergioMotosi"/>
       </div>
       <div class="news">
-        <app-last-news/>
+        <div class="shadow-box"> <!-- TODO move to shared component or css -->
+          <app-last-news/>
+        </div>
       </div>
     </div>
   </div>

@@ -96,6 +96,13 @@ a:hover {
   width: 300px;
   float: left;
   overflow: hidden;
+  padding-left: 5em;
+}
+
+.shadow-box{
+  box-shadow: -5px 0 20px 0 var(--background-tooltip);
+  border-left: 1px solid var(--primary-default);
+  height: 100%;
 }
 
 .articles-with-news {

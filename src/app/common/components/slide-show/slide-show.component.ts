@@ -42,8 +42,10 @@ export class SlideShowComponent {
   public set selected(value: number) {
     if (this.animationApplying) {
       this.selectedChange.emit(this._selected);
+      return;
     }
     const newValue = this.normalize(value);
+    // const newValue = this._selected > value ? this.normalize(this._selected + 1) : this.normalize(this._selected - 1);
     if (this._selected === newValue) return;
     this._selected = newValue;
     this.moveTo(newValue);
@@ -78,7 +80,6 @@ export class SlideShowComponent {
 
   onRightClick() {
     this.moveTo(this.getNext(), 'right-direction');
-
   }
 
   onLeftClick() {
