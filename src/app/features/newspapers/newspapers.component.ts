@@ -5,9 +5,10 @@ import { Newspaper } from './models/Newspaper';
 import { UserService } from '@common/permission-system/UserService';
 
 @Component({
-  selector: 'app-newspapers',
-  templateUrl: './newspapers.component.html',
-  styleUrl: './newspapers.component.css'
+    selector: 'app-newspapers',
+    templateUrl: './newspapers.component.html',
+    styleUrl: './newspapers.component.css',
+    standalone: false
 })
 export class NewspapersComponent implements OnInit {
   public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));

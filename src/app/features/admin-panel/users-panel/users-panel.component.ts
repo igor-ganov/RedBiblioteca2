@@ -5,9 +5,10 @@ import { UserService } from '@common/permission-system/UserService';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-users-panel',
-  templateUrl: './users-panel.component.html',
-  styleUrl: './users-panel.component.css'
+    selector: 'app-users-panel',
+    templateUrl: './users-panel.component.html',
+    styleUrl: './users-panel.component.css',
+    standalone: false
 })
 export class UsersPanelComponent implements OnInit {
 

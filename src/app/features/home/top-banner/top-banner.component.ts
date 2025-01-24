@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-top-banner',
-  templateUrl: './top-banner.component.html',
-  styleUrl: './top-banner.component.css'
+    selector: 'app-top-banner',
+    templateUrl: './top-banner.component.html',
+    styleUrl: './top-banner.component.css',
+    standalone: false
 })
 export class TopBannerComponent {
   description = `Institute

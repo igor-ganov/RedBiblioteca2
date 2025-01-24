@@ -10,10 +10,11 @@ import {
 import {Slide} from './Slides';
 
 @Component({
-  selector: 'app-slide-show',
-  templateUrl: './slide-show.component.html',
-  styleUrl: './slide-show.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-slide-show',
+    templateUrl: './slide-show.component.html',
+    styleUrl: './slide-show.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SlideShowComponent {
   constructor(private ref: ChangeDetectorRef) {

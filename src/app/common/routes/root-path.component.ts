@@ -5,8 +5,8 @@ import {RootHrefService} from './RootHrefService';
 import {PermissionService} from "@common/permission-system/UserService";
 
 @Component({
-  selector: 'root-path',
-  template: `
+    selector: 'root-path',
+    template: `
     @if (getPermission() | async; as permission) {
       @if (permission.isPermited) {
         <router-outlet></router-outlet>
@@ -14,7 +14,8 @@ import {PermissionService} from "@common/permission-system/UserService";
         <app-login/>
       }
     }
-  `
+  `,
+    standalone: false
 })
 export class RootPathComponent implements OnInit {
   constructor(

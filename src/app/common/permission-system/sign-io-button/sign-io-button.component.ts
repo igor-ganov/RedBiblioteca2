@@ -7,10 +7,11 @@ import { LocaleHost } from '../../lang-system/LocaleHost';
 import { UserService } from '../UserService';
 
 @Component({
-  selector: 'app-sign-io-button',
-  templateUrl: './sign-io-button.component.html',
-  styleUrl: './sign-io-button.component.css',
-  providers: [SubscriptionManager]
+    selector: 'app-sign-io-button',
+    templateUrl: './sign-io-button.component.html',
+    styleUrl: './sign-io-button.component.css',
+    providers: [SubscriptionManager],
+    standalone: false
 })
 export class SignIoButtonComponent implements OnInit, OnDestroy {
   @Input() public horizontal = true;

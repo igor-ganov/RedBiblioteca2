@@ -4,10 +4,11 @@ import {repeat, Subscription, timer} from 'rxjs';
 import {getFakeImage1, getFakeImage2, getFakeImage3} from './getFakeImage1';
 
 @Component({
-  selector: 'app-last-news',
-  templateUrl: './last-news.component.html',
-  styleUrl: './last-news.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-last-news',
+    templateUrl: './last-news.component.html',
+    styleUrl: './last-news.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class LastNewsComponent implements AfterViewInit, OnDestroy {
   constructor(private readonly detector: ChangeDetectorRef) {

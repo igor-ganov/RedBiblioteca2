@@ -5,8 +5,8 @@ import {routsPaths} from "@common/routes/routes";
 import {MatTableModule} from "@angular/material/table";
 
 @Component({
-  selector: 'app-content-manager',
-  template: `
+    selector: 'app-content-manager',
+    template: `
     <div class="container">
       <mat-table class="table" [dataSource]="[{title: 'Home content', panel: this.homeContent}]">
 
@@ -27,7 +27,7 @@ import {MatTableModule} from "@angular/material/table";
       </mat-table>
     </div>
   `,
-  styles: `
+    styles: `
     .container {
       padding: 3em;
       display: flex;
@@ -41,13 +41,12 @@ import {MatTableModule} from "@angular/material/table";
       min-width: 500px;
     }
   `,
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatAnchor,
-    MatTableModule
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [
+        RouterLink,
+        MatAnchor,
+        MatTableModule
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentManagerComponent {
   public readonly homeContent = routsPaths.homeContent;

@@ -3,9 +3,10 @@ import { Observable } from 'rxjs';
 import { LocaleHost } from '@common/lang-system/LocaleHost';
 
 @Component({
-  selector: 'app-home-button',
-  templateUrl: './home-button.component.html',
-  styleUrl: './home-button.component.css'
+    selector: 'app-home-button',
+    templateUrl: './home-button.component.html',
+    styleUrl: './home-button.component.css',
+    standalone: false
 })
 export class HomeButtonComponent implements OnInit {
   private readonly localeHost = inject(LocaleHost);

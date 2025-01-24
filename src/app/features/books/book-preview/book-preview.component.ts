@@ -6,10 +6,11 @@ import { BookRepository } from '../services/BookRepository';
 import { SubscriptionHandler, SubscriptionHandlerProvider } from '@common/help/services/SubscriptionHandler';
 
 @Component({
-  selector: 'app-book-preview',
-  templateUrl: './book-preview.component.html',
-  styleUrl: './book-preview.component.css',
-  providers: [SubscriptionHandlerProvider]
+    selector: 'app-book-preview',
+    templateUrl: './book-preview.component.html',
+    styleUrl: './book-preview.component.css',
+    providers: [SubscriptionHandlerProvider],
+    standalone: false
 })
 export class BookPreviewComponent implements OnDestroy {
   @Input({ required: true }) public book!: Book;

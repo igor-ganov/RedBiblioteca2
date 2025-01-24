@@ -8,8 +8,8 @@ import {Theme} from "@common/theming/models/Theme";
 import {ThemeSwitcher} from "@common/theming/services/ThemeSwitcher";
 
 @Component({
-  selector: 'app-theme-switcher',
-  template: `
+    selector: 'app-theme-switcher',
+    template: `
     <div class="container">
       @if (horizontal()) {
         <button color="basic" mat-mini-fab [matMenuTriggerFor]="themeMenu">
@@ -38,7 +38,7 @@ import {ThemeSwitcher} from "@common/theming/services/ThemeSwitcher";
       </mat-menu>
     </div>
   `,
-  styles: `
+    styles: `
     .vertical {
       width: 100%;
 
@@ -47,9 +47,8 @@ import {ThemeSwitcher} from "@common/theming/services/ThemeSwitcher";
       }
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [MatMiniFabButton, MatIcon, MatFormFieldModule, MatSelectModule, MatMenuModule, MatButton]
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatMiniFabButton, MatIcon, MatFormFieldModule, MatSelectModule, MatMenuModule, MatButton]
 })
 export class ThemeSwitcherComponent {
   private readonly themeService = inject(ThemeSwitcher);

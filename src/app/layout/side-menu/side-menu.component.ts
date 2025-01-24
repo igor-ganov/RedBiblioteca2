@@ -7,9 +7,10 @@ import {MenuItemReach, MenuService} from './services/MenuServices';
 import {UserService} from '@common/permission-system/UserService';
 
 @Component({
-  selector: 'app-side-menu',
-  templateUrl: './side-menu.component.html',
-  styleUrl: './side-menu.component.css'
+    selector: 'app-side-menu',
+    templateUrl: './side-menu.component.html',
+    styleUrl: './side-menu.component.css',
+    standalone: false
 })
 export class SideMenuComponent implements OnInit {
   public routes = routsPaths;

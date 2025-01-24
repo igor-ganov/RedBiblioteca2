@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrl: './slider.component.css'
+    selector: 'app-slider',
+    templateUrl: './slider.component.html',
+    styleUrl: './slider.component.css',
+    standalone: false
 })
 export class SliderComponent {
   @Input() public opened = true;

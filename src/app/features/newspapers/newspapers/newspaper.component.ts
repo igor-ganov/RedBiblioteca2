@@ -7,9 +7,10 @@ import { errorThrow } from '@common/help/help-fuctions';
 import { Result } from "@common/help/services/Result";
 
 @Component({
-  selector: 'app-newspaper',
-  templateUrl: './newspaper.component.html',
-  styleUrl: './newspaper.component.css'
+    selector: 'app-newspaper',
+    templateUrl: './newspaper.component.html',
+    styleUrl: './newspaper.component.css',
+    standalone: false
 })
 export class NewspaperComponent implements OnInit {
 

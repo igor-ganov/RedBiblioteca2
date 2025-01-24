@@ -5,9 +5,10 @@ import {Book} from './models/Book';
 import {UserService} from '@common/permission-system/UserService';
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrl: './books.component.css'
+    selector: 'app-books',
+    templateUrl: './books.component.html',
+    styleUrl: './books.component.css',
+    standalone: false
 })
 export class BooksComponent implements OnInit {
   public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));

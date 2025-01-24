@@ -8,9 +8,10 @@ import { routsPaths } from '@common/routes/routes';
 import { LocaleHost } from '@common/lang-system/LocaleHost';
 
 @Component({
-  selector: 'app-new-book',
-  templateUrl: './new-book.component.html',
-  styleUrl: './new-book.component.css'
+    selector: 'app-new-book',
+    templateUrl: './new-book.component.html',
+    styleUrl: './new-book.component.css',
+    standalone: false
 })
 export class NewBookComponent {
   public book: Book = {

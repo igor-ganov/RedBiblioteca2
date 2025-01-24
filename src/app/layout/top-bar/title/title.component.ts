@@ -4,9 +4,10 @@ import {RouteService} from '@common/routes/RouteService';
 import {filter, map, Observable, of, switchMap} from 'rxjs';
 
 @Component({
-  selector: 'app-title',
-  templateUrl: './title.component.html',
-  styleUrl: './title.component.css'
+    selector: 'app-title',
+    templateUrl: './title.component.html',
+    styleUrl: './title.component.css',
+    standalone: false
 })
 export class TitleComponent implements OnInit {
   private routeService = inject(RouteService);

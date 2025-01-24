@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { ErrorResult } from '@common/help/services/Result';
 
 @Component({
-  selector: 'app-errors',
-  templateUrl: './errors.component.html',
-  styleUrl: './errors.component.css'
+    selector: 'app-errors',
+    templateUrl: './errors.component.html',
+    styleUrl: './errors.component.css',
+    standalone: false
 })
 export class ErrorsComponent {
   @Input({required: true})

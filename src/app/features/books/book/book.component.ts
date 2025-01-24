@@ -7,9 +7,10 @@ import { errorThrow } from '@common/help/help-fuctions';
 import { Result } from "@common/help/services/Result";
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrl: './book.component.css'
+    selector: 'app-book',
+    templateUrl: './book.component.html',
+    styleUrl: './book.component.css',
+    standalone: false
 })
 export class BookComponent implements OnInit {
 

@@ -3,9 +3,10 @@ import {SideMenuService} from '../services/SideMenuService';
 import {MatButton} from '@angular/material/button';
 
 @Component({
-  selector: 'app-side-menu-button',
-  templateUrl: './side-menu-button.component.html',
-  styleUrl: './side-menu-button.component.css'
+    selector: 'app-side-menu-button',
+    templateUrl: './side-menu-button.component.html',
+    styleUrl: './side-menu-button.component.css',
+    standalone: false
 })
 export class SideMenuButtonComponent {
   @ViewChild('menuButton') menu!: MatButton;

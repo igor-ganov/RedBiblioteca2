@@ -4,9 +4,10 @@ import { LocaleHost } from '@common/lang-system/LocaleHost';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-top-menu',
-  templateUrl: './top-menu.component.html',
-  styleUrl: './top-menu.component.css'
+    selector: 'app-top-menu',
+    templateUrl: './top-menu.component.html',
+    styleUrl: './top-menu.component.css',
+    standalone: false
 })
 export class TopMenuComponent implements OnInit {
   public menuService = inject(MenuService);

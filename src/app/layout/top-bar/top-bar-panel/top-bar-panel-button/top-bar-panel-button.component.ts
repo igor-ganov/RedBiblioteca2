@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-top-bar-panel-button',
-  templateUrl: './top-bar-panel-button.component.html',
-  styleUrl: './top-bar-panel-button.component.css'
+    selector: 'app-top-bar-panel-button',
+    templateUrl: './top-bar-panel-button.component.html',
+    styleUrl: './top-bar-panel-button.component.css',
+    standalone: false
 })
 export class TopBarPanelButtonComponent {
 

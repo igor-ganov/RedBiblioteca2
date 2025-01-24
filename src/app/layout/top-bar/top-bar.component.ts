@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { PermissionService } from '@common/permission-system/UserService';
 
 @Component({
-  selector: 'app-top-bar',
-  templateUrl: './top-bar.component.html',
-  styleUrl: './top-bar.component.css'
+    selector: 'app-top-bar',
+    templateUrl: './top-bar.component.html',
+    styleUrl: './top-bar.component.css',
+    standalone: false
 })
 export class TopBarComponent implements OnInit {
   private readonly localeHost = inject(LocaleHost);

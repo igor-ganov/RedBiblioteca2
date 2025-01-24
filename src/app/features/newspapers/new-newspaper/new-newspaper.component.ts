@@ -9,9 +9,10 @@ import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {DatePipe} from '@angular/common';
 
 @Component({
-  selector: 'app-new-newspaper',
-  templateUrl: './new-newspaper.component.html',
-  styleUrl: './new-newspaper.component.css'
+    selector: 'app-new-newspaper',
+    templateUrl: './new-newspaper.component.html',
+    styleUrl: './new-newspaper.component.css',
+    standalone: false
 })
 export class NewNewspaperComponent {
   private datePipe = inject(DatePipe);

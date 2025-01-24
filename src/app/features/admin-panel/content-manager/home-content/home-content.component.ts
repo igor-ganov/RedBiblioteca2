@@ -5,8 +5,8 @@ import {MatTableModule} from "@angular/material/table";
 import {routsPaths} from "@common/routes/routes";
 
 @Component({
-  selector: 'app-home-content',
-  template: `
+    selector: 'app-home-content',
+    template: `
     <div class="container">
       <mat-table class="table" [dataSource]="[{title: 'Articles', panel: this.articlesContent}]">
 
@@ -27,7 +27,7 @@ import {routsPaths} from "@common/routes/routes";
       </mat-table>
     </div>
   `,
-  styles: `
+    styles: `
     .container {
       padding: 3em;
       display: flex;
@@ -41,13 +41,12 @@ import {routsPaths} from "@common/routes/routes";
       min-width: 500px;
     }
   `,
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatAnchor,
-    MatTableModule
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [
+        RouterLink,
+        MatAnchor,
+        MatTableModule
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeContentComponent {
   public readonly articlesContent = routsPaths.articlesContent;

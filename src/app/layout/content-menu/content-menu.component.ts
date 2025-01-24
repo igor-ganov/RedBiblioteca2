@@ -2,9 +2,10 @@ import {Component, Input} from '@angular/core';
 import {ContentMenuItems} from "@app/layout/content-menu/content-menu.items";
 
 @Component({
-  selector: 'app-content-menu',
-  templateUrl: './content-menu.component.html',
-  styleUrl: './content-menu.component.css'
+    selector: 'app-content-menu',
+    templateUrl: './content-menu.component.html',
+    styleUrl: './content-menu.component.css',
+    standalone: false
 })
 export class ContentMenuComponent {
   @Input({required: true})

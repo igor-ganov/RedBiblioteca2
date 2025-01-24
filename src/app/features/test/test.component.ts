@@ -3,9 +3,10 @@ import {LoginText} from '../login/locale/LoginText';
 import {Observable} from 'rxjs';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrl: './test.component.css'
+    selector: 'app-test',
+    templateUrl: './test.component.html',
+    styleUrl: './test.component.css',
+    standalone: false
 })
 export class TestComponent implements OnInit {
 

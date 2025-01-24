@@ -5,9 +5,10 @@ import { UserService } from '@common/permission-system/UserService';
 import { toBase64 } from '@common/help/help-fuctions';
 
 @Component({
-  selector: 'app-newspaper-view',
-  templateUrl: './newspaper-view.component.html',
-  styleUrl: './newspaper-view.component.css'
+    selector: 'app-newspaper-view',
+    templateUrl: './newspaper-view.component.html',
+    styleUrl: './newspaper-view.component.css',
+    standalone: false
 })
 export class NewspaperViewComponent {
   @Input({ required: true }) public isUpdating!: boolean;

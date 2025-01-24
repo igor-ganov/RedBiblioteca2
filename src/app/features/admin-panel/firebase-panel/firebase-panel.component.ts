@@ -4,10 +4,11 @@ import { from, switchMap } from 'rxjs';
 import { CloneService, StoreRoot } from './CloneService';
 
 @Component({
-  selector: 'app-firebase-panel',
-  templateUrl: './firebase-panel.component.html',
-  styleUrl: './firebase-panel.component.css',
-  providers: [SubscriptionHandlerProvider]
+    selector: 'app-firebase-panel',
+    templateUrl: './firebase-panel.component.html',
+    styleUrl: './firebase-panel.component.css',
+    providers: [SubscriptionHandlerProvider],
+    standalone: false
 })
 export class FirebasePanelComponent {
   private readonly cloneService = inject(CloneService);

@@ -6,10 +6,11 @@ import { NewspaperRepository } from '../services/NewspaperRepository';
 import { SubscriptionHandler, SubscriptionHandlerProvider } from '@common/help/services/SubscriptionHandler';
 
 @Component({
-  selector: 'app-newspaper-preview',
-  templateUrl: './newspaper-preview.component.html',
-  styleUrl: './newspaper-preview.component.css',
-  providers: [SubscriptionHandlerProvider]
+    selector: 'app-newspaper-preview',
+    templateUrl: './newspaper-preview.component.html',
+    styleUrl: './newspaper-preview.component.css',
+    providers: [SubscriptionHandlerProvider],
+    standalone: false
 })
 export class NewspaperPreviewComponent implements OnDestroy {
   @Input({ required: true }) public newspaper!: Newspaper;

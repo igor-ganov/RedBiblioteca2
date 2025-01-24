@@ -5,9 +5,10 @@ import { UserService } from '@common/permission-system/UserService';
 import { toBase64 } from '@common/help/help-fuctions';
 
 @Component({
-  selector: 'app-book-view',
-  templateUrl: './book-view.component.html',
-  styleUrl: './book-view.component.css'
+    selector: 'app-book-view',
+    templateUrl: './book-view.component.html',
+    styleUrl: './book-view.component.css',
+    standalone: false
 })
 export class BookViewComponent {
   @Input({ required: true }) public isUpdating!: boolean;

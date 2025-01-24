@@ -2,7 +2,10 @@ import {AfterViewInit, Directive, ElementRef, Input} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {scrollOffset} from '@app/Configuration';
 
-@Directive({selector: '[scrollTo]'})
+@Directive({
+    selector: '[scrollTo]',
+    standalone: false
+})
 export class ScrollToDirective implements AfterViewInit {
   @Input({alias: 'scrollTo', required: true}) public id!: string;
 

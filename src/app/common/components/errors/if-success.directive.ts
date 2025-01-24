@@ -4,7 +4,8 @@ import { ErrorsComponent } from './errors/errors.component';
 import { LoadingComponent } from '../loading/loading.component';
 
 @Directive({
-  selector: '[ifSuccess]',
+    selector: '[ifSuccess]',
+    standalone: false
 })
 export class IfSuccess<T> {
 

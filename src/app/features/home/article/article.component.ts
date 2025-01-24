@@ -4,9 +4,10 @@ import { UserService } from '@common/permission-system/UserService';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.css'
+    selector: 'app-article',
+    templateUrl: './article.component.html',
+    styleUrl: './article.component.css',
+    standalone: false
 })
 export class ArticleComponent {
   public onPublish(article: Article) {

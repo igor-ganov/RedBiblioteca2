@@ -6,9 +6,10 @@ import { LocaleHost } from '../LocaleHost';
 import { RouteService } from '../../routes/RouteService';
 
 @Component({
-  selector: 'app-language-button',
-  templateUrl: './language-button.component.html',
-  styleUrls: ['./language-button.component.css'],
+    selector: 'app-language-button',
+    templateUrl: './language-button.component.html',
+    styleUrls: ['./language-button.component.css'],
+    standalone: false
 })
 export class LanguageButtonComponent implements OnInit {
   @Input() public horizontal = true;

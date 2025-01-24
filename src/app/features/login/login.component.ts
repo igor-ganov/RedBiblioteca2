@@ -10,10 +10,11 @@ import {UserService} from '@common/permission-system/UserService';
 import {LoginText} from './locale/LoginText';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  providers: [SubscriptionManager]
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css',
+    providers: [SubscriptionManager],
+    standalone: false
 })
 export class LoginComponent implements OnDestroy {
   // private readonly userService: inject(UserService),
