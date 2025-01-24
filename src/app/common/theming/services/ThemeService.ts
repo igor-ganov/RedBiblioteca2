@@ -21,7 +21,7 @@ export class ThemeService {
     this.insertThemeLink('dark');
   }
 
-  private _theme: Theme = 'light';
+  private _theme: Theme = 'dark';
   public set theme(theme: Theme) {
     if (theme) {
       // this.insertThemeLink(theme);

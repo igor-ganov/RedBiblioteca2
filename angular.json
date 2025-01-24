@@ -7,15 +7,18 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "standalone": false,
-          "skipTests": true
+          "standalone": true,
+          "skipTests": true,
+          "changeDetection": "OnPush",
+          "inlineStyle": true,
+          "inlineTemplate": true
         },
         "@schematics/angular:directive": {
-          "standalone": false,
+          "standalone": true,
           "skipTests": true
         },
         "@schematics/angular:pipe": {
-          "standalone": false,
+          "standalone": true,
           "skipTests": true
         }
       },
@@ -60,9 +63,7 @@
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": false,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "ssr": false
           },
           "configurations": {
             "production": {

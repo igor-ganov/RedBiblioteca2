@@ -26,3 +26,7 @@ export class HomeComponent {
   };
   public items = [this.about, this.hotToUse, this.sergioMotosi];
 }
+
+export class ArticleRepository {
+
+}

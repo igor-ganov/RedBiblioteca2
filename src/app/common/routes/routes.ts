@@ -20,6 +20,11 @@ import {UserRoles} from '../permission-system/UserRoles';
 import {BookComponent} from '@app/features/books/book/book.component';
 import {PermissionService} from '@common/permission-system/UserService';
 import {map} from 'rxjs';
+import {ContentManagerComponent} from "@app/features/admin-panel/content-manager/content-manager.component";
+import {HomeContentComponent} from "@app/features/admin-panel/content-manager/home-content/home-content.component";
+import {
+  ArticlesContentComponent
+} from "@app/features/admin-panel/content-manager/home-content/articles-content/articles-content.component";
 
 export const rootPath = '/'
 
@@ -33,6 +38,11 @@ export const routsPaths = {
   events: 'events',
   admin: 'admin',
   firebase: 'firebase',
+  contentManager: 'content-manager',
+  homeContent: 'home-content',
+  articlesContent: 'articles-content',
+
+
 }
 
 export const authRoleGuard = (role: UserRoles = UserRoles.GUEST) => (route: ActivatedRouteSnapshot) => {
@@ -88,13 +98,13 @@ function createRoute(item: RouteItem): Route {
     resolve: createContext(item.userRole),
     data: createRouteData(item.userRole, item.isMenuItem),
     children: [{component: item.component, path: ''}, ...item.children?.map(c => createRoute(c)), redirectRoute],
-    canActivate: [authRoleGuard(item.userRole)],
+    // canActivate: [authRoleGuard(item.userRole)],
   } : {
     component: item.component,
     path: item.path,
     resolve: createContext(item.userRole),
     data: createRouteData(item.userRole, item.isMenuItem),
-    canActivate: [authRoleGuard(item.userRole)],
+    // canActivate: [authRoleGuard(item.userRole)],
   }
 }
 
@@ -145,7 +155,19 @@ export const routes = createRoutes([
     userRole: UserRoles.DEVELOPER,
     isMenuItem: true,
     children: [
-      {component: FirebasePanelComponent, path: routsPaths.firebase}
+      {component: FirebasePanelComponent, path: routsPaths.firebase},
+      {
+        component: ContentManagerComponent, path: routsPaths.contentManager,
+        children: [
+          {
+            component: HomeContentComponent,
+            path: routsPaths.homeContent,
+            children: [
+              {component: ArticlesContentComponent, path: routsPaths.articlesContent}
+            ]
+          },
+        ]
+      }
     ],
   },
   {component: LoginComponent, path: routsPaths.login, userRole: UserRoles.GUEST},

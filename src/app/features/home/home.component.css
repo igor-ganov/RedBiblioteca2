@@ -96,10 +96,10 @@ a:hover {
   width: 300px;
   float: left;
   overflow: hidden;
-  padding-left: 5em;
+  padding-left: 2em;
 }
 
-.shadow-box{
+.shadow-box {
   box-shadow: -5px 0 20px 0 var(--background-tooltip);
   border-left: 1px solid var(--primary-default);
   height: 100%;
@@ -113,7 +113,6 @@ a:hover {
 
   display: grid;
   grid-template: "art news" / 1fr fit-content(10%);
-  gap: 5em;
 }
 
 @media (width <= 1145px) {

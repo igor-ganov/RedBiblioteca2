@@ -1,14 +1,14 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    gap: 3px;
-    align-items: stretch;
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  align-items: stretch;
 }
 
-::ng-deep mat-form-field > .mat-mdc-form-field-bottom-align{
-    display: none;
+::ng-deep mat-form-field > .mat-mdc-form-field-bottom-align {
+  display: none;
 }
 
-.clone-button{
-    height: 100%;
+.clone-button {
+  height: 100%;
 }

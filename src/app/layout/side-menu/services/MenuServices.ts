@@ -30,6 +30,7 @@ export class MenuService {
 
 
 function buildMenuItem(route: Route, textHost: TextHost): Observable<MenuItemReach | RootItem> | undefined {
+  console.log('buildMenuItem');
   const data = route.data as RouteData | undefined;
   const item = data?.isMenuItem ? getMenuItem(route, textHost) : undefined;
   const role = data?.requiredRole ?? UserRoles.GUEST;

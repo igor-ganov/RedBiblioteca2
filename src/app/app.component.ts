@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { ThemeSwitcher } from '@common/theming/services/ThemeSwitcher';
-import { PermissionService } from '@common/permission-system/UserService';
+import {Component, inject} from '@angular/core';
+import {ThemeSwitcher} from '@common/theming/services/ThemeSwitcher';
+import {PermissionService} from '@common/permission-system/UserService';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,10 @@ import { PermissionService } from '@common/permission-system/UserService';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  constructor(private readonly themeSwitcher: ThemeSwitcher){
+  constructor(private readonly themeSwitcher: ThemeSwitcher) {
     //to fix lazy build additional css for routes in ssr
-    themeSwitcher.isDark = true;
     themeSwitcher.isDark = false;
+    themeSwitcher.isDark = true;
   }
 
   private readonly permissionService: PermissionService = inject(PermissionService);
