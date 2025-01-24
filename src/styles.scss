@@ -1,8 +1,11 @@
 @use "assets/styles/buttons.css";
+@use '@angular/material' as mat;
 @use 'assets/styles/theming/dark' as themes-config-dark;
 @use 'assets/styles/theming/light' as themes-config-light;
 @use 'assets/styles/theming/typography' as typography;
 @use 'assets/styles/theming/theme-functions' as theme-functions;
+
+mat.$theme-ignore-duplication-warnings: true;
 
 * {
   box-sizing: border-box;
