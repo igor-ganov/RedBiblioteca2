@@ -1,15 +1,27 @@
-import { Injectable } from "@angular/core";
-import { ThemeService } from "./ThemeService";
+import {inject, Injectable, RendererFactory2, signal} from "@angular/core";
+import {Theme} from "@common/theming/models/Theme";
 
-@Injectable({providedIn: 'root'})
-export class ThemeSwitcher{
+@Injectable({
+  providedIn: 'root'
+})
+export class ThemeSwitcher {
+  private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
+  private readonly _theme = signal<Theme>('system');
+  public set theme(theme) {
+    if (theme === this._theme()) return;
 
-    constructor(private readonly themeService: ThemeService){}
+    const htmlElement = document.documentElement;
 
-    public get isDark(){
-        return this.themeService.theme === 'dark';
+    if (this._theme()) {
+      this.renderer.removeClass(htmlElement, this._theme());
     }
-    public set isDark(value: boolean){
-        this.themeService.theme = value? 'dark' : 'light';
+    if (theme) {
+      this.renderer.addClass(htmlElement, theme);
     }
+    this._theme.set(theme);
+  }
+
+  public get theme() {
+    return this._theme();
+  }
 }

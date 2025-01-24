@@ -25,7 +25,6 @@ import {HomeComponent} from './features/home/home.component';
 import {TestComponent} from './features/test/test.component';
 import {RootPathComponent} from '@common/routes/root-path.component';
 import {TopBarPanelComponent} from './layout/top-bar/top-bar-panel/top-bar-panel.component';
-import {ThemeSwitcherComponent} from '@common/theming/theme-switcher/theme-switcher.component';
 import {SignIoButtonComponent} from '@common/permission-system/sign-io-button/sign-io-button.component';
 import {SideMenuButtonComponent} from './layout/side-menu/side-menu-button/side-menu-button.component';
 import {HomeButtonComponent} from './layout/top-bar/home-button/home-button.component';
@@ -71,6 +70,7 @@ import {TopBannerComponent} from './features/home/top-banner/top-banner.componen
 import {ArticleComponent} from './features/home/article/article.component';
 import {TopMenuComponent} from './layout/top-bar/top-menu/top-menu.component';
 import {ContentMenuComponent} from './layout/content-menu/content-menu.component';
+import {ThemeSwitcherComponent} from "@common/theming/components/theme-switcher.component";
 
 @NgModule({
   declarations: [
@@ -88,7 +88,6 @@ import {ContentMenuComponent} from './layout/content-menu/content-menu.component
     TestComponent,
     RootPathComponent,
     TopBarPanelComponent,
-    ThemeSwitcherComponent,
     SignIoButtonComponent,
     SideMenuButtonComponent,
     HomeButtonComponent,
@@ -147,6 +146,7 @@ import {ContentMenuComponent} from './layout/content-menu/content-menu.component
     ReactiveFormsModule,
     RouterOutlet,
     NgOptimizedImage,
+    ThemeSwitcherComponent,
   ],
   providers: [
     DatePipe,

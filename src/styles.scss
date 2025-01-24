@@ -1,0 +1,62 @@
+@use "assets/styles/buttons.css";
+@use 'assets/styles/theming/dark' as themes-config-dark;
+@use 'assets/styles/theming/light' as themes-config-light;
+@use 'assets/styles/theming/typography' as typography;
+@use 'assets/styles/theming/theme-functions' as theme-functions;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--foreground-icon);
+}
+
+
+@include theme-functions.apply(themes-config-dark.$theme);
+
+:root {
+  @include theme-functions.create-variables(themes-config-dark.$theme, themes-config-dark.$custom-colors);
+}
+
+html {
+  &.light {
+    @include theme-functions.create-variables(themes-config-light.$theme, themes-config-light.$custom-colors);
+    @include themes-config-light.fix-mat();
+    @include theme-functions.apply(themes-config-light.$theme);
+  }
+
+  &.dark {
+    @include themes-config-dark.fix-mat();
+  }
+
+  &.system {
+    @media (prefers-color-scheme: light) {
+      @include theme-functions.create-variables(themes-config-light.$theme, themes-config-light.$custom-colors);
+      @include themes-config-light.fix-mat();
+      @include theme-functions.apply(themes-config-light.$theme);
+    }
+    @media (prefers-color-scheme: dark) {
+      @include themes-config-dark.fix-mat();
+    }
+  }
+}
+
+* {
+  transition: background-color 0.5s ease;
+}

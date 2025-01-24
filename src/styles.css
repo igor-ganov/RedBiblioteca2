@@ -1,9 +1,0 @@
-@import url("assets/styles/buttons.css");
-
-* {
-    box-sizing: border-box;
-}
-body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: var(--foreground-icon); }
