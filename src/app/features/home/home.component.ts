@@ -1,12 +1,16 @@
 import {Component} from '@angular/core';
 
 import {Article} from "@app/features/home/article/article";
+import { TopBannerComponent } from './top-banner/top-banner.component';
+import { ContentMenuComponent } from '../../layout/content-menu/content-menu.component';
+import { ArticleComponent } from './article/article.component';
+import { LastNewsComponent } from './last-news/last-news.component';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    standalone: false
+    imports: [TopBannerComponent, ContentMenuComponent, ArticleComponent, LastNewsComponent]
 })
 export class HomeComponent {
 

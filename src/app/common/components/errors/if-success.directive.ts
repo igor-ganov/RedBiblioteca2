@@ -3,10 +3,7 @@ import { ErrorResult, Result } from '@common/help/services/Result';
 import { ErrorsComponent } from './errors/errors.component';
 import { LoadingComponent } from '../loading/loading.component';
 
-@Directive({
-    selector: '[ifSuccess]',
-    standalone: false
-})
+@Directive({ selector: '[ifSuccess]' })
 export class IfSuccess<T> {
 
   constructor(

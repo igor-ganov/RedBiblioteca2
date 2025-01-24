@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-top-bar-panel-button',
     templateUrl: './top-bar-panel-button.component.html',
     styleUrl: './top-bar-panel-button.component.css',
-    standalone: false
+    imports: [MatIconButton, MatIcon, MatButton]
 })
 export class TopBarPanelButtonComponent {
 

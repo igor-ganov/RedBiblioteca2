@@ -7,12 +7,13 @@ import {Router} from '@angular/router';
 import {routsPaths} from '@common/routes/routes';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {DatePipe} from '@angular/common';
+import { NewspaperViewComponent } from '../newspaper-view/newspaper-view.component';
 
 @Component({
     selector: 'app-new-newspaper',
     templateUrl: './new-newspaper.component.html',
     styleUrl: './new-newspaper.component.css',
-    standalone: false
+    imports: [NewspaperViewComponent]
 })
 export class NewNewspaperComponent {
   private datePipe = inject(DatePipe);

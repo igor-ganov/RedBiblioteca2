@@ -8,13 +8,17 @@ import {
   Output
 } from '@angular/core';
 import {Slide} from './Slides';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { NgClass } from '@angular/common';
+import { Base64ToStyle } from '@common/help/pipelines/Base64ToImage';
 
 @Component({
     selector: 'app-slide-show',
     templateUrl: './slide-show.component.html',
     styleUrl: './slide-show.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [MatIconButton, MatIcon, NgClass, Base64ToStyle]
 })
 export class SlideShowComponent {
   constructor(private ref: ChangeDetectorRef) {

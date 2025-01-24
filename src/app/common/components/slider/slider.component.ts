@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-slider',
     templateUrl: './slider.component.html',
     styleUrl: './slider.component.css',
-    standalone: false
+    imports: [NgClass]
 })
 export class SliderComponent {
   @Input() public opened = true;

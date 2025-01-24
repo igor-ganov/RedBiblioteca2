@@ -4,8 +4,7 @@ import { ErrorResult } from '@common/help/services/Result';
 @Component({
     selector: 'app-errors',
     templateUrl: './errors.component.html',
-    styleUrl: './errors.component.css',
-    standalone: false
+    styleUrl: './errors.component.css'
 })
 export class ErrorsComponent {
   @Input({required: true})

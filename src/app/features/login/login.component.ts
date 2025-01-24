@@ -8,13 +8,19 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ISignInData} from "@common/permission-system/ISignInData";
 import {UserService} from '@common/permission-system/UserService';
 import {LoginText} from './locale/LoginText';
+import { FormsModule } from '@angular/forms';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
     providers: [SubscriptionManager],
-    standalone: false
+    imports: [FormsModule, MatFormField, MatLabel, MatInput, MatIconButton, MatSuffix, MatIcon, MatButton, AsyncPipe]
 })
 export class LoginComponent implements OnDestroy {
   // private readonly userService: inject(UserService),

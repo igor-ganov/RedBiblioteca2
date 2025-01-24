@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { errorAlert } from '../../help/help-fuctions';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-text-editor',
     templateUrl: './text-editor.component.html',
     styleUrl: './text-editor.component.css',
-    standalone: false
+    imports: [NgClass]
 })
 export class TextEditorComponent {
   private _buttonPositions: Position = 'right';

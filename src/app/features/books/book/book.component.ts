@@ -5,12 +5,15 @@ import { BookRepository } from '../services/BookRepository';
 import { Observable, finalize } from 'rxjs';
 import { errorThrow } from '@common/help/help-fuctions';
 import { Result } from "@common/help/services/Result";
+import { IfSuccess } from '../../../common/components/errors/if-success.directive';
+import { BookViewComponent } from '../book-view/book-view.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-book',
     templateUrl: './book.component.html',
     styleUrl: './book.component.css',
-    standalone: false
+    imports: [IfSuccess, BookViewComponent, AsyncPipe]
 })
 export class BookComponent implements OnInit {
 

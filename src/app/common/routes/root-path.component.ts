@@ -1,8 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import { ActivatedRoute, Params, RouterOutlet } from '@angular/router';
 import {LocaleHost} from '../lang-system/LocaleHost';
 import {RootHrefService} from './RootHrefService';
 import {PermissionService} from "@common/permission-system/UserService";
+import { LoginComponent } from '../../features/login/login.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'root-path',
@@ -15,7 +17,7 @@ import {PermissionService} from "@common/permission-system/UserService";
       }
     }
   `,
-    standalone: false
+    imports: [RouterOutlet, LoginComponent, AsyncPipe]
 })
 export class RootPathComponent implements OnInit {
   constructor(

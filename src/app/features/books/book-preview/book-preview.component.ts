@@ -4,13 +4,18 @@ import { map } from 'rxjs';
 import { UserService } from '@common/permission-system/UserService';
 import { BookRepository } from '../services/BookRepository';
 import { SubscriptionHandler, SubscriptionHandlerProvider } from '@common/help/services/SubscriptionHandler';
+import { MatIconButton, MatIconAnchor } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { Base64ToImage } from '@common/help/pipelines/Base64ToImage';
 
 @Component({
     selector: 'app-book-preview',
     templateUrl: './book-preview.component.html',
     styleUrl: './book-preview.component.css',
     providers: [SubscriptionHandlerProvider],
-    standalone: false
+    imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, AsyncPipe, Base64ToImage]
 })
 export class BookPreviewComponent implements OnDestroy {
   @Input({ required: true }) public book!: Book;

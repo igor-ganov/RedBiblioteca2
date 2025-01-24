@@ -2,10 +2,7 @@ import { Pipe, PipeTransform, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
-@Pipe({
-    name: 'base64toImage',
-    standalone: false
-})
+@Pipe({ name: 'base64toImage' })
 export class Base64ToImage implements PipeTransform {
     private readonly _sanitizer = inject(DomSanitizer);
     transform(value: string | undefined): SafeResourceUrl | undefined {
@@ -13,10 +10,7 @@ export class Base64ToImage implements PipeTransform {
     }
 }
 
-@Pipe({
-    name: 'base64toStyle',
-    standalone: false
-})
+@Pipe({ name: 'base64toStyle' })
 export class Base64ToStyle implements PipeTransform {
     private readonly _sanitizer = inject(DomSanitizer);
     transform(value: string | undefined): SafeResourceUrl | undefined {

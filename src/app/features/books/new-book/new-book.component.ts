@@ -6,12 +6,13 @@ import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 import { routsPaths } from '@common/routes/routes';
 import { LocaleHost } from '@common/lang-system/LocaleHost';
+import { BookViewComponent } from '../book-view/book-view.component';
 
 @Component({
     selector: 'app-new-book',
     templateUrl: './new-book.component.html',
     styleUrl: './new-book.component.css',
-    standalone: false
+    imports: [BookViewComponent]
 })
 export class NewBookComponent {
   public book: Book = {

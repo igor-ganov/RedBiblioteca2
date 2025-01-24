@@ -5,13 +5,16 @@ import { EventMessageQueue } from '../../help/services/EventMassageQueue';
 import { SubscriptionManager } from '../../help/services/SubscriptionManager';
 import { LocaleHost } from '../../lang-system/LocaleHost';
 import { UserService } from '../UserService';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-sign-io-button',
     templateUrl: './sign-io-button.component.html',
     styleUrl: './sign-io-button.component.css',
     providers: [SubscriptionManager],
-    standalone: false
+    imports: [NgIf, MatIconButton, MatIcon, MatButton, AsyncPipe]
 })
 export class SignIoButtonComponent implements OnInit, OnDestroy {
   @Input() public horizontal = true;

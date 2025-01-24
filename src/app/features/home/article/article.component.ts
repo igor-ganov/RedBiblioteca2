@@ -2,12 +2,17 @@ import {Component, inject, Input} from '@angular/core';
 import {Article} from "@app/features/home/article/article";
 import { UserService } from '@common/permission-system/UserService';
 import { map } from 'rxjs';
+import { AnchorComponent } from '../../../common/components/anchor/anchor.component';
+import { TextEditorComponent } from '../../../common/components/text-editor/text-editor.component';
+import { MatButton } from '@angular/material/button';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-article',
     templateUrl: './article.component.html',
     styleUrl: './article.component.css',
-    standalone: false
+    imports: [AnchorComponent, TextEditorComponent, MatButton, MatProgressSpinner, AsyncPipe]
 })
 export class ArticleComponent {
   public onPublish(article: Article) {

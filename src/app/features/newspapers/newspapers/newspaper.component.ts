@@ -5,12 +5,15 @@ import { NewspaperRepository } from '../services/NewspaperRepository';
 import { Observable, finalize } from 'rxjs';
 import { errorThrow } from '@common/help/help-fuctions';
 import { Result } from "@common/help/services/Result";
+import { IfSuccess } from '../../../common/components/errors/if-success.directive';
+import { NewspaperViewComponent } from '../newspaper-view/newspaper-view.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-newspaper',
     templateUrl: './newspaper.component.html',
     styleUrl: './newspaper.component.css',
-    standalone: false
+    imports: [IfSuccess, NewspaperViewComponent, AsyncPipe]
 })
 export class NewspaperComponent implements OnInit {
 

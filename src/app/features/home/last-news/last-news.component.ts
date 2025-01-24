@@ -2,13 +2,14 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, AfterViewInit, On
 import {Slide} from '@common/components/slide-show/Slides';
 import {repeat, Subscription, timer} from 'rxjs';
 import {getFakeImage1, getFakeImage2, getFakeImage3} from './getFakeImage1';
+import { SlideShowComponent } from '../../../common/components/slide-show/slide-show.component';
 
 @Component({
     selector: 'app-last-news',
     templateUrl: './last-news.component.html',
     styleUrl: './last-news.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [SlideShowComponent]
 })
 export class LastNewsComponent implements AfterViewInit, OnDestroy {
   constructor(private readonly detector: ChangeDetectorRef) {

@@ -1,11 +1,13 @@
 import {Component, Input} from '@angular/core';
 import {ContentMenuItems} from "@app/layout/content-menu/content-menu.items";
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-content-menu',
     templateUrl: './content-menu.component.html',
     styleUrl: './content-menu.component.css',
-    standalone: false
+    imports: [MatButton, RouterLink]
 })
 export class ContentMenuComponent {
   @Input({required: true})

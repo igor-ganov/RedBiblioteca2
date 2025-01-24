@@ -4,13 +4,18 @@ import { map } from 'rxjs';
 import { UserService } from '@common/permission-system/UserService';
 import { NewspaperRepository } from '../services/NewspaperRepository';
 import { SubscriptionHandler, SubscriptionHandlerProvider } from '@common/help/services/SubscriptionHandler';
+import { MatIconButton, MatIconAnchor } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { Base64ToImage } from '@common/help/pipelines/Base64ToImage';
 
 @Component({
     selector: 'app-newspaper-preview',
     templateUrl: './newspaper-preview.component.html',
     styleUrl: './newspaper-preview.component.css',
     providers: [SubscriptionHandlerProvider],
-    standalone: false
+    imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, AsyncPipe, Base64ToImage]
 })
 export class NewspaperPreviewComponent implements OnDestroy {
   @Input({ required: true }) public newspaper!: Newspaper;

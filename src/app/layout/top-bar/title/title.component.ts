@@ -2,12 +2,13 @@ import {Component, inject, OnInit} from '@angular/core';
 import {TextHost} from '@common/lang-system/TextHost';
 import {RouteService} from '@common/routes/RouteService';
 import {filter, map, Observable, of, switchMap} from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-title',
     templateUrl: './title.component.html',
     styleUrl: './title.component.css',
-    standalone: false
+    imports: [AsyncPipe]
 })
 export class TitleComponent implements OnInit {
   private routeService = inject(RouteService);

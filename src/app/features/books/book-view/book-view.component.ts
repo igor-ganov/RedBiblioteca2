@@ -3,12 +3,17 @@ import { Book } from '../models/Book';
 import { map } from 'rxjs';
 import { UserService } from '@common/permission-system/UserService';
 import { toBase64 } from '@common/help/help-fuctions';
+import { TextEditorComponent } from '../../../common/components/text-editor/text-editor.component';
+import { MatButton } from '@angular/material/button';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { AsyncPipe } from '@angular/common';
+import { Base64ToImage } from '@common/help/pipelines/Base64ToImage';
 
 @Component({
     selector: 'app-book-view',
     templateUrl: './book-view.component.html',
     styleUrl: './book-view.component.css',
-    standalone: false
+    imports: [TextEditorComponent, MatButton, MatProgressSpinner, AsyncPipe, Base64ToImage]
 })
 export class BookViewComponent {
   @Input({ required: true }) public isUpdating!: boolean;

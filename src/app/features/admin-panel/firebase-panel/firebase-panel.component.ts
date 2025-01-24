@@ -2,13 +2,17 @@ import { Component, inject } from '@angular/core';
 import { SubscriptionHandler, SubscriptionHandlerProvider } from '@common/help/services/SubscriptionHandler';
 import { from, switchMap } from 'rxjs';
 import { CloneService, StoreRoot } from './CloneService';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
+import { MatButton } from '@angular/material/button';
 
 @Component({
     selector: 'app-firebase-panel',
     templateUrl: './firebase-panel.component.html',
     styleUrl: './firebase-panel.component.css',
     providers: [SubscriptionHandlerProvider],
-    standalone: false
+    imports: [MatFormField, MatLabel, MatSelect, MatOption, MatButton]
 })
 export class FirebasePanelComponent {
   private readonly cloneService = inject(CloneService);

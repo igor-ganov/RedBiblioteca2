@@ -5,12 +5,15 @@ import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {Observable} from 'rxjs';
 import {MenuItemReach, MenuService} from './services/MenuServices';
 import {UserService} from '@common/permission-system/UserService';
+import { NgClass, AsyncPipe } from '@angular/common';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-side-menu',
     templateUrl: './side-menu.component.html',
     styleUrl: './side-menu.component.css',
-    standalone: false
+    imports: [NgClass, MatButton, RouterLink, AsyncPipe]
 })
 export class SideMenuComponent implements OnInit {
   public routes = routsPaths;

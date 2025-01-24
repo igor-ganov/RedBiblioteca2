@@ -1,12 +1,13 @@
 import {Component, HostListener, inject, ViewChild} from '@angular/core';
 import {SideMenuService} from '../services/SideMenuService';
 import {MatButton} from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
     selector: 'app-side-menu-button',
     templateUrl: './side-menu-button.component.html',
     styleUrl: './side-menu-button.component.css',
-    standalone: false
+    imports: [MatButton, MatIcon]
 })
 export class SideMenuButtonComponent {
   @ViewChild('menuButton') menu!: MatButton;

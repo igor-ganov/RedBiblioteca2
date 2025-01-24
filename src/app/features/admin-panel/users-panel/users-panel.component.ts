@@ -3,12 +3,17 @@ import { UserData, UserDataRepository } from '@common/permission-system/UserData
 import { UserRoles } from '@common/permission-system/UserRoles';
 import { UserService } from '@common/permission-system/UserService';
 import { Observable } from 'rxjs';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
+import { AsyncPipe, KeyValuePipe } from '@angular/common';
 
 @Component({
     selector: 'app-users-panel',
     templateUrl: './users-panel.component.html',
     styleUrl: './users-panel.component.css',
-    standalone: false
+    imports: [MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatFormField, MatLabel, MatSelect, MatOption, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, AsyncPipe, KeyValuePipe]
 })
 export class UsersPanelComponent implements OnInit {
 
