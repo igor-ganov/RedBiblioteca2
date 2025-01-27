@@ -1,20 +1,27 @@
-<ng-container *ngIf="lang$ | async as lang">
-    <ng-container *ngIf="horizontal(); else vertical">
-        <button *ngIf="userService.currentUser === undefined; else login" color="basic" class="theme-button icon-button" (click)="onSignIn(lang)" mat-icon-button><mat-icon>login</mat-icon></button>
-        <ng-template #login>
-            <button color="basic" class="theme-button icon-button" (click)="onSignOut(lang)" mat-icon-button><mat-icon>logout</mat-icon></button>
-        </ng-template>
-    </ng-container>
-    <ng-template #vertical>
-        <button *ngIf="userService.currentUser === undefined; else login" color="basic" class="theme-button vertical" (click)="onSignIn(lang)" mat-stroked-button extended>
-            <span>Log In</span>
-            <mat-icon>login</mat-icon>
-        </button>
-        <ng-template #login>
-            <button color="basic" class="theme-button vertical" (click)="onSignOut(lang)" mat-stroked-button extended>
-                <span>Log Out</span>
-                <mat-icon>logout</mat-icon>
-            </button>
-        </ng-template>
-    </ng-template>
-</ng-container>
+@if (lang$ | async; as lang) {
+  @if (horizontal()) {
+    @if (userService.currentUser === undefined) {
+      <button color="basic" class="theme-button icon-button"
+              (click)="onSignIn(lang)" mat-icon-button>
+        <mat-icon>login</mat-icon>
+      </button>
+    } @else {
+      <button color="basic" class="theme-button icon-button" (click)="onSignOut(lang)" mat-icon-button>
+        <mat-icon>logout</mat-icon>
+      </button>
+    }
+  } @else {
+    @if (userService.currentUser === undefined) {
+      <button color="basic" class="theme-button vertical"
+              (click)="onSignIn(lang)" mat-stroked-button extended>
+        <span>Log In</span>
+        <mat-icon>login</mat-icon>
+      </button>
+    } @else {
+      <button color="basic" class="theme-button vertical" (click)="onSignOut(lang)" mat-stroked-button extended>
+        <span>Log Out</span>
+        <mat-icon>logout</mat-icon>
+      </button>
+    }
+  }
+}
