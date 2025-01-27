@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ErrorResult } from '@common/help/services/Result';
 
 @Component({
@@ -7,6 +7,5 @@ import { ErrorResult } from '@common/help/services/Result';
     styleUrl: './errors.component.css'
 })
 export class ErrorsComponent {
-  @Input({required: true})
-  public result!: ErrorResult
+  public readonly result = input.required<ErrorResult>();
 }

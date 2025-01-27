@@ -1,26 +1,28 @@
 <div class="article scrolling-slider">
-    @let readonly = readonly$ | async;
-    <h2 class="title"><app-anchor [id]="article.id"/>
-        @if (readonly) {
-            <span>{{article.title}}</span>
-        } @else {
-            <app-text-editor [inline]="true" [(value)]="article.title"/>
-        }
-    </h2>
-    <div class="text">
-        @if (readonly) {
-            <span>{{article.content}}</span>
-        } @else {
-            <app-text-editor [(value)]="article.content"/>
-        }
-    </div>
-    @if (!readonly) {
-        <button [disabled]="isUpdating" color="primary" mat-stroked-button (click)="onPublish(article)">
-        @if (!isUpdating) {
-            <span>Publish</span>
-        } @else {
-            <mat-spinner [diameter]="20"/>
-        }
-        </button>
+  @let readonly = readonly$ | async;
+  @let value = article();
+  <h2 class="title">
+    <app-anchor [id]="value.id"/>
+    @if (readonly) {
+      <span>{{ value.title }}</span>
+    } @else {
+      <app-text-editor [inline]="true" [(value)]="value.title"/>
     }
+  </h2>
+  <div class="text">
+    @if (readonly) {
+      <span>{{ value.content }}</span>
+    } @else {
+      <app-text-editor [(value)]="value.content"/>
+    }
+  </div>
+  @if (!readonly) {
+    <button [disabled]="isUpdating" color="primary" mat-stroked-button (click)="onPublish(value)">
+      @if (!isUpdating) {
+        <span>Publish</span>
+      } @else {
+        <mat-spinner [diameter]="20"/>
+      }
+    </button>
+  }
 </div>
