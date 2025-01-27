@@ -1,16 +1,1 @@
-@if (newspapers$ | async; as newspapers) {
-  <div class="container">
-    @if (!(readonly$ | async)) {
-      <div class="title-panel" >
-        <a mat-icon-button [routerLink]="['new']"><mat-icon>add</mat-icon></a>
-      </div>
-    }
-    @for (b of newspapers; track b.id) {
-      <div class="card">
-        <app-newspaper-preview [newspaper]="b"></app-newspaper-preview>
-      </div>
-    }
-  </div>
-} @else {
-  <app-loading/>
-}
+

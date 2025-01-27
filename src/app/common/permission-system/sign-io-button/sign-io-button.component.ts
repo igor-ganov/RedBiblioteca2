@@ -7,6 +7,7 @@ import {LocaleHost} from '../../lang-system/LocaleHost';
 import {UserService} from '../UserService';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
+import {createSubscriptionService} from "@common/help/services/subscription.service";
 
 @Component({
   selector: 'app-sign-io-button',
@@ -23,6 +24,7 @@ export class SignIoButtonComponent implements OnDestroy {
   private readonly localeHost = inject(LocaleHost);
   public readonly lang = this.localeHost.language;
   public readonly userService = inject(UserService);
+  private readonly subscriptionService = createSubscriptionService();
 
   public async onSignIn(lang: string) {
     const url = `/${lang}/login`;
@@ -34,16 +36,14 @@ export class SignIoButtonComponent implements OnDestroy {
     await this.router.navigate([`/${url}`], navigationExtras);
   }
 
-  public onSignOut(lang: string) {
-    this.subscribe(this.userService.singOut(), async () => {
-      const url = `/${lang}/login`;//this.router.url;
-
-      const navigationExtras: NavigationExtras = {
-        queryParams: {redirectInfo: this.router.url, redirectLang: lang},
-      };
-      await this.router.navigateByUrl('/', {skipLocationChange: true});
-      await this.router.navigate([`/${url}`], navigationExtras);
-    });
+  public async onSignOut(lang: string) {
+    await this.subscriptionService.runAsync(this.userService.singOut());
+    const url = `/${lang}/login`;//this.router.url;
+    const navigationExtras: NavigationExtras = {
+      queryParams: {redirectInfo: this.router.url, redirectLang: lang},
+    };
+    await this.router.navigateByUrl('/', {skipLocationChange: true});
+    await this.router.navigate([`/${url}`], navigationExtras);
   }
 
   //Common

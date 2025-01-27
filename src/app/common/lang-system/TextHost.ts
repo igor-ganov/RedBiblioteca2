@@ -58,14 +58,14 @@ export class TextHost {
 
   private getTextInstanceAsync<T>(type: Type<any>) {
     const factory = (translationMap.get(type) as ITextFactory<T>)?.getText;
-    if (!factory) return;
+    if (!factory) return undefined!;
     return this.localeHost.language$
       .pipe(switchMap(lable => this.requestTextInstance<T>(lable, factory)));
   }
 
   private getMenuInstanceAsync(type: Type<any>) {
     const factory = (translationMap.get(type) as ITitleFactory)?.getTitle;
-    if (!factory) return;
+    if (!factory) return undefined!;
     return this.localeHost.language$
       .pipe(switchMap(lable => this.requestMenuInstance(lable, factory)));
   }

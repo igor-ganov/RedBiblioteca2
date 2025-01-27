@@ -1,10 +1,11 @@
-import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, RouterOutlet} from '@angular/router';
 import {LocaleHost} from '../lang-system/LocaleHost';
 import {RootHrefService} from './RootHrefService';
 import {PermissionService} from "@common/permission-system/UserService";
 import {AsyncPipe} from '@angular/common';
 import {LoginComponent} from "@app/features/login/login.component";
+import {LoadingComponent} from "@common/components/loading/loading.component";
 
 @Component({
   selector: 'root-path',
@@ -15,9 +16,11 @@ import {LoginComponent} from "@app/features/login/login.component";
       } @else {
         <app-login/>
       }
+    } @else {
+      <app-loading/>
     }
   `,
-  imports: [AsyncPipe, LoginComponent, RouterOutlet],
+  imports: [AsyncPipe, LoginComponent, RouterOutlet, LoadingComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RootPathComponent implements OnInit {
@@ -37,5 +40,6 @@ export class RootPathComponent implements OnInit {
   }
 
   private readonly permissionService: PermissionService = inject(PermissionService);
+  public readonly permissionsIsLoading = computed(() => this.permissionService.isLoading());
   public readonly getPermission = () => this.permissionService.blockUntilDeveloping();
 }

@@ -1,76 +1,71 @@
-import {inject, Injectable} from "@angular/core";
+import {computed, inject, Injectable, linkedSignal, PLATFORM_ID, resource} from "@angular/core";
 import {User} from "./User";
 import {getAuth, signInWithEmailAndPassword, UserInfo} from "firebase/auth";
-import {BehaviorSubject, from, map, of, switchMap, tap} from "rxjs";
+import {filter, map, of} from "rxjs";
 import {ISignInData} from "./ISignInData";
 import {UserRoles} from "./UserRoles";
 import {UserData, UserDataRepository} from "./UserDataRepository";
 import {FirebaseAppService} from "@common/help/services/firebase-app.service";
+import {rxResource, toObservable} from "@angular/core/rxjs-interop";
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
-  private readonly afAuth;
-  private readonly user$;
-  private userSubscription;
+  private readonly firebase = inject(FirebaseAppService);
+  private readonly afAuth = getAuth(this.firebase.appValue);
+  private readonly platformId = inject(PLATFORM_ID);
 
-  constructor(firebase: FirebaseAppService) {
-    const app = firebase.appValue;
-    this.afAuth = getAuth(app);
+  private readonly firebaseUserResource = resource({
+    loader: async () => {
+      await this.afAuth.authStateReady();
 
-
-    this.user$ = new BehaviorSubject(this.afAuth.currentUser);
-    this.afAuth.onAuthStateChanged(u => this.user$.next(u));
-
-    this.userSubscription = this.user$.pipe(
-      switchMap(u => u ? this.userData.get(u.uid).pipe(
-        map(d => {
-          return {user: u, data: d}
-        })) : of(undefined)
-      )).subscribe(u => this.currentUser = toUser(u));
-  }
-
+      return isPlatformBrowser(this.platformId) ? this.afAuth.currentUser : undefined;
+    }
+  })
+  private readonly firebaseUser = linkedSignal(() => this.firebaseUserResource.value());
   private userData = inject(UserDataRepository);
-
-  singIn(signIndata: ISignInData) {
-    return from(signInWithEmailAndPassword(this.afAuth, signIndata.email, signIndata.password)).pipe(
-      map(u => u.user),
-      switchMap(u => u ? this.userData.get(u.uid).pipe(
+  private readonly currentUserResource = rxResource({
+    request: () => ({user: this.firebaseUser()}),
+    loader: ({request: {user}}) => {
+      // console.log(user);
+      if (user === null) return of(null);
+      if (user === undefined) return of(undefined);
+      return this.userData.get(user.uid).pipe(
         map(d => {
-          return {user: u, data: d}
-        })) : of(undefined)
-      ),
-      tap(u => this.currentUser = toUser(u)));
+          return toUser({user: user, data: d})
+        }));
+    }
+  })
+  public readonly currentUser = computed(() => this.currentUserResource.value());
+  public readonly isLoading = computed(() => this.firebaseUserResource.isLoading() || this.currentUserResource.isLoading());
+
+
+  public async singIn(signInData: ISignInData) {
+    await signInWithEmailAndPassword(this.afAuth, signInData.email, signInData.password);
+    this.firebaseUser.set(this.afAuth.currentUser);
   }
 
-  singOut() {
-    return from(this.afAuth.signOut()).pipe(tap(() => this.currentUser = undefined));
+  public async singOut() {
+    await this.afAuth.signOut();
+    this.firebaseUser.set(null);
   }
 
-  private _currentUser?: User;
-  // private readonly _currentUser$ = new ReplaySubject<User | undefined>(1);
-  private readonly _currentUser$ = new BehaviorSubject<User | undefined>(undefined);
-  public currentUser$ = this._currentUser$.asObservable();
-
-  public get currentUser() {
-    return this._currentUser;
-  }
-
-  private set currentUser(value) {
-    this._currentUser = value;
-    this._currentUser$?.next(value);
-  }
+  public readonly currentUser$ = toObservable(this.currentUser);
 }
 
 @Injectable({providedIn: 'root'})
 export class PermissionService {
   private readonly userService = inject(UserService);
 
+  public readonly isLoading = computed(() => this.userService.isLoading());
+
   public isPermit(requiredRole: UserRoles) {
     return this.userService.currentUser$.pipe(
+      filter(u => u !== undefined),
       map(u => u?.roles ?? UserRoles.GUEST),
-      map(r => {
-        return {isPermited: r >= requiredRole}
-      }));
+      map(r => r >= requiredRole),
+      map(r => ({isPermited: r})),
+    );
   }
 
   public blockUntilDeveloping() {
