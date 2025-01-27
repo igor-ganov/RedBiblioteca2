@@ -1,4 +1,4 @@
-<div class="edit-text" [ngClass]="inline? 'inline' : ''" [textContent]="value" (input)="onEditing($event)" contenteditable>
+<div class="edit-text" [ngClass]="inline()? 'inline' : ''" [textContent]="value" (input)="onEditing($event)" contenteditable>
     {{editingValue}}
 </div>
 

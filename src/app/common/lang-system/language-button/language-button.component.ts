@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { TextHost } from '../TextHost';
@@ -16,7 +16,7 @@ import { AsyncPipe, UpperCasePipe } from '@angular/common';
     imports: [MatButton, MatMenuTrigger, MatIcon, MatMenu, MatMenuItem, AsyncPipe, UpperCasePipe]
 })
 export class LanguageButtonComponent implements OnInit {
-  @Input() public horizontal = true;
+  public readonly horizontal = input(true);
   languages = TextHost.SupportedLanguages;
   newLanguage? : string;
   fullPath: Observable<string>;

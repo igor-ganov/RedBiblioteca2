@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatIconAnchor } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { ScrollToDirective } from '../scroll-to.directive';
@@ -11,5 +11,5 @@ import { MatIcon } from '@angular/material/icon';
     imports: [MatIconAnchor, RouterLink, ScrollToDirective, MatIcon]
 })
 export class AnchorComponent {
-  @Input({required: true}) public id!: string;
+  public readonly id = input.required<string>();
 }

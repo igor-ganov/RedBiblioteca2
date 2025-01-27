@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, inject, input } from '@angular/core';
 import { Newspaper } from '../models/Newspaper';
 import { map } from 'rxjs';
 import { UserService } from '@common/permission-system/UserService';
@@ -18,7 +18,7 @@ import { Base64ToImage } from '@common/help/pipelines/Base64ToImage';
     imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, AsyncPipe, Base64ToImage]
 })
 export class NewspaperPreviewComponent implements OnDestroy {
-  @Input({ required: true }) public newspaper!: Newspaper;
+  public readonly newspaper = input.required<Newspaper>();
   public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
   public readonly newspapersRepository = inject(NewspaperRepository);
   private readonly subscriptionHandler = inject(SubscriptionHandler);

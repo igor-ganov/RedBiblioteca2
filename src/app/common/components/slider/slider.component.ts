@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { NgClass } from '@angular/common';
     imports: [NgClass]
 })
 export class SliderComponent {
-  @Input() public opened = true;
+  public readonly opened = input(true);
   private _direction: Direction = 'left';
   @Input()
   public get direction(): Direction {

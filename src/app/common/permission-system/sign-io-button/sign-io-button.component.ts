@@ -1,4 +1,4 @@
-import { Component, Input, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, input } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EventMessageQueue } from '../../help/services/EventMassageQueue';
@@ -17,7 +17,7 @@ import { MatIcon } from '@angular/material/icon';
     imports: [NgIf, MatIconButton, MatIcon, MatButton, AsyncPipe]
 })
 export class SignIoButtonComponent implements OnInit, OnDestroy {
-  @Input() public horizontal = true;
+  public readonly horizontal = input(true);
 
   private readonly router = inject(Router);
   private readonly localeHost = inject(LocaleHost);

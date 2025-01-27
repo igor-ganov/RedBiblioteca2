@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, input} from '@angular/core';
 import {ContentMenuItems} from "@app/layout/content-menu/content-menu.items";
 import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
@@ -10,6 +10,5 @@ import { RouterLink } from '@angular/router';
     imports: [MatButton, RouterLink]
 })
 export class ContentMenuComponent {
-  @Input({required: true})
-  public items!: ContentMenuItems[];
+  public readonly items = input.required<ContentMenuItems[]>();
 }

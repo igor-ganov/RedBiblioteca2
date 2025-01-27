@@ -27,8 +27,8 @@
           <app-text-editor [buttonPositions]="'top'" [(value)]="book.description"/>
         </div>
         <div class="buttons">
-          <button [disabled]="isUpdating" color="primary" mat-stroked-button (click)="onPublish(book)">
-            @if (!isUpdating) {
+          <button [disabled]="isUpdating()" color="primary" mat-stroked-button (click)="onPublish(book)">
+            @if (!isUpdating()) {
               <span>Publish</span>
             } @else {
               <mat-spinner [diameter]="20"/>

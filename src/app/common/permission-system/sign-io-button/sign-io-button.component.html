@@ -1,5 +1,5 @@
 <ng-container *ngIf="lang$ | async as lang">
-    <ng-container *ngIf="horizontal; else vertical">
+    <ng-container *ngIf="horizontal(); else vertical">
         <button *ngIf="userService.currentUser === undefined; else login" color="basic" class="theme-button icon-button" (click)="onSignIn(lang)" mat-icon-button><mat-icon>login</mat-icon></button>
         <ng-template #login>
             <button color="basic" class="theme-button icon-button" (click)="onSignOut(lang)" mat-icon-button><mat-icon>logout</mat-icon></button>

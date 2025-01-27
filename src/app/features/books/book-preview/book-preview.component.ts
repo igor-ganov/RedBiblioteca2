@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, inject, input } from '@angular/core';
 import { Book } from '../models/Book';
 import { map } from 'rxjs';
 import { UserService } from '@common/permission-system/UserService';
@@ -18,7 +18,7 @@ import { Base64ToImage } from '@common/help/pipelines/Base64ToImage';
     imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, AsyncPipe, Base64ToImage]
 })
 export class BookPreviewComponent implements OnDestroy {
-  @Input({ required: true }) public book!: Book;
+  public readonly book = input.required<Book>();
   public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
   public readonly booksRepository = inject(BookRepository);
   private readonly subscriptionHandler = inject(SubscriptionHandler);

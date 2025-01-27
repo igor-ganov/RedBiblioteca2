@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, input } from '@angular/core';
 import { Newspaper } from '../models/Newspaper';
 import { map } from 'rxjs';
 import { UserService } from '@common/permission-system/UserService';
@@ -16,7 +16,7 @@ import { Base64ToImage } from '@common/help/pipelines/Base64ToImage';
     imports: [TextEditorComponent, MatButton, MatProgressSpinner, AsyncPipe, Base64ToImage]
 })
 export class NewspaperViewComponent {
-  @Input({ required: true }) public isUpdating!: boolean;
+  public readonly isUpdating = input.required<boolean>();
   @Output() published = new EventEmitter<Newspaper>();
   private _newspaper!: Newspaper;
   @Input({ required: true })

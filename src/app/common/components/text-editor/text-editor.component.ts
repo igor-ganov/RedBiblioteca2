@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { errorAlert } from '../../help/help-fuctions';
 import { NgClass } from '@angular/common';
 
@@ -10,8 +10,7 @@ import { NgClass } from '@angular/common';
 })
 export class TextEditorComponent {
   private _buttonPositions: Position = 'right';
-  @Input()
-  public inline = false;
+  public readonly inline = input(false);
   @Input()
   public get buttonPositions(): Position {
     return this._buttonPositions;
