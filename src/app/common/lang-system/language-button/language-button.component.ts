@@ -23,7 +23,9 @@ export class LanguageButtonComponent {
   public readonly lang = this.localeHost.language;
 
   public changeLanguage(currentLanguage: string, newLanguage: string, url: string) {
+    console.log(currentLanguage, newLanguage);
     const newUrl = url.replace(new RegExp(`/${currentLanguage}(/|$)`, "ig"), `/${newLanguage}/`);
+    console.log(url, newUrl);
     return this.router.navigateByUrl(newUrl);
   }
 

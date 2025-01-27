@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {RouteService} from "@common/routes/RouteService";
-import {combineLatest, map, Observable, tap, zip} from "rxjs";
+import {combineLatest, map, Observable, zip} from "rxjs";
 import {Route, Router} from "@angular/router";
 import {TextHost} from "@common/lang-system/TextHost";
 import {IMenuItem} from "@common/menu-system/IMenuItem";
@@ -22,7 +22,6 @@ export class MenuService {
     items: this._allItems,
     role: this.userService.currentUser$.pipe(map(u => u?.roles ?? UserRoles.GUEST))
   }).pipe(
-    tap(r => console.log(r)),
     map(({items, role}) => items.map(i => skipForbiden(i, role)!).filter(r => r !== undefined)),
     map(items => items.filter(i => i.type === 'item').map(i => i as MenuItemReach))
   )
@@ -30,7 +29,6 @@ export class MenuService {
 
 
 function buildMenuItem(route: Route, textHost: TextHost): Observable<MenuItemReach | RootItem> | undefined {
-  console.log('buildMenuItem');
   const data = route.data as RouteData | undefined;
   const item = data?.isMenuItem ? getMenuItem(route, textHost) : undefined;
   const role = data?.requiredRole ?? UserRoles.GUEST;

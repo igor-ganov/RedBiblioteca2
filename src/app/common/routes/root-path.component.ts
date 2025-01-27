@@ -1,22 +1,23 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, RouterOutlet} from '@angular/router';
 import {LocaleHost} from '../lang-system/LocaleHost';
 import {RootHrefService} from './RootHrefService';
 import {PermissionService} from "@common/permission-system/UserService";
 import {AsyncPipe} from '@angular/common';
+import {LoginComponent} from "@app/features/login/login.component";
 
 @Component({
   selector: 'root-path',
   template: `
     @if (getPermission() | async; as permission) {
       @if (permission.isPermited) {
-        <router-outlet></router-outlet>
+        <router-outlet/>
       } @else {
         <app-login/>
       }
     }
   `,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, LoginComponent, RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RootPathComponent implements OnInit {

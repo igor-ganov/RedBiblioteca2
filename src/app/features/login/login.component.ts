@@ -63,7 +63,7 @@ export class LoginComponent implements OnDestroy {
     this.eventMessageQueue.pushError(error);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscriptionManager.clearSubscriptions();
   }
 }
