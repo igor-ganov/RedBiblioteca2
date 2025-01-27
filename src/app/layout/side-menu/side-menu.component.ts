@@ -1,40 +1,26 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {SideMenuService} from './services/SideMenuService';
 import {routsPaths} from '@common/routes/routes';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
-import {Observable} from 'rxjs';
-import {MenuItemReach, MenuService} from './services/MenuServices';
-import {UserService} from '@common/permission-system/UserService';
-import { NgClass, AsyncPipe } from '@angular/common';
-import { MatButton } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import {MenuService} from './services/MenuServices';
+import {AsyncPipe, NgClass} from '@angular/common';
+import {MatButton} from '@angular/material/button';
+import {RouterLink} from '@angular/router';
 
 @Component({
-    selector: 'app-side-menu',
-    templateUrl: './side-menu.component.html',
-    styleUrl: './side-menu.component.css',
-    imports: [NgClass, MatButton, RouterLink, AsyncPipe]
+  selector: 'app-side-menu',
+  templateUrl: './side-menu.component.html',
+  styleUrl: './side-menu.component.css',
+  imports: [NgClass, MatButton, RouterLink, AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SideMenuComponent implements OnInit {
-  public routes = routsPaths;
-  public items?: Observable<(MenuItemReach)[]>;
+export class SideMenuComponent {
+  public readonly routes = routsPaths;
 
-  constructor(public readonly sideMenuService: SideMenuService) {
-  }
+  public readonly sideMenuService = inject(SideMenuService);
+  public readonly menuService = inject(MenuService);
+  public readonly items = this.menuService.items;
 
-  public menuService = inject(MenuService);
-  public userService = inject(UserService);
-
-  public localeHost = inject(LocaleHost);
-  public lang$?: Observable<string>;
-
-  ngOnInit(): void {
-    // this.menuService.items.subscribe(r => printAll(r));
-    setTimeout(() => {
-      this.lang$ = this.localeHost.getLanguageAsync();
-
-      //TODO pass lang WITH URL of Item
-      this.items = this.menuService.items;
-    })
-  }
+  private readonly localeHost = inject(LocaleHost);
+  public readonly lang = this.localeHost.language;
 }

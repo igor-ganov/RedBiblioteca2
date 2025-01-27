@@ -1,10 +1,10 @@
 <div class="container">
-  @if (newspaper) {
+  @if (newspaper(); as newspaper) {
     <div class="card">
       @if (readonly$ | async) {
         <div class="title"><h1 class="title-text">{{ newspaper.title }}</h1></div>
         <div class="subtitle"><h2>{{ newspaper.month }}, {{ newspaper.year }}</h2></div>
-        <div class="image"><img [src]="newspaper.cover | base64toImage" fill></div>
+        <div class="image"><img [src]="newspaper.cover | base64toImage" alt="cover"></div>
         <div class="description"><span>{{ newspaper.description }}</span></div>
       } @else {
         <div class="title">
@@ -23,7 +23,7 @@
           <input #importImage hidden type="file" onclick="this.value=null"
                  (change)="onImageUploaded($event, newspaper)" [accept]="'image/*'"/>
           <img class="editable-image" (click)="importImage.click()"
-               [src]="newspaper.cover | base64toImage" fill>
+               [src]="newspaper.cover | base64toImage" alt="cover">
         </div>
         <div class="description">
           <app-text-editor [buttonPositions]="'top'" [(value)]="newspaper.description"/>

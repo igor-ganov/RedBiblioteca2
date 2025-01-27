@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 
 @Component({
-    selector: 'app-loading',
-    templateUrl: './loading.component.html',
-    styleUrl: './loading.component.css',
-    imports: [MatProgressSpinner]
+  selector: 'app-loading',
+  templateUrl: './loading.component.html',
+  styleUrl: './loading.component.css',
+  imports: [MatProgressSpinner],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingComponent {
 

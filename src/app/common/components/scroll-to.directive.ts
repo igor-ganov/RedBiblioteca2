@@ -2,14 +2,14 @@ import {AfterViewInit, Directive, ElementRef, input} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {scrollOffset} from '@app/Configuration';
 
-@Directive({ selector: '[scrollTo]' })
+@Directive({selector: '[scrollTo]'})
 export class ScrollToDirective implements AfterViewInit {
-  public readonly id = input.required<string>({ alias: "scrollTo" });
+  public readonly id = input.required<string>({alias: "scrollTo"});
 
-  constructor(private elRef: ElementRef, private readonly activatedRoute: ActivatedRoute) {
+  public constructor(private elRef: ElementRef, private readonly activatedRoute: ActivatedRoute) {
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     if (this.activatedRoute.snapshot.fragment === this.id()) {
       setTimeout(() => {
         const y = this.elRef.nativeElement.getBoundingClientRect().top + window.scrollY - scrollOffset;

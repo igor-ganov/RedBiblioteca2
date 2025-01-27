@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {Newspaper} from '../models/Newspaper';
 import {getFakeImage} from './getFakeImage';
 import {NewspaperRepository} from '../services/NewspaperRepository';
@@ -7,17 +7,18 @@ import {Router} from '@angular/router';
 import {routsPaths} from '@common/routes/routes';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {DatePipe} from '@angular/common';
-import { NewspaperViewComponent } from '../newspaper-view/newspaper-view.component';
+import {NewspaperViewComponent} from '../newspaper-view/newspaper-view.component';
 
 @Component({
-    selector: 'app-new-newspaper',
-    templateUrl: './new-newspaper.component.html',
-    styleUrl: './new-newspaper.component.css',
-    imports: [NewspaperViewComponent]
+  selector: 'app-new-newspaper',
+  templateUrl: './new-newspaper.component.html',
+  styleUrl: './new-newspaper.component.css',
+  imports: [NewspaperViewComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewNewspaperComponent {
-  private datePipe = inject(DatePipe);
-  public newspaper: Newspaper = {
+  private readonly datePipe = inject(DatePipe);
+  public readonly newspaper: Newspaper = {
     id: '',
     title: 'Title',
     year: new Date().getFullYear().toString(),
@@ -26,19 +27,19 @@ export class NewNewspaperComponent {
     description: 'Description',
     cover: getFakeImage(),
   }
-  private repository = inject(NewspaperRepository);
-  public isUpdating = false;
+  private readonly repository = inject(NewspaperRepository);
+  public readonly isUpdating = signal(false);
 
   public onPublish(newspaper: Newspaper) {
-    this.isUpdating = true;
+    this.isUpdating.set(true);
     newspaper.id = newspaper.title.toLocaleLowerCase().replaceAll(' ', '-').replaceAll('\n', '');
-    this.repository.add(newspaper).pipe(finalize(() => this.isUpdating = true)).subscribe(() => this.redirectTo(newspaper));
+    this.repository.add(newspaper).pipe(finalize(() => this.isUpdating.set(true))).subscribe(() => this.redirectTo(newspaper));
   }
 
   private readonly router = inject(Router);
   private readonly localeHost = inject(LocaleHost);
 
-  redirectTo(newspaper: Newspaper): void {
-    this.router.navigate([this.localeHost.getLanguage() + '/' + routsPaths.newspapers + '/' + newspaper.pid]);
+  private redirectTo(newspaper: Newspaper) {
+    return this.router.navigate([this.localeHost.language() + '/' + routsPaths.newspapers + '/' + newspaper.pid]);
   }
 }

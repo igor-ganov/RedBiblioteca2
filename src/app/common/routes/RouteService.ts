@@ -1,15 +1,16 @@
-import {Injectable} from "@angular/core";
-import {distinctUntilChanged, filter, map, Observable, ReplaySubject, startWith} from "rxjs";
+import {Injectable, signal} from "@angular/core";
+import {distinctUntilChanged, filter, map, startWith} from "rxjs";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
+import {toObservable} from "@angular/core/rxjs-interop";
 
 @Injectable({providedIn: 'root'})
 export class RouteService {
-  private readonly observable = new ReplaySubject<string>(1);
-  private readonly activatedRoute$ = new ReplaySubject<ActivatedRoute>(1);
+  private readonly _fullPath = signal<string>('');
+  private readonly _activatedRoute = signal<ActivatedRoute>(this.baseActivatedRoute);
 
   public constructor(
     private readonly router: Router,
-    private readonly activatedRoute: ActivatedRoute,
+    private readonly baseActivatedRoute: ActivatedRoute,
   ) {
 
     this.router.events
@@ -22,21 +23,21 @@ export class RouteService {
         startWith(this.router.url),
         distinctUntilChanged(),
       ).subscribe(x => {
-      this.observable.next(x);
+      this._fullPath.set(x);
+      // this._fullPath$.next(x);
 
-      let route = this.activatedRoute;
+      let route = this.baseActivatedRoute;
       while (route.firstChild) {
         route = route.firstChild;
       }
-      this.activatedRoute$.next(route);
+      this._activatedRoute.set(route);
     })
   }
 
-  public getFullPath(): Observable<string> {
-    return this.observable;
-  }
+  public readonly fullPath = this._fullPath.asReadonly();
+  public readonly fullPath$ = toObservable(this._fullPath);
 
-  public getActivatedRoute(): Observable<ActivatedRoute> {
-    return this.activatedRoute$.pipe(distinctUntilChanged());
-  }
+  public readonly activatedRoute$ = toObservable(this._activatedRoute);
+  public readonly activatedRoute = this._activatedRoute.asReadonly;
+
 }

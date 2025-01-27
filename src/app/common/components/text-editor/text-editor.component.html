@@ -1,5 +1,6 @@
-<div class="edit-text" [ngClass]="inline()? 'inline' : ''" [textContent]="value" (input)="onEditing($event)" contenteditable>
-    {{editingValue}}
+<div class="edit-text" [ngClass]="inline()? 'inline' : ''" [textContent]="value" (input)="onEditing($event)"
+     contenteditable>
+  {{ editingValue() }}
 </div>
 
 <!-- <div [ngClass]="orientationClass" class="text-view edit-view" *ngIf="editing; else readonly">

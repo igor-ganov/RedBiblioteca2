@@ -1,45 +1,38 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { UserData, UserDataRepository } from '@common/permission-system/UserDataRepository';
-import { UserRoles } from '@common/permission-system/UserRoles';
-import { UserService } from '@common/permission-system/UserService';
-import { Observable } from 'rxjs';
-import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatSelect } from '@angular/material/select';
-import { MatOption } from '@angular/material/core';
-import { AsyncPipe, KeyValuePipe } from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {UserDataRepository} from '@common/permission-system/UserDataRepository';
+import {UserRoles} from '@common/permission-system/UserRoles';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {AsyncPipe, KeyValuePipe} from '@angular/common';
 
 @Component({
-    selector: 'app-users-panel',
-    templateUrl: './users-panel.component.html',
-    styleUrl: './users-panel.component.css',
-    imports: [MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatFormField, MatLabel, MatSelect, MatOption, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, AsyncPipe, KeyValuePipe]
+  selector: 'app-users-panel',
+  templateUrl: './users-panel.component.html',
+  styleUrl: './users-panel.component.css',
+  imports: [
+    MatTableModule,
+    AsyncPipe,
+    KeyValuePipe,
+    MatFormFieldModule,
+    MatSelectModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersPanelComponent implements OnInit {
+export class UsersPanelComponent {
 
-  public userRoles: Map<number, string>;
+  public readonly userRoles: Map<number, string>;
 
-  constructor(){
+  public constructor() {
     this.userRoles = getEnumWithNames(UserRoles);
   }
 
-  public displayedColumns = ['id', 'role'];
+  public readonly displayedColumns = ['id', 'role'];
 
-  userRepository = inject(UserDataRepository);
-  userService = inject(UserService);
-  users$?: Observable<UserData[]>;
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.users$ = this.userRepository.getAll();
-    });
-  }
+  public readonly userRepository = inject(UserDataRepository);
+  public readonly users$ = this.userRepository.getAll();
 }
 
-function getEnumNames(type: {}){
-  const keys = Object.keys(type);
-  return keys.slice(keys.length / 2);
-}
-function getEnumWithNames(type: {}){
+function getEnumWithNames(type: object) {
   const keys = Object.keys(type);
   const names = keys.slice(keys.length / 2);
   return new Map(names.map((n, i) => [i, n]));

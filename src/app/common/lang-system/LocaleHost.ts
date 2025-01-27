@@ -1,52 +1,51 @@
-import {Injectable} from "@angular/core";
+import {Injectable, signal} from "@angular/core";
 import {ReplaySubject} from "rxjs";
 
 import {registerLocaleData} from '@angular/common';
 
-import localeRu from '@angular/common/locales/ru';
-import localeRuExtra from '@angular/common/locales/extra/ru';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
 import localeEn from '@angular/common/locales/en';
 import localeEnExtra from '@angular/common/locales/extra/en';
-import localeIt from '@angular/common/locales/it';
-import localeItExtra from '@angular/common/locales/extra/it';
-import localeFr from '@angular/common/locales/fr';
-import localeFrExtra from '@angular/common/locales/extra/fr';
+import localeKo from '@angular/common/locales/ko';
+import localeKoExtra from '@angular/common/locales/extra/ko';
 
 @Injectable({providedIn: 'root'})
 export class LocaleHost {
-  private readonly observable;
+  private readonly _language$ = new ReplaySubject<string>(1);
 
-  constructor() {
-    this.observable = new ReplaySubject<string>(1);
+  public setLanguage(lang: string) {
+    const value = lang.toLocaleLowerCase();
+    this._language.set(value);
+    this.setLocale(value);
+    this._language$.next(value);
   }
 
-  setLanguage(lang: string) {
-    this.current = lang.toLocaleLowerCase();
-    this.setLocale(lang);
-    this.observable.next(this.current);
+  private readonly _language = signal('en');
+
+  public get language() {
+    return this._language.asReadonly();
   }
 
-  setLocale(lang: string) {
+  public readonly language$ = this._language$.asObservable();
+
+  public setLocale(lang: string) {
     // registerLocaleData(localeDe, lang, localeDeExtra);
 
     switch (lang) {
+      case 'de': {
+        registerLocaleData(localeDe, 'de', localeDeExtra);
+        break;
+      }
       case 'en': {
-        registerLocaleData(localeIt, 'it', localeItExtra);
+        registerLocaleData(localeDe, 'de', localeDeExtra);
+        registerLocaleData(localeKo, 'ke', localeKoExtra);
         registerLocaleData(localeEn, 'en', localeEnExtra);
-        registerLocaleData(localeFr, 'fr', localeFrExtra);
-        registerLocaleData(localeRu, 'ru', localeRuExtra);
         break;
       }
-      case 'it': {
-        registerLocaleData(localeIt, 'it', localeItExtra);
-        break;
-      }
-      case 'fr': {
-        registerLocaleData(localeFr, 'fr', localeFrExtra);
-        break;
-      }
-      case 'ru': {
-        registerLocaleData(localeRu, 'ru', localeRuExtra);
+      case 'ko': {
+        registerLocaleData(localeKo, 'ke', localeKoExtra);
+
         break;
       }
       default: {
@@ -54,15 +53,5 @@ export class LocaleHost {
         break;
       }
     }
-  }
-
-  getLanguage() {
-    return this.current;
-  }
-
-  private current = "en";
-
-  getLanguageAsync() {
-    return this.observable;
   }
 }

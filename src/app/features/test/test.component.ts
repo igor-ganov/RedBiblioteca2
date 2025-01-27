@@ -1,30 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {LoginText} from '../login/locale/LoginText';
-import {Observable} from 'rxjs';
-import { MatButton } from '@angular/material/button';
-import { SliderComponent } from '../../common/components/slider/slider.component';
-import { AsyncPipe } from '@angular/common';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
-    selector: 'app-test',
-    templateUrl: './test.component.html',
-    styleUrl: './test.component.css',
-    imports: [MatButton, SliderComponent, AsyncPipe]
+  selector: 'app-test',
+  templateUrl: './test.component.html',
+  styleUrl: './test.component.css',
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TestComponent implements OnInit {
+export class TestComponent {
 
-
-  constructor() {
-  }
-
-  public opened = true;
-
-  public onClick() {
-  }
-
-  public translation?: Observable<LoginText>;
-
-  ngOnInit() {
-
-  }
 }

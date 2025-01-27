@@ -1,13 +1,11 @@
 <div class="container">
   <div class="slider" [ngClass]="sideMenuService.opened ? 'slider-opened' : 'slider-closed'">
-    @if (lang$ | async; as lang) {
-      <div class="menu-container">
-        @for (item of items | async; track item.url) {
-          <button color="basic" [routerLink]="['/' + lang + '/' + item.url]" mat-stroked-button>
-            <span class="menu-text">{{item.title}}</span>
-          </button>
-        }
-      </div>
-    }
+    <div class="menu-container">
+      @for (item of items | async; track item.url) {
+        <button color="basic" [routerLink]="['/' + lang() + '/' + item.url]" mat-stroked-button>
+          <span class="menu-text">{{ item.title }}</span>
+        </button>
+      }
+    </div>
   </div>
 </div>

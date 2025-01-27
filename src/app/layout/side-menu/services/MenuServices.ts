@@ -12,7 +12,7 @@ import {UserService} from "@common/permission-system/UserService";
 @Injectable({providedIn: 'root'})
 export class MenuService {
   private routeService = inject(RouteService);
-  public activatedItem$ = this.routeService.getActivatedRoute().pipe(map(a => a.component?.name));
+  public activatedItem$ = this.routeService.activatedRoute$.pipe(map(a => a.component?.name));
   private router = inject(Router);
   private textHost = inject(TextHost);
   private _allItems = zip(this.router.config.find(r => r.path !== '**')!.children!.map(r => buildMenuItem(r, this.textHost)!).filter(r => r !== undefined))

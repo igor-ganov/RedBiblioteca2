@@ -1,16 +1,17 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 import {Article} from "@app/features/home/article/article";
-import { TopBannerComponent } from './top-banner/top-banner.component';
-import { ContentMenuComponent } from '../../layout/content-menu/content-menu.component';
-import { ArticleComponent } from './article/article.component';
-import { LastNewsComponent } from './last-news/last-news.component';
+import {TopBannerComponent} from './top-banner/top-banner.component';
+import {ContentMenuComponent} from '@app/layout/content-menu/content-menu.component';
+import {ArticleComponent} from './article/article.component';
+import {LastNewsComponent} from './last-news/last-news.component';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.css',
-    imports: [TopBannerComponent, ContentMenuComponent, ArticleComponent, LastNewsComponent]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
+  imports: [TopBannerComponent, ContentMenuComponent, ArticleComponent, LastNewsComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
 
@@ -29,7 +30,7 @@ export class HomeComponent {
     title: 'Sergio Motosi',
     content: "Suddenly, on 12th October 2002, we lost our comrade, Sergio Motosi. The following passages are taken from his funeral service. Nature can be harsh and cruel to her finest sons. In Sergio Motosi, we lost one of the most impressive representatives of that generation of revolutionaries who came to Marxist science at the end of the 1960s. These were the children of “Leninist tactics for the educational crisis”, a work of Cervetto’s that in the history of our party’s development represents a milestone, a «practical step» on the long road that has led us to the present day."
   };
-  public items = [this.about, this.hotToUse, this.sergioMotosi];
+  public readonly items = [this.about, this.hotToUse, this.sergioMotosi];
 }
 
 export class ArticleRepository {

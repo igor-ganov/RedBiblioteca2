@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  Input,
+  output,
+  signal
+} from '@angular/core';
 import {Slide} from './Slides';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
@@ -19,32 +27,32 @@ export class SlideShowComponent {
 
   // private readonly changeDetector: ChangeDetectorRef = Inject(ChangeDetectorRef);
 
-  private _slides!: Slide[];
+  private readonly _slides = signal<Slide[]>([]);
   @Input({required: true})
   public get slides(): Slide[] {
-    return this._slides;
+    return this._slides();
   }
 
   public set slides(value: Slide[]) {
-    this._slides = value;
+    this._slides.set(value);
     this.current = 0;
   }
 
-  private _selected = 0;
+  private readonly _selected = signal(0);
   @Input()
   public get selected(): number {
-    return this._selected;
+    return this._selected();
   }
 
   public set selected(value: number) {
-    if (this.animationApplying) {
-      this.selectedChange.emit(this._selected);
+    if (this.animationApplying()) {
+      this.selectedChange.emit(this._selected());
       return;
     }
     const newValue = this.normalize(value);
     // const newValue = this._selected > value ? this.normalize(this._selected + 1) : this.normalize(this._selected - 1);
-    if (this._selected === newValue) return;
-    this._selected = newValue;
+    if (this.selected === newValue) return;
+    this._selected.set(newValue);
     this.moveTo(newValue);
     this.selectedChange.emit(newValue);
   }
@@ -70,7 +78,7 @@ export class SlideShowComponent {
       && element?.classList.contains(this.slideAnimation)) {
       this.slideAnimation = '';
       this.previous = undefined;
-      this.animationApplying = false;
+      this.animationApplying.set(false);
       this.ref.detectChanges();
     }
   }
@@ -83,10 +91,10 @@ export class SlideShowComponent {
     this.moveTo(this.getPrevious(), 'left-direction');
   }
 
-  public animationApplying = false;
+  public readonly animationApplying = signal(false);
 
   public moveTo(next: number, animation?: SlidAnimationDirectionClass) {
-    this.animationApplying = true;
+    this.animationApplying.set(true);
     this.slideAnimation = '';
     this.ref.detectChanges();
     this.slideDirection = animation ?? this.getAnimation(next);
@@ -96,7 +104,7 @@ export class SlideShowComponent {
       this.previous = this.current;
       this.current = next;
       this.ref.detectChanges();
-      this._selected = next;
+      this._selected.set(next);
       this.selectedChange.emit(next);
     });
   }

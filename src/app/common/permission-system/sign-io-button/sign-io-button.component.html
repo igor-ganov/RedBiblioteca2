@@ -1,4 +1,4 @@
-@if (lang$ | async; as lang) {
+@if (lang(); as lang) {
   @if (horizontal()) {
     @if (userService.currentUser === undefined) {
       <button color="basic" class="theme-button icon-button"

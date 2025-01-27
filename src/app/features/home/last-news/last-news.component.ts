@@ -1,21 +1,21 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, AfterViewInit, OnDestroy} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, signal} from '@angular/core';
 import {Slide} from '@common/components/slide-show/Slides';
 import {repeat, Subscription, timer} from 'rxjs';
 import {getFakeImage1, getFakeImage2, getFakeImage3} from './getFakeImage1';
-import { SlideShowComponent } from '../../../common/components/slide-show/slide-show.component';
+import {SlideShowComponent} from '@common/components/slide-show/slide-show.component';
 
 @Component({
-    selector: 'app-last-news',
-    templateUrl: './last-news.component.html',
-    styleUrl: './last-news.component.css',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [SlideShowComponent]
+  selector: 'app-last-news',
+  templateUrl: './last-news.component.html',
+  styleUrl: './last-news.component.css',
+  imports: [SlideShowComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LastNewsComponent implements AfterViewInit, OnDestroy {
-  constructor(private readonly detector: ChangeDetectorRef) {
+  public constructor(private readonly detector: ChangeDetectorRef) {
   }
 
-  sources: LastNews[] = [
+  public readonly sources: LastNews[] = [
     {
       id: '1',
       title: 'The revolution history',
@@ -36,27 +36,27 @@ export class LastNewsComponent implements AfterViewInit, OnDestroy {
       image: getFakeImage3(),
     },
   ]
-  private _selected = 0;
+  private readonly _selected = signal(0);
   public get selected(): number {
-    return this._selected;
+    return this._selected();
   }
 
   public set selected(value: number) {
-    this._selected = value;
+    this._selected.set(value);
   }
 
-  slideChangeTimer?: Subscription;
+  private slideChangeTimer?: Subscription;
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.slideChangeTimer = timer(4000).pipe(repeat()).subscribe(() => this.incrementPage());
   }
 
-  incrementPage(): void {
+  public incrementPage(): void {
     this.selected++;
     this.detector.detectChanges();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.slideChangeTimer?.unsubscribe();
   }
 }

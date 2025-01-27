@@ -41,32 +41,32 @@ export const translationMap = new Map<Type<any>, ITitleFactory | ITextFactory<an
 
 @Injectable({providedIn: 'root'})
 export class TextHost {
-  static readonly SupportedLanguages = ['en', 'it', 'ru', 'fr'];
-  static readonly DefaultLanguage = 'en';
+  public static readonly SupportedLanguages = ['en', 'it', 'ru', 'fr'];
+  public static readonly DefaultLanguage = 'en';
 
-  constructor(private localeHost: LocaleHost, private dictionaryServcie: TextDictionaryServcie) {
+  public constructor(private localeHost: LocaleHost, private dictionaryService: TextDictionaryServcie) {
   }
 
 
   private requestTextInstance<T>(langLable: string, fuctory: (dictionary: TextDictionary) => T) {
-    return this.dictionaryServcie.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
+    return this.dictionaryService.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
   }
 
   private requestMenuInstance(langLable: string, fuctory: (dictionary: TextDictionary) => IMenuItem) {
-    return this.dictionaryServcie.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
+    return this.dictionaryService.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
   }
 
   private getTextInstanceAsync<T>(type: Type<any>) {
     const factory = (translationMap.get(type) as ITextFactory<T>)?.getText;
     if (!factory) return;
-    return this.localeHost.getLanguageAsync()
+    return this.localeHost.language$
       .pipe(switchMap(lable => this.requestTextInstance<T>(lable, factory)));
   }
 
   private getMenuInstanceAsync(type: Type<any>) {
     const factory = (translationMap.get(type) as ITitleFactory)?.getTitle;
     if (!factory) return;
-    return this.localeHost.getLanguageAsync()
+    return this.localeHost.language$
       .pipe(switchMap(lable => this.requestMenuInstance(lable, factory)));
   }
 

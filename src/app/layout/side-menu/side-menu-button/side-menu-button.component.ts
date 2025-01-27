@@ -1,4 +1,4 @@
-import {Component, HostListener, inject, viewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostListener, inject, viewChild} from '@angular/core';
 import {SideMenuService} from '../services/SideMenuService';
 import {MatButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
@@ -7,7 +7,8 @@ import {MatIcon} from '@angular/material/icon';
   selector: 'app-side-menu-button',
   templateUrl: './side-menu-button.component.html',
   styleUrl: './side-menu-button.component.css',
-  imports: [MatButton, MatIcon]
+  imports: [MatButton, MatIcon],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideMenuButtonComponent {
   public readonly menu = viewChild.required<MatButton>('menuButton');

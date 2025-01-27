@@ -1,14 +1,13 @@
-import {Component, inject, OnInit} from '@angular/core';
-import { ActivatedRoute, Params, RouterOutlet } from '@angular/router';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
 import {LocaleHost} from '../lang-system/LocaleHost';
 import {RootHrefService} from './RootHrefService';
 import {PermissionService} from "@common/permission-system/UserService";
-import { LoginComponent } from '../../features/login/login.component';
-import { AsyncPipe } from '@angular/common';
+import {AsyncPipe} from '@angular/common';
 
 @Component({
-    selector: 'root-path',
-    template: `
+  selector: 'root-path',
+  template: `
     @if (getPermission() | async; as permission) {
       @if (permission.isPermited) {
         <router-outlet></router-outlet>
@@ -17,17 +16,18 @@ import { AsyncPipe } from '@angular/common';
       }
     }
   `,
-    imports: [RouterOutlet, LoginComponent, AsyncPipe]
+  imports: [AsyncPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RootPathComponent implements OnInit {
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private translateService: LocaleHost,
-    private rootPathService: RootHrefService
+  public constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly translateService: LocaleHost,
+    private readonly rootPathService: RootHrefService
   ) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       const lang = params['lang'];
       this.translateService.setLanguage(lang);
@@ -36,5 +36,5 @@ export class RootPathComponent implements OnInit {
   }
 
   private readonly permissionService: PermissionService = inject(PermissionService);
-  public getPermission = () => this.permissionService.blockUntilDeveloping();
+  public readonly getPermission = () => this.permissionService.blockUntilDeveloping();
 }

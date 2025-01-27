@@ -1,4 +1,4 @@
-import {Component, inject, Input, input, output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input, output} from '@angular/core';
 import {Newspaper} from '../models/Newspaper';
 import {map} from 'rxjs';
 import {UserService} from '@common/permission-system/UserService';
@@ -13,20 +13,13 @@ import {Base64ToImage} from '@common/help/pipelines/Base64ToImage';
   selector: 'app-newspaper-view',
   templateUrl: './newspaper-view.component.html',
   styleUrl: './newspaper-view.component.css',
-  imports: [TextEditorComponent, MatButton, MatProgressSpinner, AsyncPipe, Base64ToImage]
+  imports: [TextEditorComponent, MatButton, MatProgressSpinner, AsyncPipe, Base64ToImage],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewspaperViewComponent {
   public readonly isUpdating = input.required<boolean>();
   public readonly published = output<Newspaper>();
-  private _newspaper!: Newspaper;
-  @Input({required: true})
-  public get newspaper(): Newspaper {
-    return this._newspaper;
-  }
-
-  public set newspaper(value: Newspaper) {
-    this._newspaper = value;
-  }
+  public readonly newspaper = input.required<Newspaper>();
 
   public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
 

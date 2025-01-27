@@ -17,8 +17,8 @@
     }
   </div>
   @if (!readonly) {
-    <button [disabled]="isUpdating" color="primary" mat-stroked-button (click)="onPublish(value)">
-      @if (!isUpdating) {
+    <button [disabled]="isUpdating()" color="primary" mat-stroked-button (click)="onPublish(value)">
+      @if (!isUpdating()) {
         <span>Publish</span>
       } @else {
         <mat-spinner [diameter]="20"/>
