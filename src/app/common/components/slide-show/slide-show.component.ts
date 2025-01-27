@@ -1,27 +1,19 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output
-} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, output} from '@angular/core';
 import {Slide} from './Slides';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import { NgClass } from '@angular/common';
-import { Base64ToStyle } from '@common/help/pipelines/Base64ToImage';
+import {MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {NgClass} from '@angular/common';
+import {Base64ToStyle} from '@common/help/pipelines/Base64ToImage';
 
 @Component({
-    selector: 'app-slide-show',
-    templateUrl: './slide-show.component.html',
-    styleUrl: './slide-show.component.css',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatIconButton, MatIcon, NgClass, Base64ToStyle]
+  selector: 'app-slide-show',
+  templateUrl: './slide-show.component.html',
+  styleUrl: './slide-show.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MatIconButton, MatIcon, NgClass, Base64ToStyle]
 })
 export class SlideShowComponent {
-  constructor(private ref: ChangeDetectorRef) {
+  public constructor(private ref: ChangeDetectorRef) {
   }
 
 
@@ -57,7 +49,7 @@ export class SlideShowComponent {
     this.selectedChange.emit(newValue);
   }
 
-  @Output() selectedChange = new EventEmitter<number>();
+  public readonly selectedChange = output<number>();
 
   public getClass(slide: Slide): [SliderClass, SlidAnimationDirectionClass, SlidAnimationClass] {
     if (this.slides[this.current] === slide) return ['current', this.slideDirection, this.slideAnimation];
@@ -71,7 +63,7 @@ export class SlideShowComponent {
   private previous?: number;
 
   @HostListener('transitionend', ['$event'])
-  onAnimationFinished(event: TransitionEvent) {
+  public onAnimationFinished(event: TransitionEvent) {
     const element = event.target as HTMLElement | undefined;
     if (event.propertyName === 'transform'
       && this.slideAnimation !== ''
@@ -83,17 +75,17 @@ export class SlideShowComponent {
     }
   }
 
-  onRightClick() {
+  public onRightClick() {
     this.moveTo(this.getNext(), 'right-direction');
   }
 
-  onLeftClick() {
+  public onLeftClick() {
     this.moveTo(this.getPrevious(), 'left-direction');
   }
 
   public animationApplying = false;
 
-  moveTo(next: number, animation?: SlidAnimationDirectionClass) {
+  public moveTo(next: number, animation?: SlidAnimationDirectionClass) {
     this.animationApplying = true;
     this.slideAnimation = '';
     this.ref.detectChanges();
@@ -109,30 +101,30 @@ export class SlideShowComponent {
     });
   }
 
-  getAnimation(next: number): SlidAnimationDirectionClass {
+  private getAnimation(next: number): SlidAnimationDirectionClass {
     const last = this._slides.length - 1;
     const current = this.current;
     if (next === 0 && current === last) return 'right-direction';
     return current < next ? 'right-direction' : 'left-direction';
   }
 
-  getPrevious(): number {
+  private getPrevious(): number {
     return this.getPreviousFrom(this.current);
   }
 
-  getPreviousFrom(current: number): number {
+  private getPreviousFrom(current: number): number {
     return this.normalize(current - 1);
   }
 
-  getNext(): number {
+  private getNext(): number {
     return this.getNextFrom(this.current);
   }
 
-  getNextFrom(current: number): number {
+  private getNextFrom(current: number): number {
     return this.normalize(current + 1);
   }
 
-  normalize(index: number) {
+  private normalize(index: number) {
     //TODO normalize double range values;
     if (index < 0) return this._slides.length + index;
     if (index >= this._slides.length) return index - this._slides.length;
