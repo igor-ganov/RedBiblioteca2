@@ -9,6 +9,7 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
 import {rxResource} from "@angular/core/rxjs-interop";
 import {Book} from "@app/features/books/models/Book";
 import {BookRepository} from "@app/features/books/services/BookRepository";
+import {LocaleHost} from "@common/lang-system/LocaleHost";
 
 @Component({
   selector: 'app-books',
@@ -60,13 +61,15 @@ export class BooksComponent {
   private readonly userService = inject(UserService);
   public readonly readonly = computed(() => this.userService.currentUser() == undefined);
   public readonly repository = inject(BookRepository);
+  private readonly lang = inject(LocaleHost).language;
   private readonly collectionResource = rxResource({
-    loader: () => this.repository.getAll()
+    request: () => ({lang: this.lang()}),
+    loader: ({request: {lang}}) => this.repository.getAll(lang),
   });
   public readonly collection: Signal<Book[] | undefined> = computed(() => this.collectionResource.value());
 
   public async onDeleteRequested(value: Book) {
-    await this.subscriptionService.runAsync(this.repository.delete(value.id));
+    await this.subscriptionService.runAsync(this.repository.delete(this.lang(), value.id));
     this.collectionResource.reload();
   }
 }

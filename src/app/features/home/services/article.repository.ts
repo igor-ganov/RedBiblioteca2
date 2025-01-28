@@ -7,28 +7,28 @@ export class ArticleRepository {
   private readonly table = 'articles'
   private readonly firestore = inject(ContentService);
 
-  public findByPid(pid: string) {
-    return this.firestore.findByPid<Article>(this.table, pid);
+  public findByPid(lang: string, pid: string) {
+    return this.firestore.findByPid<Article>(lang, this.table, pid);
   }
 
-  public getAll() {
-    return this.firestore.getAll<Article>(this.table);
+  public getAll(lang: string) {
+    return this.firestore.getAll<Article>(lang, this.table);
   }
 
-  public get(id: string) {
-    return this.firestore.get<Article>(this.table, id);
+  public get(lang: string, id: string) {
+    return this.firestore.get<Article>(lang, this.table, id);
   }
 
-  public update(value: Article) {
-    return this.firestore.update(this.table, value);
+  public update(lang: string, value: Article) {
+    return this.firestore.update(lang, this.table, value);
   }
 
-  public add(value: Article) {
-    return this.firestore.add(this.table, value);
+  public add(lang: string, value: Article) {
+    return this.firestore.add(lang, this.table, value);
   }
 
-  public delete(id: string) {
-    return this.firestore.delete(this.table, id);
+  public delete(lang: string, id: string) {
+    return this.firestore.delete(lang, this.table, id);
   }
 }
 

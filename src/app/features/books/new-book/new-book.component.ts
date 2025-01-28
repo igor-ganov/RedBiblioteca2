@@ -11,9 +11,9 @@ import {BookViewComponent} from '../book-view/book-view.component';
 @Component({
   selector: 'app-new-book',
   template: `
-<app-book-view [book]="book" [isUpdating]="isUpdating()" (published)="onPublish($event)"/>
+    <app-book-view [book]="book" [isUpdating]="isUpdating()" (published)="onPublish($event)"/>
 
-`,
+  `,
   styleUrl: './new-book.component.css',
   imports: [BookViewComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,17 +29,18 @@ export class NewBookComponent {
   }
   private readonly repository = inject(BookRepository);
   public readonly isUpdating = signal(false);
+  private readonly localeHost = inject(LocaleHost);
+  private readonly lang = this.localeHost.language;
 
   public onPublish(book: Book) {
     this.isUpdating.set(true);
     book.pid = book.title.toLocaleLowerCase().replaceAll(' ', '-').replaceAll('\n', '');
-    this.repository.add(book).pipe(finalize(() => this.isUpdating.set(true))).subscribe(() => this.redirectTo(book));
+    this.repository.add(this.lang(), book).pipe(finalize(() => this.isUpdating.set(true))).subscribe(() => this.redirectTo(book));
   }
 
   private readonly router = inject(Router);
-  private readonly localeHost = inject(LocaleHost);
 
   private redirectTo(book: Book) {
-    return this.router.navigate([this.localeHost.language() + '/' + routsPaths.books + '/' + book.pid]);
+    return this.router.navigate([this.lang() + '/' + routsPaths.books + '/' + book.pid]);
   }
 }

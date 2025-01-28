@@ -7,28 +7,28 @@ export class NewspaperRepository {
   private readonly table = 'newspapers'
   private readonly firestore = inject(ContentService);
 
-  public findByPid(pid: string) {
-    return this.firestore.findByPid<Newspaper>(this.table, pid);
+  public findByPid(lang: string, pid: string) {
+    return this.firestore.findByPid<Newspaper>(lang, this.table, pid);
   }
 
-  public getAll() {
-    return this.firestore.getAll<Newspaper>(this.table);
+  public getAll(lang: string) {
+    return this.firestore.getAll<Newspaper>(lang, this.table);
   }
 
-  public get(id: string) {
-    return this.firestore.get<Newspaper>(this.table, id);
+  public get(lang: string, id: string) {
+    return this.firestore.get<Newspaper>(lang, this.table, id);
   }
 
-  public update(newspaper: Newspaper) {
-    return this.firestore.update(this.table, newspaper);
+  public update(lang: string, newspaper: Newspaper) {
+    return this.firestore.update(lang, this.table, newspaper);
   }
 
-  public add(newspaper: Newspaper) {
-    return this.firestore.add(this.table, newspaper);
+  public add(lang: string, newspaper: Newspaper) {
+    return this.firestore.add(lang, this.table, newspaper);
   }
 
-  public delete(id: string) {
-    return this.firestore.delete(this.table, id);
+  public delete(lang: string, id: string) {
+    return this.firestore.delete(lang, this.table, id);
   }
 }
 

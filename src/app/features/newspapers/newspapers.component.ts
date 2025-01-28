@@ -9,6 +9,7 @@ import {LoadingComponent} from '@common/components/loading/loading.component';
 import {Newspaper} from "@app/features/newspapers/models/Newspaper";
 import {rxResource} from "@angular/core/rxjs-interop";
 import {createSubscriptionService} from "@common/help/services/subscription.service";
+import {LocaleHost} from "@common/lang-system/LocaleHost";
 
 @Component({
   selector: 'app-newspapers',
@@ -59,13 +60,15 @@ export class NewspapersComponent {
   private readonly userService = inject(UserService);
   public readonly readonly = computed(() => this.userService.currentUser() == undefined);
   public readonly repository = inject(NewspaperRepository);
+  private readonly lang = inject(LocaleHost).language;
   private readonly collectionResource = rxResource({
-    loader: () => this.repository.getAll()
+    request: () => ({lang: this.lang()}),
+    loader: ({request: {lang}}) => this.repository.getAll(lang)
   });
   public readonly collection: Signal<Newspaper[] | undefined> = computed(() => this.collectionResource.value());
 
   public async onDeleteRequested(value: Newspaper) {
-    await this.subscriptionService.runAsync(this.repository.delete(value.id));
+    await this.subscriptionService.runAsync(this.repository.delete(this.lang(), value.id));
     this.collectionResource.reload();
   }
 }

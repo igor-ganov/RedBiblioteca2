@@ -1,31 +1,35 @@
-import { Injectable, inject } from "@angular/core";
-import { Book } from "../models/Book";
+import {inject, Injectable} from "@angular/core";
+import {Book} from "../models/Book";
 import {ContentService} from "@common/help/services/content.service";
 
 @Injectable({providedIn: 'root'})
-export class BookRepository{
+export class BookRepository {
 
-    private readonly table = 'books'
-    private readonly firestore = inject(ContentService);
+  private readonly table = 'books'
+  private readonly firestore = inject(ContentService);
 
-    findByPid(pid: string){
-        return this.firestore.findByPid<Book>(this.table, pid);
-    }
+  public findByPid(lang: string, pid: string) {
+    return this.firestore.findByPid<Book>(lang, this.table, pid);
+  }
 
-    getAll() {
-        return this.firestore.getAll<Book>(this.table);
-    }
-    get(id: string){
-        return this.firestore.get<Book>(this.table, id);
-    }
-    update(book: Book){
-        return this.firestore.update(this.table, book);
-    }
-    add(book: Book){
-        return this.firestore.add(this.table, book);
-    }
-    delete(id: string){
-        return this.firestore.delete(this.table, id);
-    }
+  public getAll(lang: string) {
+    return this.firestore.getAll<Book>(lang, this.table);
+  }
+
+  public get(lang: string, id: string) {
+    return this.firestore.get<Book>(lang, this.table, id);
+  }
+
+  public update(lang: string, book: Book) {
+    return this.firestore.update(lang, this.table, book);
+  }
+
+  public add(lang: string, book: Book) {
+    return this.firestore.add(lang, this.table, book);
+  }
+
+  public delete(lang: string, id: string) {
+    return this.firestore.delete(lang, this.table, id);
+  }
 }
 
