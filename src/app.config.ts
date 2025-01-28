@@ -24,7 +24,13 @@ export const appConfig = {
     importProvidersFrom(AppRoutingModule, BrowserModule, CommonModule, FormsModule, MatButtonModule, MatFormFieldModule, MatMenuModule, MatIconModule, MatInputModule, MatButtonModule, MatDialogModule, ReactiveFormsModule, RouterOutlet, NgOptimizedImage),
     DatePipe,
     provideHttpClient(withFetch()),
-    // provideRouter(rootRoute),
+    /*provideRouter(rootRoute, withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'enabled',
+      }),
+      withViewTransitions(),
+      withComponentInputBinding(),
+    ),*/
     provideAnimations(),
     provideClientHydration(withEventReplay(), withIncrementalHydration()),
   ]

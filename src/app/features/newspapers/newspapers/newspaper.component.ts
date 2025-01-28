@@ -1,9 +1,7 @@
-import {ChangeDetectionStrategy, Component, inject, Signal, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input, Signal, signal} from '@angular/core';
 import {Newspaper} from '../models/Newspaper';
-import {ActivatedRoute} from '@angular/router';
 import {NewspaperRepository} from '../services/NewspaperRepository';
 import {finalize} from 'rxjs';
-import {errorThrow} from '@common/help/help-fuctions';
 import {IfSuccess} from '@common/components/errors/if-success.directive';
 import {NewspaperViewComponent} from '../newspaper-view/newspaper-view.component';
 import {LocaleHost} from "@common/lang-system/LocaleHost";
@@ -33,10 +31,10 @@ export class NewspaperComponent {
     this.repository.update(this.lang(), value).pipe(finalize(() => this.isUpdating.set(false))).subscribe();//todo update view;
   }
 
-  private readonly newspaperId = inject(ActivatedRoute).snapshot.paramMap.get('newspaperId') ?? errorThrow("Newspaper's Id can't be empty")!;
+  public readonly newspaperId = input.required<string>();
   private readonly repository = inject(NewspaperRepository);
   private readonly newspaperResource = rxResource({
-    request: () => ({newspaperId: this.newspaperId, lang: this.lang()}),
+    request: () => ({newspaperId: this.newspaperId(), lang: this.lang()}),
     loader: ({request: {newspaperId, lang}}) => this.repository.findByPid(lang, newspaperId),
   });
   public readonly newspaper: Signal<Result<Newspaper> | undefined> = this.newspaperResource.value.asReadonly();

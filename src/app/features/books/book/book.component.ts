@@ -1,9 +1,7 @@
-import {ChangeDetectionStrategy, Component, inject, Signal, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input, Signal, signal} from '@angular/core';
 import {Book} from '../models/Book';
-import {ActivatedRoute} from '@angular/router';
 import {BookRepository} from '../services/BookRepository';
 import {finalize} from 'rxjs';
-import {errorThrow} from '@common/help/help-fuctions';
 import {IfSuccess} from '@common/components/errors/if-success.directive';
 import {BookViewComponent} from '../book-view/book-view.component';
 import {LocaleHost} from "@common/lang-system/LocaleHost";
@@ -31,10 +29,10 @@ export class BookComponent {
     this.repository.update(this.lang(), value).pipe(finalize(() => this.isUpdating.set(false))).subscribe();//todo update view;
   }
 
-  private readonly bookId = inject(ActivatedRoute).snapshot.paramMap.get('bookId') ?? errorThrow("Book's Id can't be empty")!;
+  public readonly bookId = input.required<string>();
   private readonly repository = inject(BookRepository);
   private readonly bookResource = rxResource({
-    request: () => ({id: this.bookId, lang: this.lang()}),
+    request: () => ({id: this.bookId(), lang: this.lang()}),
     loader: ({request: {id, lang}}) => this.repository.findByPid(lang, id),
   });
   public readonly book: Signal<Result<Book> | undefined> = this.bookResource.value.asReadonly();
