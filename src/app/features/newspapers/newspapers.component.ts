@@ -25,7 +25,7 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
         @for (b of collection; track b.id) {
           <div class="card">
             <app-newspaper-preview (deleteRequested)="onDeleteRequested($event)"
-                                   [newspaper]="b"></app-newspaper-preview>
+                                   [value]="b"></app-newspaper-preview>
           </div>
         }
       </div>

@@ -1,51 +1,51 @@
-import {ChangeDetectionStrategy, Component, inject, input, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, input, OnDestroy, output} from '@angular/core';
 import {Book} from '../models/Book';
-import {map} from 'rxjs';
 import {UserService} from '@common/permission-system/UserService';
-import {BookRepository} from '../services/BookRepository';
 import {SubscriptionHandler, SubscriptionHandlerProvider} from '@common/help/services/SubscriptionHandler';
 import {MatIconAnchor, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {RouterLink} from '@angular/router';
-import {AsyncPipe} from '@angular/common';
 import {Base64ToImage} from '@common/help/pipelines/Base64ToImage';
 
 @Component({
   selector: 'app-book-preview',
   template: `
-<div class="container">
-  <div class="title">
-    <h1 class="title-text">{{ book().title }}</h1>
-    <div class="title-panel">
-      @if (!(readonly$ | async)) {
-        <button (click)="onDelete(book())" color="warn" mat-icon-button>
-          <mat-icon>delete</mat-icon>
-        </button>
-      }
-      <a [routerLink]="[book().pid]" mat-icon-button>
-        <mat-icon>open_in_new</mat-icon>
-      </a>
+    @let v = value();
+    <div class="container">
+      <div class="title">
+        <h1 class="title-text">{{ v.title }}</h1>
+        <div class="title-panel">
+          @if (!readonly()) {
+            <button (click)="onDelete(v)" color="warn" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
+          <a [routerLink]="[v.pid]" mat-icon-button>
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </div>
+      </div>
+      <div class="subtitle"><h2>{{ v.author }}</h2></div>
+      <div class="image"><img [src]="v.image | base64toImage" alt="cover"></div>
+      <div class="description"><span>{{ v.description }}</span></div>
     </div>
-  </div>
-  <div class="subtitle"><h2>{{ book().author }}</h2></div>
-  <div class="image"><img [src]="book().image | base64toImage" fill></div>
-  <div class="description"><span>{{ book().description }}</span></div>
-</div>
 
-`,
+  `,
   styleUrl: './book-preview.component.css',
   providers: [SubscriptionHandlerProvider],
-  imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, AsyncPipe, Base64ToImage],
+  imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, Base64ToImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookPreviewComponent implements OnDestroy {
-  public readonly book = input.required<Book>();
-  public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
-  public readonly booksRepository = inject(BookRepository);
+  public readonly value = input.required<Book>();
+  private readonly userService = inject(UserService);
+  public readonly readonly = computed(() => this.userService.currentUser() == undefined);
   private readonly subscriptionHandler = inject(SubscriptionHandler);
 
-  public onDelete(book: Book) {
-    this.subscriptionHandler.subscribe(this.booksRepository.delete(book.id));
+  public readonly deleteRequested = output<Book>();
+
+  public onDelete(value: Book) {
+    this.deleteRequested.emit(value);
   }
 
   public ngOnDestroy(): void {

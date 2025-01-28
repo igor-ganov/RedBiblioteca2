@@ -1,47 +1,72 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {BookRepository} from './services/BookRepository';
-import {map} from 'rxjs';
+import {ChangeDetectionStrategy, Component, computed, inject, Signal} from '@angular/core';
 import {UserService} from '@common/permission-system/UserService';
 import {MatIconAnchor} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
 import {BookPreviewComponent} from './book-preview/book-preview.component';
 import {LoadingComponent} from '@common/components/loading/loading.component';
-import {AsyncPipe} from '@angular/common';
+import {createSubscriptionService} from "@common/help/services/subscription.service";
+import {rxResource} from "@angular/core/rxjs-interop";
+import {Book} from "@app/features/books/models/Book";
+import {BookRepository} from "@app/features/books/services/BookRepository";
 
 @Component({
   selector: 'app-books',
   template: `
-@if (books$ | async; as books) {
-  <div class="container">
-    @if (!(readonly$ | async)) {
-      <div class="title-panel">
-        <a mat-icon-button [routerLink]="['new']">
-          <mat-icon>add</mat-icon>
-        </a>
+    @if (collection(); as collection) {
+      <div class="container">
+        @if (!readonly()) {
+          <div class="title-panel">
+            <a mat-icon-button [routerLink]="['new']">
+              <mat-icon>add</mat-icon>
+            </a>
+          </div>
+        }
+        @for (item of collection; track item.id) {
+          <div class="card">
+            <app-book-preview
+              (deleteRequested)="onDeleteRequested($event)"
+              [value]="item"/>
+          </div>
+        }
       </div>
+    } @else {
+      <app-loading/>
     }
-    @for (b of books; track b.id) {
-      <div class="card">
-        <app-book-preview [book]="b"></app-book-preview>
-      </div>
-    }
-  </div>
-} @else {
-  <app-loading/>
-}
 
-`,
-  styleUrl: './books.component.css',
-  imports: [MatIconAnchor, RouterLink, MatIcon, BookPreviewComponent, LoadingComponent, AsyncPipe],
+  `,
+  styles: `
+    .container {
+      width: 100%;
+      display: grid;
+      justify-content: center;
+    }
+
+    .card {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .title-panel {
+      display: grid;
+      justify-content: flex-end;
+      grid-auto-flow: column;
+    }`,
+  imports: [MatIconAnchor, RouterLink, MatIcon, BookPreviewComponent, LoadingComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooksComponent {
-  public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
-  public readonly booksRepository = inject(BookRepository);
-  public readonly books$ = this.booksRepository.getAll();
+  private readonly subscriptionService = createSubscriptionService();
+  private readonly userService = inject(UserService);
+  public readonly readonly = computed(() => this.userService.currentUser() == undefined);
+  public readonly repository = inject(BookRepository);
+  private readonly collectionResource = rxResource({
+    loader: () => this.repository.getAll()
+  });
+  public readonly collection: Signal<Book[] | undefined> = computed(() => this.collectionResource.value());
 
-  public onClick() {
-    this.booksRepository.getAll().subscribe();
+  public async onDeleteRequested(value: Book) {
+    await this.subscriptionService.runAsync(this.repository.delete(value.id));
+    this.collectionResource.reload();
   }
 }
