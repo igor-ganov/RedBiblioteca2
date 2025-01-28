@@ -1,13 +1,11 @@
 import {ChangeDetectionStrategy, Component, computed, inject, Signal} from '@angular/core';
 import {NewspaperRepository} from './services/NewspaperRepository';
-import {map} from 'rxjs';
 import {UserService} from '@common/permission-system/UserService';
 import {MatIconAnchor} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
 import {NewspaperPreviewComponent} from './newspaper-preview/newspaper-preview.component';
 import {LoadingComponent} from '@common/components/loading/loading.component';
-import {AsyncPipe} from '@angular/common';
 import {Newspaper} from "@app/features/newspapers/models/Newspaper";
 import {rxResource} from "@angular/core/rxjs-interop";
 import {createSubscriptionService} from "@common/help/services/subscription.service";
@@ -17,7 +15,7 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
   template: `
     @if (collection(); as collection) {
       <div class="container">
-        @if (!(readonly$ | async)) {
+        @if (!readonly()) {
           <div class="title-panel">
             <a mat-icon-button [routerLink]="['new']">
               <mat-icon>add</mat-icon>
@@ -53,12 +51,13 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
       grid-auto-flow: column;
     }
   `,
-  imports: [MatIconAnchor, RouterLink, MatIcon, NewspaperPreviewComponent, LoadingComponent, AsyncPipe],
+  imports: [MatIconAnchor, RouterLink, MatIcon, NewspaperPreviewComponent, LoadingComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewspapersComponent {
   private readonly subscriptionService = createSubscriptionService();
-  public readonly readonly$ = inject(UserService).currentUser$.pipe(map(u => u === undefined));
+  private readonly userService = inject(UserService);
+  public readonly readonly = computed(() => this.userService.currentUser() == undefined);
   public readonly repository = inject(NewspaperRepository);
   private readonly collectionResource = rxResource({
     loader: () => this.repository.getAll()

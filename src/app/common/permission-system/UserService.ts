@@ -31,9 +31,7 @@ export class UserService {
       if (user === null) return of(null);
       if (user === undefined) return of(undefined);
       return this.userData.get(user.uid).pipe(
-        map(d => {
-          return toUser({user: user, data: d})
-        }));
+        map(d => toUser({user: user, data: d})));
     }
   })
   public readonly currentUser = computed(() => this.currentUserResource.value());
@@ -73,7 +71,6 @@ export class PermissionService {
   }
 }
 
-function toUser(u: { user: UserInfo, data: UserData } | undefined): User | undefined {
-  if (u === undefined) return undefined;
+function toUser(u: { user: UserInfo, data: UserData }): User {
   return {id: u.user.uid, userName: u.user.email!, description: '', password: '', roles: u.data.role};
 }
