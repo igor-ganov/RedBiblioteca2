@@ -11,7 +11,52 @@ import {Base64ToImage} from '@common/help/pipelines/Base64ToImage';
 
 @Component({
   selector: 'app-newspaper-view',
-  templateUrl: './newspaper-view.component.html',
+  template: `
+<div class="container">
+  @if (newspaper(); as newspaper) {
+    <div class="card">
+      @if (readonly$ | async) {
+        <div class="title"><h1 class="title-text">{{ newspaper.title }}</h1></div>
+        <div class="subtitle"><h2>{{ newspaper.month }}, {{ newspaper.year }}</h2></div>
+        <div class="image"><img [src]="newspaper.cover | base64toImage" alt="cover"></div>
+        <div class="description"><span>{{ newspaper.description }}</span></div>
+      } @else {
+        <div class="title">
+          <h1 class="title-text">
+            <app-text-editor [(value)]="newspaper.title"/>
+          </h1>
+        </div>
+        <div class="subtitle">
+          <h2>
+            <app-text-editor [inline]="true" [(value)]="newspaper.month"/>
+            <span>, </span>
+            <app-text-editor [inline]="true" [(value)]="newspaper.year"/>
+          </h2>
+        </div>
+        <div class="image">
+          <input #importImage hidden type="file" onclick="this.value=null"
+                 (change)="onImageUploaded($event, newspaper)" [accept]="'image/*'"/>
+          <img class="editable-image" (click)="importImage.click()"
+               [src]="newspaper.cover | base64toImage" alt="cover">
+        </div>
+        <div class="description">
+          <app-text-editor [buttonPositions]="'top'" [(value)]="newspaper.description"/>
+        </div>
+        <div class="buttons">
+          <button [disabled]="isUpdating()" color="primary" mat-stroked-button (click)="onPublish(newspaper)">
+            @if (!isUpdating()) {
+              <span>Publish</span>
+            } @else {
+              <mat-spinner [diameter]="20"/>
+            }
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+`,
   styleUrl: './newspaper-view.component.css',
   imports: [TextEditorComponent, MatButton, MatProgressSpinner, AsyncPipe, Base64ToImage],
   changeDetection: ChangeDetectionStrategy.OnPush,

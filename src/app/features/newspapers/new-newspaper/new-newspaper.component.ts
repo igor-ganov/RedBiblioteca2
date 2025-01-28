@@ -11,7 +11,10 @@ import {NewspaperViewComponent} from '../newspaper-view/newspaper-view.component
 
 @Component({
   selector: 'app-new-newspaper',
-  templateUrl: './new-newspaper.component.html',
+  template: `
+<app-newspaper-view [newspaper]="newspaper" [isUpdating]="isUpdating()" (published)="onPublish($event)"/>
+
+`,
   styleUrl: './new-newspaper.component.css',
   imports: [NewspaperViewComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

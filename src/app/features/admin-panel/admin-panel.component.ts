@@ -8,7 +8,25 @@ import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
-  templateUrl: './admin-panel.component.html',
+  template: `
+<div class="container">
+  <div>
+    <span>Firebase panel</span>
+    <app-firebase-panel/>
+    <mat-divider/>
+  </div>
+  <div>
+    <span>User panel</span>
+    <app-users-panel/>
+    <mat-divider/>
+  </div>
+  <div class="content-manager">
+    <span>Content manager</span>
+    <a [routerLink]="[contentManager]" mat-stroked-button>Open</a>
+  </div>
+</div>
+
+`,
   styleUrl: './admin-panel.component.scss',
   imports: [FirebasePanelComponent, MatDivider, UsersPanelComponent, MatAnchor, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,

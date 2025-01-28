@@ -2,7 +2,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
+  template: `
+<p>list works!</p>
+
+`,
   styleUrl: './list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

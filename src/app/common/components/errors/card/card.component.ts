@@ -7,7 +7,23 @@ import {LoadingComponent} from '../../loading/loading.component';
 
 @Component({
   selector: 'app-card',
-  templateUrl: './card.component.html',
+  template: `
+@if (templateRef) {
+  @if (request$() | async; as request) {
+    <ng-container class="card">
+      @if (request.successeful) {
+        <ng-container [ngTemplateOutlet]="templateRef()" [ngTemplateOutletContext]="request.result"/>
+      }
+      @if (!request.successeful) {
+        <app-errors [result]="request"/>
+      }
+    </ng-container>
+  } @else {
+    <app-loading/>
+  }
+}
+
+`,
   styleUrl: './card.component.css',
   imports: [NgTemplateOutlet, ErrorsComponent, LoadingComponent, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

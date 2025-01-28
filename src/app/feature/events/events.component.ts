@@ -2,7 +2,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-events',
-  templateUrl: './events.component.html',
+  template: `
+<p>events works!</p>
+
+`,
   styleUrl: './events.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

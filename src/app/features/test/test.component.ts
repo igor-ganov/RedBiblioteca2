@@ -2,7 +2,12 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-test',
-  templateUrl: './test.component.html',
+  template: `
+<div class="container">
+
+</div>
+
+`,
   styleUrl: './test.component.css',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -5,7 +5,18 @@ import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-content-menu',
-  templateUrl: './content-menu.component.html',
+  template: `
+<div class="container">
+  <div class="box">
+    @for(item of items(); track item.id){
+      <button class="menu-item" color="basic" [routerLink]="'.'" [fragment]="item.id" mat-stroked-button>
+        <span>{{item.title}}</span>
+      </button>
+    }
+  </div>
+</div>
+
+`,
   styleUrl: './content-menu.component.css',
   imports: [MatButton, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,

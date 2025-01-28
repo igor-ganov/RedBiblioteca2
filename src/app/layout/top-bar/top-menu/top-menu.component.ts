@@ -7,7 +7,16 @@ import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-top-menu',
-  templateUrl: './top-menu.component.html',
+  template: `
+<div class="container">
+  @for (item of items | async; track item.url) {
+    <button color="basic" [routerLink]="['/' + lang() + '/' + item.url]" mat-stroked-button>
+      <span class="menu-text">{{ item.title }}</span>
+    </button>
+  }
+</div>
+
+`,
   styleUrl: './top-menu.component.css',
   imports: [MatButton, RouterLink, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

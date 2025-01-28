@@ -11,7 +11,27 @@ import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-books',
-  templateUrl: './books.component.html',
+  template: `
+@if (books$ | async; as books) {
+  <div class="container">
+    @if (!(readonly$ | async)) {
+      <div class="title-panel">
+        <a mat-icon-button [routerLink]="['new']">
+          <mat-icon>add</mat-icon>
+        </a>
+      </div>
+    }
+    @for (b of books; track b.id) {
+      <div class="card">
+        <app-book-preview [book]="b"></app-book-preview>
+      </div>
+    }
+  </div>
+} @else {
+  <app-loading/>
+}
+
+`,
   styleUrl: './books.component.css',
   imports: [MatIconAnchor, RouterLink, MatIcon, BookPreviewComponent, LoadingComponent, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

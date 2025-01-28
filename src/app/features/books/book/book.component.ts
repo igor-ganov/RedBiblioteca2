@@ -10,7 +10,11 @@ import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-book',
-  templateUrl: './book.component.html',
+  template: `
+<app-book-view *ifSuccess="book$ | async as result" [book]="result" [isUpdating]="isUpdating()"
+               (published)="onPublish($event)"/>
+
+`,
   styleUrl: './book.component.css',
   imports: [IfSuccess, BookViewComponent, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

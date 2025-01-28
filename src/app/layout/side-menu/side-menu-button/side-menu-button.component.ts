@@ -5,7 +5,16 @@ import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-side-menu-button',
-  templateUrl: './side-menu-button.component.html',
+  template: `
+<button #menuButton
+        color="primary"
+        class="icon-button"
+        (click)="sideMenuService.opened = !sideMenuService.opened"
+        mat-stroked-button>
+  <mat-icon>menu</mat-icon>
+</button>
+
+`,
   styleUrl: './side-menu-button.component.css',
   imports: [MatButton, MatIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,

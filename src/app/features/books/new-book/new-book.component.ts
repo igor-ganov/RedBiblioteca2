@@ -10,7 +10,10 @@ import {BookViewComponent} from '../book-view/book-view.component';
 
 @Component({
   selector: 'app-new-book',
-  templateUrl: './new-book.component.html',
+  template: `
+<app-book-view [book]="book" [isUpdating]="isUpdating()" (published)="onPublish($event)"/>
+
+`,
   styleUrl: './new-book.component.css',
   imports: [BookViewComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

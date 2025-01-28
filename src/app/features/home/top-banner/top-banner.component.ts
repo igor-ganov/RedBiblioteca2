@@ -2,7 +2,17 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-top-banner',
-  templateUrl: './top-banner.component.html',
+  template: `
+<div class="container">
+    <div class="banner">
+        <div class="title-panel">
+            <div class="title">{{title}}</div>
+            <div class="description">{{description}}</div>
+        </div>
+        <div class="quote">{{quote}}</div>
+    </div>
+</div>
+`,
   styleUrl: './top-banner.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

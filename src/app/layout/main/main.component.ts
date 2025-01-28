@@ -3,7 +3,12 @@ import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
+  template: `
+<div class="container">
+  <router-outlet/>
+</div>
+
+`,
   styleUrl: './main.component.css',
   imports: [RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,

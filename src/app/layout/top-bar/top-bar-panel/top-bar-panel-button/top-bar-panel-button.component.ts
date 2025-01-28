@@ -4,7 +4,25 @@ import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-top-bar-panel-button',
-  templateUrl: './top-bar-panel-button.component.html',
+  template: `
+@if (horizontal) {
+  <button color="basic" class="container horizontal" (click)="onClick($event)" mat-icon-button>
+    <mat-icon>{{icon}}</mat-icon>
+    <span class="main-text">{{text}}</span>
+  </button>
+} @else {
+  <button color="basic" class="container vertical icon-button" (click)="onClick($event)" mat-stroked-button extended>
+    <mat-icon>{{icon}}</mat-icon>
+    <span class="main-text">{{text}}</span>
+  </button>
+}
+<ng-template #vertical>
+  <button color="basic" class="container vertical icon-button" (click)="onClick($event)" mat-stroked-button extended>
+    <mat-icon>{{icon}}</mat-icon>
+    <span class="main-text">{{text}}</span>
+  </button>
+</ng-template>
+`,
   styleUrl: './top-bar-panel-button.component.css',
   imports: [MatIconButton, MatIcon, MatButton],
   changeDetection: ChangeDetectionStrategy.OnPush,

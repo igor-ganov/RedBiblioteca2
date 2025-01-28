@@ -3,7 +3,10 @@ import {ThemeSwitcher} from '@common/theming/services/ThemeSwitcher';
 
 @Component({
   selector: 'app-test-dialog',
-  templateUrl: './test-dialog.component.html',
+  template: `
+<p>test-dialog</p>
+
+`,
   standalone: true,
   styleUrl: './test-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

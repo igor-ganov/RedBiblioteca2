@@ -3,7 +3,13 @@ import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-slider',
-  templateUrl: './slider.component.html',
+  template: `
+<div class="container" [ngClass]="opened() ? '' : 'container-close'">
+    <div class="slider" [ngClass]="opened() ? 'slider-opened' : sliderOpenedClass">
+        <ng-content/>
+    </div>
+</div>
+`,
   styleUrl: './slider.component.css',
   imports: [NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,

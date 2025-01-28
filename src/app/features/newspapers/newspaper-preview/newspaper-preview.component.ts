@@ -11,7 +11,27 @@ import {Base64ToImage} from '@common/help/pipelines/Base64ToImage';
 
 @Component({
   selector: 'app-newspaper-preview',
-  templateUrl: './newspaper-preview.component.html',
+  template: `
+<div class="container">
+  <div class="title">
+    <h1 class="title-text">{{ newspaper().title }}</h1>
+    <div class="title-panel">
+      @if (!(readonly$ | async)) {
+        <button (click)="onDelete(newspaper())" color="warn" mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      }
+      <a [routerLink]="[newspaper().pid]" mat-icon-button>
+        <mat-icon>open_in_new</mat-icon>
+      </a>
+    </div>
+  </div>
+  <div class="subtitle"><h2>{{ newspaper().month }}, {{ newspaper().year }}</h2></div>
+  <div class="image"><img [src]="newspaper().cover | base64toImage" fill></div>
+  <div class="description"><span>{{ newspaper().description }}</span></div>
+</div>
+
+`,
   styleUrl: './newspaper-preview.component.css',
   providers: [SubscriptionHandlerProvider],
   imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, AsyncPipe, Base64ToImage],

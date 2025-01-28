@@ -8,7 +8,28 @@ import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+@let permission = getPermission() | async;
+<section class="layout">
+  <header class="header">
+    <app-top-bar/>
+  </header>
+  @if (permission?.isPermited) {
+    <nav class="side-menu">
+      <app-side-menu/>
+    </nav>
+  }
+  <main class="main-body">
+    <app-main/>
+  </main>
+  @if (permission?.isPermited) {
+    <footer class="footer">
+      <app-footer/>
+    </footer>
+  }
+</section>
+
+`,
   styleUrl: './app.component.css',
   imports: [TopBarComponent, SideMenuComponent, MainComponent, FooterComponent, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

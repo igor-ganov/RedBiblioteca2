@@ -9,7 +9,32 @@ import {ThemeSwitcherComponent} from '@common/theming/components/theme-switcher.
 
 @Component({
   selector: 'app-top-bar-panel',
-  templateUrl: './top-bar-panel.component.html',
+  template: `
+<div class="container">
+  <div class="buttons">
+    <ng-container *ngTemplateOutlet="buttons; context: { $implicit: true }"/>
+  </div>
+</div>
+<div class="container-mobile">
+  <div class="menu-vert-container">
+    <button mat-icon-button (click)="onOpenSlider()">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <app-slider [direction]="'top'" [opened]="opened()">
+      <div class="menu">
+        <ng-container *ngTemplateOutlet="buttons; context: { $implicit: false }"/>
+      </div>
+    </app-slider>
+  </div>
+</div>
+
+<ng-template let-horizontal #buttons>
+  <app-language-button [horizontal]="horizontal"/>
+  <app-sign-io-button [horizontal]="horizontal"/>
+  <app-theme-switcher [horizontal]="horizontal"/>
+</ng-template>
+
+`,
   styleUrl: './top-bar-panel.component.css',
   imports: [NgTemplateOutlet, MatIconButton, MatIcon, SliderComponent, LanguageButtonComponent, SignIoButtonComponent, ThemeSwitcherComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

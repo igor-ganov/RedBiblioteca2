@@ -9,7 +9,20 @@ import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-side-menu',
-  templateUrl: './side-menu.component.html',
+  template: `
+<div class="container">
+  <div class="slider" [ngClass]="sideMenuService.opened ? 'slider-opened' : 'slider-closed'">
+    <div class="menu-container">
+      @for (item of items | async; track item.url) {
+        <button color="basic" [routerLink]="['/' + lang() + '/' + item.url]" mat-stroked-button>
+          <span class="menu-text">{{ item.title }}</span>
+        </button>
+      }
+    </div>
+  </div>
+</div>
+
+`,
   styleUrl: './side-menu.component.css',
   imports: [NgClass, MatButton, RouterLink, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

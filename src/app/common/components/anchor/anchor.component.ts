@@ -6,7 +6,11 @@ import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-anchor',
-  templateUrl: './anchor.component.html',
+  template: `
+<a mat-icon-button [routerLink]='"."' [fragment]="id()" [attr.id]="id()" [scrollTo]="id()">
+    <mat-icon>link</mat-icon>
+</a>
+`,
   styleUrl: './anchor.component.css',
   imports: [MatIconAnchor, RouterLink, ScrollToDirective, MatIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -10,7 +10,11 @@ import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-newspaper',
-  templateUrl: './newspaper.component.html',
+  template: `
+<app-newspaper-view *ifSuccess="newspaper$ | async as result" [newspaper]="result" [isUpdating]="isUpdating()"
+                    (published)="onPublish($event)"/>
+
+`,
   styleUrl: './newspaper.component.css',
   imports: [IfSuccess, NewspaperViewComponent, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

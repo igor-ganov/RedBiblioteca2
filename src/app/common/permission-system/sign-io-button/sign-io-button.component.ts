@@ -11,7 +11,36 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
 
 @Component({
   selector: 'app-sign-io-button',
-  templateUrl: './sign-io-button.component.html',
+  template: `
+@if (lang(); as lang) {
+  @if (horizontal()) {
+    @if (userService.currentUser === undefined) {
+      <button color="basic" class="theme-button icon-button"
+              (click)="onSignIn(lang)" mat-icon-button>
+        <mat-icon>login</mat-icon>
+      </button>
+    } @else {
+      <button color="basic" class="theme-button icon-button" (click)="onSignOut(lang)" mat-icon-button>
+        <mat-icon>logout</mat-icon>
+      </button>
+    }
+  } @else {
+    @if (userService.currentUser === undefined) {
+      <button color="basic" class="theme-button vertical"
+              (click)="onSignIn(lang)" mat-stroked-button extended>
+        <span>Log In</span>
+        <mat-icon>login</mat-icon>
+      </button>
+    } @else {
+      <button color="basic" class="theme-button vertical" (click)="onSignOut(lang)" mat-stroked-button extended>
+        <span>Log Out</span>
+        <mat-icon>logout</mat-icon>
+      </button>
+    }
+  }
+}
+
+`,
   styleUrl: './sign-io-button.component.css',
   providers: [SubscriptionManager],
   imports: [MatIconButton, MatIcon, MatButton],

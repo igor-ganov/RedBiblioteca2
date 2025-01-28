@@ -6,7 +6,9 @@ import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-title',
-  templateUrl: './title.component.html',
+  template: `
+@if (title | async; as title) {<h1 class="header">{{title}}</h1>}
+`,
   styleUrl: './title.component.css',
   imports: [AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -15,7 +15,33 @@ import {Base64ToStyle} from '@common/help/pipelines/Base64ToImage';
 
 @Component({
   selector: 'app-slide-show',
-  templateUrl: './slide-show.component.html',
+  template: `
+<div class="container">
+  <div class="left">
+    <div class="left-panel">
+      <button mat-icon-button [disabled]="animationApplying()" (click)="onLeftClick()">
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="center">
+    @for (slide of slides; track slide.id) {
+      <div class="slide" [style.background-image]="slide.image | base64toStyle" [ngClass]="getClass(slide)">
+        <span class="title">{{ slide.id }}. {{ slide.title }}</span>
+        <span class="description">{{ slide.description }}</span>
+      </div>
+    }
+  </div>
+  <div class="right">
+    <div class="right-panel">
+      <button mat-icon-button [disabled]="animationApplying()" (click)="onRightClick()">
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+`,
   styleUrl: './slide-show.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatIconButton, MatIcon, NgClass, Base64ToStyle]

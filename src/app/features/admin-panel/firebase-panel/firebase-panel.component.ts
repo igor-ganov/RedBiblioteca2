@@ -9,7 +9,35 @@ import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-firebase-panel',
-  templateUrl: './firebase-panel.component.html',
+  template: `
+<div class="container">
+  <mat-form-field>
+    <mat-label>From</mat-label>
+    <mat-select [(value)]="langFrom">
+      @for (lang of langList; track lang) {
+        <mat-option [value]="lang">
+          {{lang}}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>To</mat-label>
+    <mat-select [(value)]="langTo">
+      @for (lang of langList; track lang) {
+        <mat-option [value]="lang">
+          {{lang}}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <button class="clone-button" mat-raised-button (click)="cloneData()">
+      Clone
+    </button>
+  </div>
+</div>
+`,
   styleUrl: './firebase-panel.component.css',
   providers: [SubscriptionHandlerProvider],
   imports: [MatFormField, MatLabel, MatSelect, MatOption, MatButton],

@@ -2,7 +2,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-new-page',
-  templateUrl: './new-page.component.html',
+  template: `
+<p>new-page works!</p>
+
+`,
   styleUrl: './new-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

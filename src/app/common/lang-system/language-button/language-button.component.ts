@@ -10,7 +10,38 @@ import {UpperCasePipe} from '@angular/common';
 
 @Component({
   selector: 'app-language-button',
-  templateUrl: './language-button.component.html',
+  template: `
+@if (lang(); as currentLang) {
+  <div class="container">
+    @if (horizontal()) {
+      <button class="panel-button horizontal" mat-stroked-button extended color="basic" [matMenuTriggerFor]="menu">
+        <mat-icon>language</mat-icon>
+        <span class="main-text">{{ currentLang | uppercase }}</span>
+      </button>
+    } @else {
+      <button class="panel-button vartical" mat-stroked-button extended color="basic" [matMenuTriggerFor]="menu">
+        <mat-icon>language</mat-icon>
+        <span class="main-text">{{ currentLang | uppercase }}</span>
+      </button>
+    }
+    <mat-menu #menu="matMenu">
+      @if (fullPath(); as currentUrl) {
+        <div>
+          @for (lang of languages; track lang) {
+            <div>
+              <button color="basic" mat-menu-item (click)="changeLanguage(currentLang, lang, currentUrl)">
+                <mat-icon>language</mat-icon>
+                <span>{{ lang | uppercase }}</span>
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </mat-menu>
+  </div>
+}
+
+`,
   styleUrls: ['./language-button.component.css'],
   imports: [MatButton, MatMenuTrigger, MatIcon, MatMenu, MatMenuItem, UpperCasePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

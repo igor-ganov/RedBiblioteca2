@@ -4,7 +4,36 @@ import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-text-editor',
-  templateUrl: './text-editor.component.html',
+  template: `
+<div class="edit-text" [ngClass]="inline()? 'inline' : ''" [textContent]="value" (input)="onEditing($event)"
+     contenteditable>
+  {{ editingValue() }}
+</div>
+
+<!-- <div [ngClass]="orientationClass" class="text-view edit-view" *ngIf="editing; else readonly">
+    <div class="edit-text" [textContent]="editingValue" (input)="onEditing($event)" contenteditable>
+        {{editingValue}}
+    </div>
+    <div class="read-buttons-container">
+        <div class="buttons">
+            <button color="primary" mat-icon-button (click)="onApply()"><mat-icon>done</mat-icon></button>
+            <button color="primary" mat-icon-button (click)="onCancel()"><mat-icon>cancel</mat-icon></button>
+        </div>
+    </div>
+</div>
+
+<ng-template #readonly>
+    <div [ngClass]="orientationClass" class="text-view read-view">
+        <div class="read-text">{{value}}</div>
+        <div class="read-buttons-container">
+            <div class="buttons">
+                <button color="primary" mat-icon-button (click)="onEdit()"><mat-icon>edit</mat-icon></button>
+            </div>
+        </div>
+    </div>
+</ng-template> -->
+
+`,
   styleUrl: './text-editor.component.css',
   imports: [NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,

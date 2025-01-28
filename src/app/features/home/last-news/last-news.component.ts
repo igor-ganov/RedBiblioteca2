@@ -6,7 +6,9 @@ import {SlideShowComponent} from '@common/components/slide-show/slide-show.compo
 
 @Component({
   selector: 'app-last-news',
-  templateUrl: './last-news.component.html',
+  template: `
+<app-slide-show [slides]="sources" [(selected)]="selected"/>
+`,
   styleUrl: './last-news.component.css',
   imports: [SlideShowComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
