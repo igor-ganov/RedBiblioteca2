@@ -104,3 +104,7 @@ export function toError(error: unknown) {
   }
   return new Error(`${error}`);
 }
+
+export function getKeys<T extends object>(value: T) {
+  return Object.keys(value) as (keyof T)[];
+}

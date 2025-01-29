@@ -18,30 +18,30 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
 @Component({
   selector: 'app-login',
   template: `
-@if (text$ | async; as text) {
-  <div class="container">
-    <form #loginForm="ngForm" class="form">
-      <mat-form-field>
-        <mat-label>{{ text.email }}</mat-label>
-        <input type="text" matInput [(ngModel)]="user.email" autocomplete="username" name="email" required/>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>{{ text.password }}</mat-label>
-        <input [type]="hidePassword() ? 'password' : 'text'" matInput [(ngModel)]="user.password"
-               autocomplete="current-password" name="passwrod" required/>
-        <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())"
-                [attr.aria-pressed]="hidePassword()">
-          <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
-        </button>
-      </mat-form-field>
-      <button [disabled]="!loginForm.form.valid" color="primary" mat-raised-button
-              (click)="onLogin()">{{ text.signIn }}
-      </button>
-    </form>
-  </div>
-}
+    @if (text$ | async; as text) {
+      <div class="container">
+        <form #loginForm="ngForm" class="form">
+          <mat-form-field>
+            <mat-label>{{ text.email }}</mat-label>
+            <input type="text" matInput [(ngModel)]="user.email" autocomplete="username" name="email" required/>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{ text.password }}</mat-label>
+            <input [type]="hidePassword() ? 'password' : 'text'" matInput [(ngModel)]="user.password"
+                   autocomplete="current-password" name="passwrod" required/>
+            <button mat-icon-button matSuffix (click)="hidePassword.set(!hidePassword())"
+                    [attr.aria-pressed]="hidePassword()">
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <button [disabled]="!loginForm.form.valid" color="primary" mat-raised-button
+                  (click)="onLogin()">{{ text.signIn }}
+          </button>
+        </form>
+      </div>
+    }
 
-`,
+  `,
   styleUrl: './login.component.css',
   providers: [SubscriptionManager],
   imports: [FormsModule, MatFormField, MatLabel, MatInput, MatIconButton, MatSuffix, MatIcon, MatButton, AsyncPipe],
@@ -53,7 +53,7 @@ export class LoginComponent {
   private readonly router = inject(Router);
   private readonly localeHost = inject(LocaleHost);
 
-  public readonly text$: Observable<LoginText> = inject(TextHost).getText<LoginText>(LoginComponent);
+  public readonly text$: Observable<LoginText> = inject(TextHost).getText('login');
   public readonly hidePassword = signal(true);
   private readonly _userService = inject(UserService);
   public readonly user: ISignInData = {email: '', password: ''};

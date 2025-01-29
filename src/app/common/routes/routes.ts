@@ -15,7 +15,6 @@ import {AdminPanelComponent} from '@app/features/admin-panel/admin-panel.compone
 import {FirebasePanelComponent} from '@app/features/admin-panel/firebase-panel/firebase-panel.component';
 import {inject, Type} from '@angular/core';
 import {LocaleHost} from '../lang-system/LocaleHost';
-import {TextDictionaryServcie} from '../lang-system/TextDictionaryService';
 import {UserRoles} from '../permission-system/UserRoles';
 import {BookComponent} from '@app/features/books/book/book.component';
 import {PermissionService} from '@common/permission-system/UserService';
@@ -25,6 +24,7 @@ import {HomeContentComponent} from "@app/features/admin-panel/content-manager/ho
 import {
   ArticlesContentComponent
 } from "@app/features/admin-panel/content-manager/home-content/articles-content/articles-content.component";
+import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
 
 export const rootPath = '/'
 
@@ -62,7 +62,7 @@ export interface RouteData {
 
 export interface RouteContextDependency {
   localeHost: LocaleHost;
-  textDictionaryServcie: TextDictionaryServcie;
+  textDictionaryService: TextDictionaryService;
 }
 
 function createRouteData(requiredRole?: UserRoles, isMenuItem?: boolean): RouteData {

@@ -11,13 +11,13 @@ import {UserService} from "@common/permission-system/UserService";
 
 @Injectable({providedIn: 'root'})
 export class MenuService {
-  private routeService = inject(RouteService);
-  public activatedItem$ = this.routeService.activatedRoute$.pipe(map(a => a.component?.name));
-  private router = inject(Router);
-  private textHost = inject(TextHost);
-  private _allItems = zip(this.router.config.find(r => r.path !== '**')!.children!.map(r => buildMenuItem(r, this.textHost)!).filter(r => r !== undefined))
+  private readonly routeService = inject(RouteService);
+  public readonly activatedItem$ = this.routeService.activatedRoute$.pipe(map(a => a.component?.name));
+  private readonly router = inject(Router);
+  private readonly textHost = inject(TextHost);
+  private readonly _allItems = zip(this.router.config.find(r => r.path !== '**')!.children!.map(r => buildMenuItem(r, this.textHost)).filter(r => r !== undefined))
 
-  private userService = inject(UserService);
+  private readonly userService = inject(UserService);
   public items = combineLatest({
     items: this._allItems,
     role: this.userService.currentUser$.pipe(map(u => u?.roles ?? UserRoles.GUEST))
@@ -65,7 +65,7 @@ export interface MenuItemReach {
 function getMenuItem(route: Route, textHost: TextHost) {
   const component = route.component ?? route.children?.find(c => c.path === '')?.component;
   if (!component) return;
-  return textHost.getMenuItem(component);
+  return textHost.getMenuItemByType(component);
 }
 
 function buildChildren(route: Route, textHost: TextHost): Observable<MenuItemReach[]> | undefined {

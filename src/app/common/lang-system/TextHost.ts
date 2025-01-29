@@ -1,80 +1,92 @@
-import {Injectable, Type} from "@angular/core";
-import {map, switchMap} from "rxjs";
-import {LocaleHost} from "./LocaleHost";
-import {TextDictionaryServcie} from "./TextDictionaryService";
+import {computed, Injectable, Signal, Type} from "@angular/core";
+import {map, Observable} from "rxjs";
 import {TextDictionary} from "./TextDictionary";
-import {ITextFactory, ITitleFactory} from "../menu-system/IHasTitle";
-import {HomeComponent} from "app/features/home/home.component";
-import {HomeTextFactory} from "app/features/home/locale/HomeText";
-import {LoginTextFactory} from "app/features/login/locale/LoginText";
-import {LoginComponent} from "app/features/login/login.component";
-import {BookComponent} from "@app/features/books/book/book.component";
-import {BookTextFactory} from "@app/features/books/book/locale/BookText";
-import {BooksComponent} from "@app/features/books/books.component";
-import {BooksTextFactory} from "@app/features/books/locale/BooksText";
-import {NewBookTextFactory} from "@app/features/books/new-book/locale/NewBookText";
 import {IMenuItem} from "@common/menu-system/IMenuItem";
-import {bugComponents} from "@common/routes/routes";
-import {NewspaperComponent} from "@app/features/newspapers/newspapers/newspaper.component";
-import {NewspaperTextFactory} from "@app/features/newspapers/newspapers/locale";
-import {NewspapersComponent} from "@app/features/newspapers/newspapers.component";
-import {NewspapersTextFactory} from "@app/features/newspapers/locale";
-import {NewNewspaperComponent} from "@app/features/newspapers/new-newspaper/new-newspaper.component";
-import {NewNewspaperTextFactory} from "@app/features/newspapers/new-newspaper/locale";
-import {AboutComponent} from "@app/feature/about/about.component";
-import {AboutTextFactory} from "@app/feature/about/locale";
-import {AdminPanelComponent} from "@app/features/admin-panel/admin-panel.component";
-import {AdminTextFactory} from "@app/features/admin-panel/locale";
-
-export const translationMap = new Map<Type<any>, ITitleFactory | ITextFactory<any>>([
-  [LoginComponent, new LoginTextFactory()],
-  [HomeComponent, new HomeTextFactory()],
-  [BookComponent, new BookTextFactory()],
-  [BooksComponent, new BooksTextFactory()],
-  [bugComponents.newBook, new NewBookTextFactory()],
-  [NewspaperComponent, new NewspaperTextFactory()],
-  [NewspapersComponent, new NewspapersTextFactory()],
-  [NewNewspaperComponent, new NewNewspaperTextFactory()],
-  [AboutComponent, new AboutTextFactory()],
-  [AdminPanelComponent, new AdminTextFactory()],
-]);
+import {translationMap} from "@common/lang-system/TranslationMap";
+import {PickKeyByType} from "@common/help/types";
+import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
+import {getKeys} from "@common/help/help-fuctions";
 
 @Injectable({providedIn: 'root'})
 export class TextHost {
   public static readonly SupportedLanguages = ['en', 'it', 'ru', 'fr'];
   public static readonly DefaultLanguage = 'en';
 
-  public constructor(private localeHost: LocaleHost, private dictionaryService: TextDictionaryServcie) {
+  public constructor(private readonly dictionaryService: TextDictionaryService) {
   }
 
 
-  private requestTextInstance<T>(langLable: string, fuctory: (dictionary: TextDictionary) => T) {
-    return this.dictionaryService.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
+  private getMenuInstanceAsync<TKey extends TKeyOfFactory<ITitleFactory>>(key: TKey): Observable<ReturnType<TFactoryType<TKey>['getTitle']>> {
+    const textFactory = getTitleFactory(key);
+    const factory = textFactory.getTitle;
+
+    if (factory === undefined) return undefined!;//runtime check
+
+    return this.dictionaryService.textDictionary$.pipe(map(d => factory(d) as ReturnType<TFactoryType<TKey>['getTitle']>));
   }
 
-  private requestMenuInstance(langLable: string, fuctory: (dictionary: TextDictionary) => IMenuItem) {
-    return this.dictionaryService.getTextDictionary(langLable).pipe(map(d => fuctory(d)));
+  private getTextInstanceAsync<TKey extends TKeyOfFactory<ITextFactory>>(key: TKey): Observable<ReturnType<TFactoryType<TKey>['getText']>> {
+    const textFactory = getTextFactory(key);
+    const factory = textFactory.getText;
+
+    if (factory === undefined) return undefined!;//runtime check
+
+    return this.dictionaryService.textDictionary$.pipe(map(d => factory(d) as ReturnType<TFactoryType<TKey>['getText']>));
   }
 
-  private getTextInstanceAsync<T>(type: Type<any>) {
-    const factory = (translationMap.get(type) as ITextFactory<T>)?.getText;
-    if (!factory) return undefined!;
-    return this.localeHost.language$
-      .pipe(switchMap(lable => this.requestTextInstance<T>(lable, factory)));
+  private getTextInstance<TKey extends TKeyOfFactory<ITextFactory>>(key: TKey): Signal<ReturnType<TFactoryType<TKey>['getText']> | undefined> {
+    const textFactory = getTextFactory(key);
+    const factory = textFactory.getText;
+
+    if (factory === undefined) return undefined!;//runtime check
+    const dictionary = this.dictionaryService.textDictionary;
+    return computed(() => dictionary() ? factory(dictionary()!) as ReturnType<TFactoryType<TKey>['getText']> : undefined);
   }
 
-  private getMenuInstanceAsync(type: Type<any>) {
-    const factory = (translationMap.get(type) as ITitleFactory)?.getTitle;
-    if (!factory) return undefined!;
-    return this.localeHost.language$
-      .pipe(switchMap(lable => this.requestMenuInstance(lable, factory)));
+
+  public getMenuItem<K extends TKeyOfFactory<ITitleFactory>>(key: K) {
+    return this.getMenuInstanceAsync(key);
   }
 
-  public getMenuItem(tag: Type<any>) {
-    return this.getMenuInstanceAsync(tag);
+  public getMenuItemByType<T>(type: Type<T>) {
+    const key = getKeys(translationMap).find(k => 'component' in translationMap[k] && translationMap[k].component === type) as TKeyOfFactory<ITitleFactory>;
+    if (key === undefined) return;
+    return this.getMenuItem(key);
   }
 
-  public getText<T>(tag: Type<any>) {
-    return this.getTextInstanceAsync<T>(tag);
-  };
+  public getText<K extends TKeyOfFactory<ITextFactory>>(key: K) {
+    return this.getTextInstanceAsync(key);
+  }
+
+  public getTextSignal<K extends TKeyOfFactory<ITextFactory>>(key: K) {
+    return this.getTextInstance(key);
+  }
+
+  public getTextByType<T>(type: Type<T>) {
+    const key = getKeys(translationMap)
+      .find(k => 'component' in translationMap[k] && translationMap[k].component === type) as TKeyOfFactory<ITextFactory>;
+    if (key === undefined) return;
+    return this.getText(key);
+  }
+}
+
+type TKeyOfFactory<TFactory> = PickKeyByType<TranslationMap, { factory: TFactory }>;
+type TFactoryType<TKey extends keyof TranslationMap> = TranslationMap[TKey]['factory'];
+
+function getTextFactory<TKey extends TKeyOfFactory<ITextFactory>>(key: TKey): TFactoryType<TKey> {
+  return translationMap[key].factory;
+}
+
+function getTitleFactory<TKey extends TKeyOfFactory<ITitleFactory>>(key: TKey): TFactoryType<TKey> {
+  return translationMap[key].factory;
+}
+
+type TranslationMap = typeof translationMap;
+
+export interface ITitleFactory<T extends IMenuItem = IMenuItem> {
+  getTitle(dictionary: TextDictionary): T;
+}
+
+export interface ITextFactory<T = unknown> {
+  getText(dictionary: TextDictionary): T;
 }
