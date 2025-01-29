@@ -1,30 +1,12 @@
-import {ActivatedRouteSnapshot, Route, Router, Routes} from '@angular/router';
-import {HomeComponent} from '@app/features/home/home.component';
-import {LoginComponent} from '@app/features/login/login.component';
-import {TestComponent} from '@app/features/test/test.component';
-import {BooksComponent} from '@app/features/books/books.component';
-import {NewBookComponent} from '@app/features/books/new-book/new-book.component';
-import {AboutComponent} from '@app/feature/about/about.component';
-import {EventsComponent} from '@app/feature/events/events.component';
-import {NewEventComponent} from '@app/feature/events/new-event/new-event.component';
-import {EventComponent} from '@app/feature/events/event/event.component';
-import {NewNewspaperComponent} from '@app/features/newspapers/new-newspaper/new-newspaper.component';
-import {NewspapersComponent} from '@app/features/newspapers/newspapers.component';
-import {NewspaperComponent} from '@app/features/newspapers/newspapers/newspaper.component';
-import {AdminPanelComponent} from '@app/features/admin-panel/admin-panel.component';
-import {FirebasePanelComponent} from '@app/features/admin-panel/firebase-panel/firebase-panel.component';
+import {ActivatedRouteSnapshot, DefaultExport, Route, Router, Routes} from '@angular/router';
 import {inject, Type} from '@angular/core';
 import {LocaleHost} from '../lang-system/LocaleHost';
 import {UserRoles} from '../permission-system/UserRoles';
-import {BookComponent} from '@app/features/books/book/book.component';
 import {PermissionService} from '@common/permission-system/UserService';
-import {map} from 'rxjs';
-import {ContentManagerComponent} from "@app/features/admin-panel/content-manager/content-manager.component";
-import {HomeContentComponent} from "@app/features/admin-panel/content-manager/home-content/home-content.component";
-import {
-  ArticlesContentComponent
-} from "@app/features/admin-panel/content-manager/home-content/articles-content/articles-content.component";
+import {map, Observable} from 'rxjs';
 import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
+import {TKeyOfFactory} from "@common/lang-system/TextHost";
+import {ITitleFactory} from "@common/menu-system/IHasTitle";
 
 export const rootPath = '/'
 
@@ -58,6 +40,7 @@ export interface RouteContext {
 export interface RouteData {
   requiredRole: UserRoles | undefined;
   isMenuItem: boolean | undefined;
+  textTag: TKeyOfFactory<ITitleFactory>;
 }
 
 export interface RouteContextDependency {
@@ -65,24 +48,21 @@ export interface RouteContextDependency {
   textDictionaryService: TextDictionaryService;
 }
 
-function createRouteData(requiredRole?: UserRoles, isMenuItem?: boolean): RouteData {
+function createRouteData<K extends TKeyOfFactory<ITitleFactory>>(textKey: K, requiredRole?: UserRoles, isMenuItem?: boolean): RouteData {
   return {
     requiredRole: requiredRole,
     isMenuItem: isMenuItem,
+    textTag: textKey,
   }
 }
 
-function createContext<T>(requiredRole?: UserRoles): { context: () => RouteContext } {
+function createContext(requiredRole?: UserRoles): { context: () => RouteContext } {
 
   return {
     context: () => ({
       requiredRole: requiredRole
     })
   };
-}
-
-export const bugComponents = {
-  newBook: NewBookComponent,
 }
 
 const redirectRoute: Route = {path: '**', redirectTo: '', pathMatch: 'full'};
@@ -96,20 +76,21 @@ function createRoute(item: RouteItem): Route {
   return item.children && item.children.length > 0 ? {
     path: item.path,
     resolve: createContext(item.userRole),
-    data: createRouteData(item.userRole, item.isMenuItem),
-    children: [{component: item.component, path: ''}, ...item.children?.map(c => createRoute(c)), redirectRoute],
+    data: createRouteData(item.textKey, item.userRole, item.isMenuItem),
+    children: [{loadComponent: item.loadComponent, path: ''}, ...item.children.map(c => createRoute(c)), redirectRoute],
     // canActivate: [authRoleGuard(item.userRole)],
   } : {
-    component: item.component,
+    loadComponent: item.loadComponent,
     path: item.path,
     resolve: createContext(item.userRole),
-    data: createRouteData(item.userRole, item.isMenuItem),
+    data: createRouteData(item.textKey, item.userRole, item.isMenuItem),
     // canActivate: [authRoleGuard(item.userRole)],
   }
 }
 
 export interface RouteItem {
-  component?: Type<any> | undefined;
+  textKey: TKeyOfFactory<ITitleFactory>;
+  loadComponent?: () => Type<unknown> | Observable<Type<unknown> | DefaultExport<Type<unknown>>> | Promise<Type<unknown> | DefaultExport<Type<unknown>>>;
   path?: string | undefined;
   userRole?: UserRoles | undefined;
   children?: RouteItem[] | undefined;
@@ -117,60 +98,99 @@ export interface RouteItem {
 }
 
 export const routes = createRoutes([
-  {component: HomeComponent, path: routsPaths.home, isMenuItem: true},
-  {component: TestComponent, path: routsPaths.test, userRole: UserRoles.DEVELOPER},
   {
-    path: routsPaths.newspapers,
-    component: NewspapersComponent,
+    loadComponent: () => import('@app/features/home/home.component').then(m => m.HomeComponent),
+    path: routsPaths.home,
     isMenuItem: true,
-    children: [
-      {component: NewNewspaperComponent, path: 'new'},
-      {component: NewspaperComponent, path: ':newspaperId'}
-    ],
-
+    textKey: 'home'
   },
   {
-    path: routsPaths.events,
-    component: EventsComponent,
+    loadComponent: () => import('@app/features/test/test.component').then(m => m.TestComponent),
+    path: routsPaths.test,
+    userRole: UserRoles.DEVELOPER,
+    textKey: 'home'
+  },
+  {
+    path: routsPaths.newspapers,
+    loadComponent: () => import('@app/features/newspapers/newspapers.component').then(m => m.NewspapersComponent),
     isMenuItem: true,
+    textKey: 'newspapers',
     children: [
-      {component: NewEventComponent, path: 'new'},
-      {component: EventComponent, path: ':eventId'}
+      {
+        loadComponent: () => import('@app/features/newspapers/new-newspaper/new-newspaper.component').then(m => m.NewNewspaperComponent),
+        path: 'new',
+        textKey: 'newNewspaper'
+      },
+      {
+        loadComponent: () => import('@app/features/newspapers/newspapers/newspaper.component').then(m => m.NewspaperComponent),
+        path: ':newspaperId',
+        textKey: 'newspaper'
+      }
     ],
-
   },
   {
     path: routsPaths.books,
-    component: BooksComponent,
+    loadComponent: () => import('@app/features/books/books.component').then(m => m.BooksComponent),
     isMenuItem: true,
+    textKey: 'books',
     children: [
-      {component: bugComponents.newBook, path: 'new'},
-      {component: BookComponent, path: ':bookId'}
+      {
+        loadComponent: () => import('@app/features/books/new-book/new-book.component').then(m => m.NewBookComponent),
+        path: 'new',
+        textKey: 'newBook'
+      },
+      {
+        loadComponent: () => import('@app/features/books/book/book.component').then(m => m.BookComponent),
+        path: ':bookId',
+        textKey: 'book'
+      }
     ],
 
   },
   {
     path: routsPaths.admin,
-    component: AdminPanelComponent,
+    loadComponent: () => import('@app/features/admin-panel/admin-panel.component').then(m => m.AdminPanelComponent),
     userRole: UserRoles.DEVELOPER,
     isMenuItem: true,
+    textKey: 'adminPanel',
     children: [
-      {component: FirebasePanelComponent, path: routsPaths.firebase},
       {
-        component: ContentManagerComponent, path: routsPaths.contentManager,
+        loadComponent: () => import('@app/features/admin-panel/firebase-panel/firebase-panel.component').then(m => m.FirebasePanelComponent),
+        path: routsPaths.firebase,
+        textKey: 'firebasePanel'
+      },
+      {
+        loadComponent: () => import('@app/features/admin-panel/content-manager/content-manager.component').then(m => m.ContentManagerComponent),
+        path: routsPaths.contentManager,
+        textKey: 'contentManager',
         children: [
           {
-            component: HomeContentComponent,
+            loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/home-content.component').then(m => m.HomeContentComponent),
             path: routsPaths.homeContent,
+            textKey: 'homeContent',
             children: [
-              {component: ArticlesContentComponent, path: routsPaths.articlesContent}
+              {
+                loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/articles-content/articles-content.component').then(m => m.ArticlesContentComponent),
+                path: routsPaths.articlesContent,
+                textKey: 'articlesContent',
+              }
             ]
           },
         ]
       }
     ],
   },
-  {component: LoginComponent, path: routsPaths.login, userRole: UserRoles.GUEST},
-  {component: AboutComponent, path: routsPaths.about, isMenuItem: true},
+  {
+    loadComponent: () => import('@app/features/login/login.component').then(m => m.LoginComponent),
+    path: routsPaths.login,
+    userRole: UserRoles.GUEST,
+    textKey: 'login'
+  },
+  {
+    loadComponent: () => import('@app/features/about/about.component').then(m => m.AboutComponent),
+    path: routsPaths.about,
+    isMenuItem: true,
+    textKey: 'about'
+  },
 
 ]);

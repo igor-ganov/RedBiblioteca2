@@ -1,11 +1,10 @@
 import {computed, Injectable, Signal, Type} from "@angular/core";
 import {map, Observable} from "rxjs";
-import {TextDictionary} from "./TextDictionary";
-import {IMenuItem} from "@common/menu-system/IMenuItem";
 import {translationMap} from "@common/lang-system/TranslationMap";
 import {PickKeyByType} from "@common/help/types";
 import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
 import {getKeys} from "@common/help/help-fuctions";
+import {ITextFactory, ITitleFactory} from "@common/menu-system/IHasTitle";
 
 @Injectable({providedIn: 'root'})
 export class TextHost {
@@ -70,7 +69,7 @@ export class TextHost {
   }
 }
 
-type TKeyOfFactory<TFactory> = PickKeyByType<TranslationMap, { factory: TFactory }>;
+export type TKeyOfFactory<TFactory> = PickKeyByType<TranslationMap, { factory: TFactory }>;
 type TFactoryType<TKey extends keyof TranslationMap> = TranslationMap[TKey]['factory'];
 
 function getTextFactory<TKey extends TKeyOfFactory<ITextFactory>>(key: TKey): TFactoryType<TKey> {
@@ -82,11 +81,3 @@ function getTitleFactory<TKey extends TKeyOfFactory<ITitleFactory>>(key: TKey): 
 }
 
 type TranslationMap = typeof translationMap;
-
-export interface ITitleFactory<T extends IMenuItem = IMenuItem> {
-  getTitle(dictionary: TextDictionary): T;
-}
-
-export interface ITextFactory<T = unknown> {
-  getText(dictionary: TextDictionary): T;
-}

@@ -11,4 +11,8 @@ newspapers,"Newspapers","Giornali","Газеты","Journaux"
 newspaper,"Newspaper","Giornale","Газета","Journal"
 newnewspaper,"Newnewspaper","Nuova giornale","Новая газета","Nouveau journal"
 about,About,Informazioni,О нас,À propos
-admin,Admin,Amministrazione,Администратор,Administration
+admin,Admin,Amministrazione,Администратор,Administration,
+articleContent,Article content,Contenuto articolo,Содержание статьи,Contenu de l'article
+homeContent,Home content,Contenuto homepage,Содержание домашней страницы,Contenu de la page d'accueil
+contentManager,Content manager,Manager contenuti,Менеджер контента,Manager de contenu
+firebasePanel,Firebase panel,Panel firebase,Панель firebase,Panel firebase

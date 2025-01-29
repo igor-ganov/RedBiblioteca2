@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {RouteService} from "@common/routes/RouteService";
-import {combineLatest, map, Observable, zip} from "rxjs";
+import {combineLatest, map, Observable, switchMap, zip} from "rxjs";
 import {Route, Router} from "@angular/router";
 import {TextHost} from "@common/lang-system/TextHost";
 import {IMenuItem} from "@common/menu-system/IMenuItem";
@@ -12,9 +12,15 @@ import {UserService} from "@common/permission-system/UserService";
 @Injectable({providedIn: 'root'})
 export class MenuService {
   private readonly routeService = inject(RouteService);
-  public readonly activatedItem$ = this.routeService.activatedRoute$.pipe(map(a => a.component?.name));
-  private readonly router = inject(Router);
   private readonly textHost = inject(TextHost);
+  public readonly activatedItem$ = this.routeService.activatedRoute$.pipe(
+    switchMap(a => a.data),
+    map(d => d as RouteData),
+    map(d => d.textTag),
+    switchMap(t => this.textHost.getMenuItem(t)),
+    map(i => i.title),
+  );
+  private readonly router = inject(Router);
   private readonly _allItems = zip(this.router.config.find(r => r.path !== '**')!.children!.map(r => buildMenuItem(r, this.textHost)).filter(r => r !== undefined))
 
   private readonly userService = inject(UserService);
@@ -63,9 +69,10 @@ export interface MenuItemReach {
 }
 
 function getMenuItem(route: Route, textHost: TextHost) {
-  const component = route.component ?? route.children?.find(c => c.path === '')?.component;
-  if (!component) return;
-  return textHost.getMenuItemByType(component);
+  const data = (route.data ?? route.children?.find(c => c.path === '')?.data) as RouteData | undefined;
+  const textKey = data?.textTag;
+  if (!textKey) return;
+  return textHost.getMenuItem(textKey);
 }
 
 function buildChildren(route: Route, textHost: TextHost): Observable<MenuItemReach[]> | undefined {

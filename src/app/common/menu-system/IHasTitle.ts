@@ -1,10 +1,11 @@
-import { TextDictionary } from "../lang-system/TextDictionary";
-import { IMenuItem } from "./IMenuItem";
+import {TextDictionary} from "../lang-system/TextDictionary";
+import {IMenuItem} from "./IMenuItem";
 
 
-export interface ITitleFactory {
-    getTitle(dictionary: TextDictionary): IMenuItem;
+export interface ITitleFactory<T extends IMenuItem = IMenuItem> {
+  getTitle(dictionary: TextDictionary): T;
 }
-export interface ITextFactory<T> {
-    getText(dictionary: TextDictionary) : T;
+
+export interface ITextFactory<T = unknown> {
+  getText(dictionary: TextDictionary): T;
 }
