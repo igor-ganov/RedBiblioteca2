@@ -2,11 +2,11 @@ import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core'
 import {Book} from '../models/Book';
 import {getFakeImage} from './getFakeImage';
 import {BookRepository} from '../services/BookRepository';
-import {finalize} from 'rxjs';
 import {Router} from '@angular/router';
 import {routsPaths} from '@common/routes/routes';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {BookViewComponent} from '../book-view/book-view.component';
+import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
 
 @Component({
   selector: 'app-new-book',
@@ -31,11 +31,19 @@ export class NewBookComponent {
   public readonly isUpdating = signal(false);
   private readonly localeHost = inject(LocaleHost);
   private readonly lang = this.localeHost.language;
+  private readonly eventMessageQueue = inject(EventMessageQueue);
 
-  public onPublish(book: Book) {
+  public async onPublish(book: Book) {
     this.isUpdating.set(true);
     book.pid = book.title.toLocaleLowerCase().replaceAll(' ', '-').replaceAll('\n', '');
-    this.repository.add(this.lang(), book).pipe(finalize(() => this.isUpdating.set(true))).subscribe(() => this.redirectTo(book));
+    const result = await this.repository.add(this.lang(), book);
+    this.isUpdating.set(true);
+    if (result.successeful) {
+      await this.redirectTo(book);
+      this.eventMessageQueue.pushInfo('Book added');
+    } else {
+      this.eventMessageQueue.pushError(result.errorMessage);
+    }
   }
 
   private readonly router = inject(Router);

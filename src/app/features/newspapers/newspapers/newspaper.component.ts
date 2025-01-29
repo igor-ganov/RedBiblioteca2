@@ -1,12 +1,11 @@
-import {ChangeDetectionStrategy, Component, inject, input, Signal, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input, resource, Signal, signal} from '@angular/core';
 import {Newspaper} from '../models/Newspaper';
 import {NewspaperRepository} from '../services/NewspaperRepository';
-import {finalize} from 'rxjs';
 import {IfSuccess} from '@common/components/errors/if-success.directive';
 import {NewspaperViewComponent} from '../newspaper-view/newspaper-view.component';
 import {LocaleHost} from "@common/lang-system/LocaleHost";
-import {rxResource} from "@angular/core/rxjs-interop";
 import {Result} from "@common/help/services/Result";
+import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
 
 @Component({
   selector: 'app-newspaper',
@@ -25,15 +24,23 @@ export class NewspaperComponent {
   public readonly isUpdating = signal(false);
 
   private readonly lang = inject(LocaleHost).language;
+  private readonly eventMessageQueue = inject(EventMessageQueue);
 
-  public onPublish(value: Newspaper) {
+  public async onPublish(value: Newspaper) {
     this.isUpdating.set(true);
-    this.repository.update(this.lang(), value).pipe(finalize(() => this.isUpdating.set(false))).subscribe();//todo update view;
+    const result = await this.repository.update(this.lang(), value);
+    if (result.successeful) {
+      //todo update view;
+      this.eventMessageQueue.pushInfo('Newspaper updated');
+    } else {
+      this.eventMessageQueue.pushError(result.errorMessage);
+    }
+    this.isUpdating.set(false);
   }
 
   public readonly newspaperId = input.required<string>();
   private readonly repository = inject(NewspaperRepository);
-  private readonly newspaperResource = rxResource({
+  private readonly newspaperResource = resource({
     request: () => ({newspaperId: this.newspaperId(), lang: this.lang()}),
     loader: ({request: {newspaperId, lang}}) => this.repository.findByPid(lang, newspaperId),
   });

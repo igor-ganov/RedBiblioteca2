@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {catchError, from, map, Observable, of} from "rxjs";
 import {Result} from "./Result";
 import {
   collection,
@@ -13,10 +12,10 @@ import {
   updateDoc,
   where
 } from 'firebase/firestore/lite'
-import {fromPromise} from "rxjs/internal/observable/innerFrom";
 import {FirebaseAppService} from "@common/help/services/firebase-app.service";
+import {toError} from "@common/help/help-fuctions";
 
-function result404(errorMessage: string): Result<any> {
+function result404<T>(errorMessage: string): Result<T> {
   return {
     successeful: false,
     resultCode: 404,
@@ -24,7 +23,14 @@ function result404(errorMessage: string): Result<any> {
   };
 }
 
-function result500(errorMessage: string): Result<any> {
+export function clientError<T>(errorMessage: string): Result<T> {
+  return {
+    successeful: false,
+    errorMessage,
+  };
+}
+
+function result500<T>(errorMessage: string): Result<T> {
   return {
     successeful: false,
     resultCode: 404,
@@ -48,47 +54,73 @@ export class FirestoreService {
     this.firestore = getFirestore(app);
   }
 
-  public findByPid<T>(table: string, pid: string): Observable<Result<T>> {
+  public async findByPid<T>(table: string, pid: string): Promise<Result<T>> {
     const q = query(collection(this.firestore, table), where("pid", "==", pid));
-    return from(getDocs(q)).pipe(
-      map(d => d.docs.length === 0 ? result404(`object with public id ${pid} wasn't find in the table ${table}`) : toResult(d.docs[0].data() as T)),
-      catchError(e => of(result500(e)))
-    );
+    try {
+      const d = await getDocs(q);
+      return d.docs.length === 0 ? result404(`object with public id ${pid} wasn't find in the table ${table}`) : toResult(d.docs[0].data() as T);
+    } catch (e) {
+      return result500(toError(e).message);
+    }
   }
 
-  public get<T>(table: string, id: string) {
+  public async get<T>(table: string, id: string): Promise<Result<T>> {
     const docRef = doc(this.firestore, table, id);
-    return from(getDoc(docRef)).pipe(map(d => d.data() as T));
+    try {
+      const d = await getDoc(docRef);
+      return toResult(d.data() as T);
+    } catch (e) {
+      return result500(toError(e).message);
+    }
   }
 
-  public getAll<T>(table: string) {
-    return fromPromise(getDocs(collection(this.firestore, table))).pipe(map((list) => list.docs.map(i => i.data() as T)));
+  public async getAll<T>(table: string): Promise<Result<T[]>> {
+    try {
+      const d = await getDocs(collection(this.firestore, table));
+      return toResult(d.docs.map(i => i.data() as T));
+    } catch (e) {
+      return result500(toError(e).message);
+    }
   }
 
   private getDataSet(table: string) {
     return collection(this.firestore, table);
   }
 
-  public add<T extends { id: string; }>(table: string, data: T) {
+  public async add<T extends { id: string; }>(table: string, data: T): Promise<Result<T>> {
     const dataSet = this.getDataSet(table);
     const id = data.id == null ? data.id : (data.id = generateId());
-    return from(setDoc(doc(dataSet, id), data as object)).pipe(map(_ => data));
+    try {
+      await setDoc(doc(dataSet, id), data);
+    } catch (e) {
+      return result500(toError(e).message);
+    }
+    return await this.get(table, id);
   }
 
-  public delete<T>(table: string, id: string) {
+  public async delete<T>(table: string, id: string): Promise<Result<T>> {
     const dataSet = this.getDataSet(table);
-    return from(deleteDoc(doc(dataSet, id))).pipe(map(d => d as T));
+    try {
+      await deleteDoc(doc(dataSet, id));
+    } catch (e) {
+      return result500(toError(e).message);
+    }
+    return toResult(undefined as T);
   }
 
-  public update<T extends { id: string; }>(table: string, data: T) {
+  public async update<T extends { id: string; }>(table: string, data: T): Promise<Result<T>> {
     const docRef = doc(this.firestore, table, data.id);
-    return from(updateDoc(docRef, data as object)).pipe(map(_ => data));
+    try {
+      await updateDoc(docRef, data);
+    } catch (e) {
+      return result500(toError(e).message);
+    }
+    return toResult(data);
   }
 }
 
 export function generateId(): string {
-  const result = guidToAlphabet(crypto.randomUUID());
-  return result;
+  return guidToAlphabet(crypto.randomUUID());
 }
 
 export function guidToAlphabet(guid: string) {
@@ -98,7 +130,7 @@ export function guidToAlphabet(guid: string) {
 
   let number = hexNumber;
   while (number > 0) {
-    const index = (number % BigInt(alphabet.length)) as any as number;
+    const index = (number % BigInt(alphabet.length)) as unknown as number;
     result = alphabet[index] + result;
     number /= BigInt(alphabet.length);
   }

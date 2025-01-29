@@ -1,12 +1,11 @@
-import {ChangeDetectionStrategy, Component, inject, input, Signal, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input, resource, Signal, signal} from '@angular/core';
 import {Book} from '../models/Book';
 import {BookRepository} from '../services/BookRepository';
-import {finalize} from 'rxjs';
 import {IfSuccess} from '@common/components/errors/if-success.directive';
 import {BookViewComponent} from '../book-view/book-view.component';
 import {LocaleHost} from "@common/lang-system/LocaleHost";
-import {rxResource} from "@angular/core/rxjs-interop";
 import {Result} from "@common/help/services/Result";
+import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
 
 @Component({
   selector: 'app-book',
@@ -23,15 +22,23 @@ export class BookComponent {
 
   public readonly isUpdating = signal(false);
   private readonly lang = inject(LocaleHost).language;
+  private readonly eventMessageQueue = inject(EventMessageQueue);
 
-  public onPublish(value: Book) {
+  public async onPublish(value: Book) {
     this.isUpdating.set(true);
-    this.repository.update(this.lang(), value).pipe(finalize(() => this.isUpdating.set(false))).subscribe();//todo update view;
+    const result = await this.repository.update(this.lang(), value);
+    if (result.successeful) {
+      //todo update view;
+      this.eventMessageQueue.pushInfo('Book updated');
+    } else {
+      this.eventMessageQueue.pushError(result.errorMessage);
+    }
+    this.isUpdating.set(false);
   }
 
   public readonly bookId = input.required<string>();
   private readonly repository = inject(BookRepository);
-  private readonly bookResource = rxResource({
+  private readonly bookResource = resource({
     request: () => ({id: this.bookId(), lang: this.lang()}),
     loader: ({request: {id, lang}}) => this.repository.findByPid(lang, id),
   });

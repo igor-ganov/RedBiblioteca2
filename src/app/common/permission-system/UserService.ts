@@ -1,13 +1,14 @@
 import {computed, inject, Injectable, linkedSignal, PLATFORM_ID, resource} from "@angular/core";
 import {User} from "./User";
 import {getAuth, signInWithEmailAndPassword, UserInfo} from "firebase/auth";
-import {filter, map, of} from "rxjs";
+import {filter, map} from "rxjs";
 import {ISignInData} from "./ISignInData";
 import {UserRoles} from "./UserRoles";
 import {UserData, UserDataRepository} from "./UserDataRepository";
 import {FirebaseAppService} from "@common/help/services/firebase-app.service";
-import {rxResource, toObservable} from "@angular/core/rxjs-interop";
+import {toObservable} from "@angular/core/rxjs-interop";
 import {isPlatformBrowser} from "@angular/common";
+import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -24,14 +25,20 @@ export class UserService {
   })
   private readonly firebaseUser = linkedSignal(() => this.firebaseUserResource.value());
   private userData = inject(UserDataRepository);
-  private readonly currentUserResource = rxResource({
+  private readonly eventMessageQueue = inject(EventMessageQueue);
+  private readonly currentUserResource = resource({
     request: () => ({user: this.firebaseUser()}),
-    loader: ({request: {user}}) => {
+    loader: async ({request: {user}}) => {
       // console.log(user);
-      if (user === null) return of(null);
-      if (user === undefined) return of(undefined);
-      return this.userData.get(user.uid).pipe(
-        map(d => toUser({user: user, data: d})));
+      if (user === null) return null;
+      if (user === undefined) return undefined;
+      const d = await this.userData.get(user.uid);
+      if (d.successeful) {
+        return toUser({user: user, data: d.result});
+      } else {
+        this.eventMessageQueue.pushError(d.errorMessage);
+        return null;
+      }
     }
   })
   public readonly currentUser = computed(() => this.currentUserResource.value());

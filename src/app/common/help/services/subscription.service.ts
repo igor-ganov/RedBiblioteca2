@@ -2,6 +2,7 @@ import {DestroyRef, inject, Injectable} from "@angular/core";
 import {catchError, firstValueFrom, Observable, Subscription, throwError} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {toError} from "@common/help/help-fuctions";
 
 @Injectable()
 export class SubscriptionService {
@@ -31,7 +32,7 @@ export class SubscriptionService {
       if (observable instanceof Promise) return await observable;
       return await firstValueFrom(observable);
     } catch (e) {
-      this.eventMessageQueue.pushError(e instanceof Error ? e : JSON.stringify(e));
+      this.eventMessageQueue.pushError(toError(e));
     }
     return;
   }

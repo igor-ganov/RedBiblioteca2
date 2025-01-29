@@ -93,3 +93,14 @@ export function toBase64(file: File, callback: (result: string) => void) {
     console.log('Error: ', error);
   };
 }
+
+export function toError(error: unknown) {
+  if (error instanceof Error) {
+    return error;
+  } else if (typeof error === 'string') {
+    return new Error(error);
+  } else if (error instanceof Object) {
+    return new Error(JSON.stringify(error));
+  }
+  return new Error(`${error}`);
+}

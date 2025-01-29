@@ -1,48 +1,48 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, resource} from '@angular/core';
 import {UserDataRepository} from '@common/permission-system/UserDataRepository';
 import {UserRoles} from '@common/permission-system/UserRoles';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {AsyncPipe, KeyValuePipe} from '@angular/common';
+import {KeyValuePipe} from '@angular/common';
+import {IfSuccess} from "@common/components/errors/if-success.directive";
 
 @Component({
   selector: 'app-users-panel',
   template: `
 
-@if (users$ | async; as users) {
-  <table mat-table [dataSource]="users" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> Email </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-    </ng-container>
-    <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef> Role </th>
-      <td mat-cell *matCellDef="let element">
-        <mat-form-field>
-          <mat-label>Role</mat-label>
-          <mat-select [(value)]="element.role">
-            @for (role of userRoles | keyvalue; track role.key) {
-              <mat-option [value]="role.key">
-                {{role.value}}
-              </mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-}
-`,
+    <table *ifSuccess="result() as users" mat-table [dataSource]="users" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <td mat-cell *matCellDef="let element"> {{ element.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Role</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field>
+            <mat-label>Role</mat-label>
+            <mat-select [(value)]="element.role">
+              @for (role of userRoles | keyvalue; track role.key) {
+                <mat-option [value]="role.key">
+                  {{ role.value }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  `,
   styleUrl: './users-panel.component.css',
   imports: [
     MatTableModule,
-    AsyncPipe,
     KeyValuePipe,
     MatFormFieldModule,
-    MatSelectModule],
+    MatSelectModule,
+    IfSuccess
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersPanelComponent {
@@ -56,7 +56,8 @@ export class UsersPanelComponent {
   public readonly displayedColumns = ['id', 'role'];
 
   public readonly userRepository = inject(UserDataRepository);
-  public readonly users$ = this.userRepository.getAll();
+  private readonly usersResource = resource({loader: () => this.userRepository.getAll()});
+  public readonly result = this.usersResource.value.asReadonly();
 }
 
 function getEnumWithNames(type: object) {

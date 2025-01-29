@@ -1,39 +1,37 @@
-import {ChangeDetectionStrategy, Component, computed, inject, Signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, resource, Signal} from '@angular/core';
 import {UserService} from '@common/permission-system/UserService';
 import {MatIconAnchor} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
 import {BookPreviewComponent} from './book-preview/book-preview.component';
-import {LoadingComponent} from '@common/components/loading/loading.component';
 import {createSubscriptionService} from "@common/help/services/subscription.service";
-import {rxResource} from "@angular/core/rxjs-interop";
 import {Book} from "@app/features/books/models/Book";
 import {BookRepository} from "@app/features/books/services/BookRepository";
 import {LocaleHost} from "@common/lang-system/LocaleHost";
+import {Result} from "@common/help/services/Result";
+import {IfSuccess} from "@common/components/errors/if-success.directive";
+import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
 
 @Component({
   selector: 'app-books',
   template: `
-    @if (collection(); as collection) {
-      <div class="container">
-        @if (!readonly()) {
-          <div class="title-panel">
-            <a mat-icon-button [routerLink]="['new']">
-              <mat-icon>add</mat-icon>
-            </a>
-          </div>
-        }
-        @for (item of collection; track item.id) {
-          <div class="card">
-            <app-book-preview
-              (deleteRequested)="onDeleteRequested($event)"
-              [value]="item"/>
-          </div>
-        }
-      </div>
-    } @else {
-      <app-loading/>
-    }
+    <div *ifSuccess="result() as collection" class="container">
+      @if (!readonly()) {
+        <div class="title-panel">
+          <a mat-icon-button [routerLink]="['new']">
+            <mat-icon>add</mat-icon>
+          </a>
+        </div>
+      }
+      @for (item of collection; track item.id) {
+        <div class="card">
+          <app-book-preview
+            (deleteRequested)="onDeleteRequested($event)"
+            [value]="item"/>
+        </div>
+      }
+    </div>
+
 
   `,
   styles: `
@@ -53,7 +51,7 @@ import {LocaleHost} from "@common/lang-system/LocaleHost";
       justify-content: flex-end;
       grid-auto-flow: column;
     }`,
-  imports: [MatIconAnchor, RouterLink, MatIcon, BookPreviewComponent, LoadingComponent],
+  imports: [MatIconAnchor, RouterLink, MatIcon, BookPreviewComponent, IfSuccess],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooksComponent {
@@ -62,14 +60,21 @@ export class BooksComponent {
   public readonly readonly = computed(() => this.userService.currentUser() == undefined);
   public readonly repository = inject(BookRepository);
   private readonly lang = inject(LocaleHost).language;
-  private readonly collectionResource = rxResource({
+  private readonly collectionResource = resource({
     request: () => ({lang: this.lang()}),
     loader: ({request: {lang}}) => this.repository.getAll(lang),
   });
-  public readonly collection: Signal<Book[] | undefined> = computed(() => this.collectionResource.value());
+  public readonly result: Signal<Result<Book[]> | undefined> = computed(() => this.collectionResource.value());
+
+  private readonly eventMessageQueue = inject(EventMessageQueue);
 
   public async onDeleteRequested(value: Book) {
-    await this.subscriptionService.runAsync(this.repository.delete(this.lang(), value.id));
-    this.collectionResource.reload();
+    const result = await this.repository.delete(this.lang(), value.id);
+    if (result.successeful) {
+      this.collectionResource.reload();
+      this.eventMessageQueue.pushInfo('Book deleted');
+    } else {
+      this.eventMessageQueue.pushError(result.errorMessage);
+    }
   }
 }
