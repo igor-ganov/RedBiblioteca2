@@ -52,7 +52,7 @@ function getParents(route: ActivatedRoute, textHost: TextHost, localeHost: Local
     const path = computed(() => links[i - 1].path() + '/' + routes[i].url.join('/'));
     const data = (routes[i].data ?? route.snapshot.routeConfig?.children?.find(c => c.path === '')?.data) as RouteData | undefined;
     const dataText = data?.textTag ? textHost.getTextSignal(data.textTag) : undefined;
-    const text = dataText ? computed(() => dataText()!.title) : signal(routes[i].url.join('/')).asReadonly();
+    const text = dataText ? computed(() => dataText()?.title ?? routes[i].url.join('/')) : signal(routes[i].url.join('/')).asReadonly();
     const paramMap = routes[i].paramMap;
     const param = paramMap.keys.length > 0 ? paramMap.get(paramMap.keys[0]) : undefined;
     links.push({path: path, text: param ? computed(() => `#${param}`) : text})
