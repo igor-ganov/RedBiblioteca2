@@ -60,13 +60,6 @@ export class TextHost {
   public getTextSignal<K extends TKeyOfFactory<ITextFactory>>(key: K) {
     return this.getTextInstance(key);
   }
-
-  public getTextByType<T>(type: Type<T>) {
-    const key = getKeys(translationMap)
-      .find(k => 'component' in translationMap[k] && translationMap[k].component === type) as TKeyOfFactory<ITextFactory>;
-    if (key === undefined) return;
-    return this.getText(key);
-  }
 }
 
 export type TKeyOfFactory<TFactory> = PickKeyByType<TranslationMap, { factory: TFactory }>;

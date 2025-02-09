@@ -1,4 +1,5 @@
 @mixin set-colors($is-dark) {
+  --current-link: #9a4c7e;
   @if ($is-dark) {
     --primary-background: rgb(177, 2, 0);
   } @else {
