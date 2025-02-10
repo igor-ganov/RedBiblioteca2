@@ -14,7 +14,8 @@ import {LocaleHost} from "@common/lang-system/LocaleHost";
   template: `
     <div class="container">
       @for (r of routes(); track r.path()) {
-        <app-route-bar-link [value]="r" [isFirst]="$first" [isLast]="$last"/>
+        <app-route-bar-link [value]="r" [isFirst]="$first" [isLast]="$last"
+                            [style.--route-link-index]="routes().length - $index"/>
       }
     </div>
   `,
@@ -27,6 +28,16 @@ import {LocaleHost} from "@common/lang-system/LocaleHost";
 
       & * {
         margin-right: -1em;
+        position: relative;
+        z-index: var(--route-link-index, 0);
+
+        &:last-child {
+          transition-property: translate, opacity;
+          @starting-style{
+            translate: -100%;
+            opacity: 0;
+          }
+        }
       }
     }
   `,
