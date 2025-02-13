@@ -42,7 +42,19 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
     }
 
   `,
-  styleUrl: './login.component.css',
+  styles: `
+    .container {
+      height: 100%;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form {
+      display: grid;
+      grid-auto-flow: row;
+      grid-template-rows: max-content;
+    }`,
   providers: [SubscriptionManager],
   imports: [FormsModule, MatFormField, MatLabel, MatInput, MatIconButton, MatSuffix, MatIcon, MatButton, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,

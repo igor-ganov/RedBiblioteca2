@@ -1,5 +1,6 @@
 export interface TextDictionary {
   articleContent: string;
+  articlesContent: string;
   homeContent: string;
   contentManager: string;
   firebasePanel: string;

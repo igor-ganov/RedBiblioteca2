@@ -3,27 +3,27 @@ import {ITextFactory, ITitleFactory} from "@common/menu-system/IHasTitle";
 import {IMenuItem} from "@common/menu-system/IMenuItem";
 
 
-export class ArticleContentTextFactory implements ITitleFactory, ITextFactory<ArticleContent> {
-  public getText(dictionary: TextDictionary): ArticleContent {
+export class ArticlesContentTextFactory implements ITitleFactory, ITextFactory<ArticlesContent> {
+  public getText(dictionary: TextDictionary): ArticlesContent {
     return {
-      title: dictionary.articleContent,
+      title: dictionary.articlesContent,
     };
   }
 
-  public getTitle(dictionary: TextDictionary): AdminMenuItem {
-    return new AdminMenuItem(dictionary);
+  public getTitle(dictionary: TextDictionary): ArticlesContentMenuItem {
+    return new ArticlesContentMenuItem(dictionary);
   }
 }
 
-export interface ArticleContent {
+export interface ArticlesContent {
   title: string;
 }
 
-export class AdminMenuItem implements IMenuItem {
+export class ArticlesContentMenuItem implements IMenuItem {
   public icon = 'settings';
   public title: string;
 
   public constructor(dictionary: TextDictionary) {
-    this.title = dictionary.admin;
+    this.title = dictionary.articlesContent;
   }
 }

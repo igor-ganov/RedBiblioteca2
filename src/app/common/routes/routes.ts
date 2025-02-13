@@ -24,7 +24,6 @@ export const routsPaths = {
   homeContent: 'home-content',
   articlesContent: 'articles-content',
 
-
 }
 
 export const authRoleGuard = (role: UserRoles = UserRoles.GUEST) => (route: ActivatedRouteSnapshot) => {
@@ -173,6 +172,13 @@ export const routes = createRoutes([
                 loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/articles-content/articles-content.component').then(m => m.ArticlesContentComponent),
                 path: routsPaths.articlesContent,
                 textKey: 'articlesContent',
+                children: [
+                  {
+                    loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/articles-content/article-content/article-content.component').then(m => m.ArticleContentComponent),
+                    path: ':pid',
+                    textKey: 'articleContent',
+                  }
+                ]
               }
             ]
           },

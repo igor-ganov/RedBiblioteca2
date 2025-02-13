@@ -12,8 +12,11 @@ import {FirebasePanelTextFactory} from "@app/features/admin-panel/firebase-panel
 import {ContentManagerTextFactory} from "@app/features/admin-panel/content-manager/locale";
 import {HomeContentTextFactory} from "@app/features/admin-panel/content-manager/home-content/locale";
 import {
-  ArticleContentTextFactory
+  ArticlesContentTextFactory
 } from "@app/features/admin-panel/content-manager/home-content/articles-content/locale";
+import {
+  ArticleContentTextFactory
+} from "@app/features/admin-panel/content-manager/home-content/articles-content/article-content/locale";
 
 export const translationMap = {
   login: {factory: new LoginTextFactory()},
@@ -29,5 +32,6 @@ export const translationMap = {
   firebasePanel: {factory: new FirebasePanelTextFactory()},
   contentManager: {factory: new ContentManagerTextFactory()},
   homeContent: {factory: new HomeContentTextFactory()},
-  articlesContent: {factory: new ArticleContentTextFactory()},
+  articlesContent: {factory: new ArticlesContentTextFactory()},
+  articleContent: {factory: new ArticleContentTextFactory()},
 }

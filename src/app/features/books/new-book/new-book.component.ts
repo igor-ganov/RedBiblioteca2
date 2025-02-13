@@ -12,9 +12,8 @@ import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
   selector: 'app-new-book',
   template: `
     <app-book-view [book]="book" [isUpdating]="isUpdating()" (published)="onPublish($event)"/>
-
   `,
-  styleUrl: './new-book.component.css',
+  styles: ``,
   imports: [BookViewComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -36,8 +35,9 @@ export class NewBookComponent {
   public async onPublish(book: Book) {
     this.isUpdating.set(true);
     book.pid = book.title.toLocaleLowerCase().replaceAll(' ', '-').replaceAll('\n', '');
+    //TODO pid unique validation
     const result = await this.repository.add(this.lang(), book);
-    this.isUpdating.set(true);
+    this.isUpdating.set(false);
     if (result.successeful) {
       await this.redirectTo(book);
       this.eventMessageQueue.pushInfo('Book added');

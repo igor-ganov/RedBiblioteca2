@@ -9,26 +9,26 @@ import {LastNewsComponent} from './last-news/last-news.component';
 @Component({
   selector: 'app-home',
   template: `
-<div class="container">
-  <div class="content">
-    <app-top-banner class="banner"/>
-    <app-content-menu [items]="items" class="menu"/>
-    <div class="articles-with-news">
-      <div class="articles">
-        <app-article [article]="about"/>
-        <app-article [article]="hotToUse"/>
-        <app-article [article]="sergioMotosi"/>
-      </div>
-      <div class="news">
-        <div class="shadow-box"> <!-- TODO move to shared component or css -->
-          <app-last-news/>
+    <div class="container">
+      <div class="content">
+        <app-top-banner class="banner"/>
+        <app-content-menu [items]="items" class="menu"/>
+        <div class="articles-with-news">
+          <div class="articles">
+            <app-article [article]="about"/>
+            <app-article [article]="hotToUse"/>
+            <app-article [article]="sergioMotosi"/>
+          </div>
+          <div class="news">
+            <div class="shadow-box"> <!-- TODO move to shared component or css -->
+              <app-last-news/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-`,
+  `,
   styleUrl: './home.component.css',
   imports: [TopBannerComponent, ContentMenuComponent, ArticleComponent, LastNewsComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -51,8 +51,4 @@ export class HomeComponent {
     content: "Suddenly, on 12th October 2002, we lost our comrade, Sergio Motosi. The following passages are taken from his funeral service. Nature can be harsh and cruel to her finest sons. In Sergio Motosi, we lost one of the most impressive representatives of that generation of revolutionaries who came to Marxist science at the end of the 1960s. These were the children of “Leninist tactics for the educational crisis”, a work of Cervetto’s that in the history of our party’s development represents a milestone, a «practical step» on the long road that has led us to the present day."
   };
   public readonly items = [this.about, this.hotToUse, this.sergioMotosi];
-}
-
-export class ArticleRepository {
-
 }

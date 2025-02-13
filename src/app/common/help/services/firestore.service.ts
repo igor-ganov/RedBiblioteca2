@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Result} from "./Result";
+import {Result, result404, result500, toResult} from "./Result";
 import {
   collection,
   deleteDoc,
@@ -15,35 +15,6 @@ import {
 import {FirebaseAppService} from "@common/help/services/firebase-app.service";
 import {toError} from "@common/help/help-fuctions";
 
-function result404<T>(errorMessage: string): Result<T> {
-  return {
-    successeful: false,
-    resultCode: 404,
-    errorMessage,
-  };
-}
-
-export function clientError<T>(errorMessage: string): Result<T> {
-  return {
-    successeful: false,
-    errorMessage,
-  };
-}
-
-function result500<T>(errorMessage: string): Result<T> {
-  return {
-    successeful: false,
-    resultCode: 404,
-    errorMessage: `Internal Server Error: ${errorMessage}`,
-  };
-}
-
-function toResult<T>(result: T): Result<T> {
-  return {
-    successeful: true,
-    result,
-  };
-}
 
 @Injectable({providedIn: 'root'})
 export class FirestoreService {

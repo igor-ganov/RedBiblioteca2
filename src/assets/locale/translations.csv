@@ -13,6 +13,7 @@ newnewspaper,"Newnewspaper","Nuova giornale","Новая газета","Nouveau 
 about,About,Informazioni,О нас,À propos
 admin,Admin,Amministrazione,Администратор,Administration,
 articleContent,Article content,Contenuto articolo,Содержание статьи,Contenu de l'article
+articlesContent,Articles content,Contenuto articoli,Содержание статей,Contenu des articles
 homeContent,Home content,Contenuto homepage,Содержание домашней страницы,Contenu de la page d'accueil
 contentManager,Content manager,Manager contenuti,Менеджер контента,Manager de contenu
 firebasePanel,Firebase panel,Panel firebase,Панель firebase,Panel firebase
