@@ -1,5 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {ContentService} from "@common/help/services/content.service";
+import {Article} from "@app/features/home/services/article";
 
 @Injectable({providedIn: 'root'})
 export class ArticleRepository {
@@ -32,9 +33,3 @@ export class ArticleRepository {
   }
 }
 
-export interface Article {
-  id: string;
-  title: string;
-  description: string;
-  pid: string;
-}

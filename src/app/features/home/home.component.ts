@@ -1,10 +1,16 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, resource, Signal} from '@angular/core';
 
-import {Article} from "@app/features/home/article/article";
 import {TopBannerComponent} from './top-banner/top-banner.component';
 import {ContentMenuComponent} from '@app/layout/content-menu/content-menu.component';
 import {ArticleComponent} from './article/article.component';
 import {LastNewsComponent} from './last-news/last-news.component';
+import {ArticleRepository} from "@app/features/home/services/article.repository";
+import {LocaleHost} from "@common/lang-system/LocaleHost";
+import {Result} from "@common/help/services/Result";
+import {IfSuccess} from "@common/components/errors/if-success.directive";
+import {Article} from "@app/features/home/services/article";
+import {FilterNullByPipe} from "@common/pipelines/filter-null-by.pipe";
+import {OrderByPipe} from "@common/pipelines/order-by.pipe";
 
 @Component({
   selector: 'app-home',
@@ -12,43 +18,39 @@ import {LastNewsComponent} from './last-news/last-news.component';
     <div class="container">
       <div class="content">
         <app-top-banner class="banner"/>
-        <app-content-menu [items]="items" class="menu"/>
-        <div class="articles-with-news">
-          <div class="articles">
-            <app-article [article]="about"/>
-            <app-article [article]="hotToUse"/>
-            <app-article [article]="sergioMotosi"/>
-          </div>
-          <div class="news">
-            <div class="shadow-box"> <!-- TODO move to shared component or css -->
-              <app-last-news/>
+        <ng-container *ifSuccess="articles() as articles">
+          @let homePageArticles = articles | filterNullBy: 'homePageOrder' | orderBy: 'homePageOrder';
+          <app-content-menu [items]="homePageArticles" class="menu"/>
+          <div class="articles-with-news">
+            <div class="articles">
+              @for (article of homePageArticles; track article.id) {
+                <app-article [article]="article"/>
+              }
+            </div>
+            <div class="news">
+              <div class="shadow-box"> <!-- TODO move to shared component or css -->
+                <app-last-news/>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+
       </div>
     </div>
 
   `,
   styleUrl: './home.component.css',
-  imports: [TopBannerComponent, ContentMenuComponent, ArticleComponent, LastNewsComponent],
+  imports: [TopBannerComponent, ContentMenuComponent, ArticleComponent, LastNewsComponent, IfSuccess, FilterNullByPipe, OrderByPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
 
-  public readonly about: Article = {
-    id: 'about',
-    title: 'What is about?',
-    content: 'ISMOI - Istituto Sergio Motosi per lo Studio del Movimento Operaio Internazionale. L’Istituto è un think tank scientifico per la classe operaia internazionale e si impegna a fornire al movimento operaio strumenti, conoscenze e piattaforme per i compiti del suo sviluppo e organizzazione. La letteratura pubblicata, sebbene abbia carattere di ricerca scientifica, è pubblicata esclusivamente per i compiti pratici della moderna lotta di classe'
-  };
-  public readonly hotToUse: Article = {
-    id: 'how-to-use',
-    title: 'How to use the website?',
-    content: "Sul sito vengono regolarmente pubblicate le novità della casa editrice: i nostri giornali e libri, le cui descrizioni si trovano nelle apposite sezioni. La casa editrice dell'istituto pubblica libri in diverse lingue che, oltre alle informazioni sui contatti delle filiali, si trovano nelle rispettive rubriche linguistiche"
-  };
-  public readonly sergioMotosi: Article = {
-    id: 'sergio-motosi',
-    title: 'Sergio Motosi',
-    content: "Suddenly, on 12th October 2002, we lost our comrade, Sergio Motosi. The following passages are taken from his funeral service. Nature can be harsh and cruel to her finest sons. In Sergio Motosi, we lost one of the most impressive representatives of that generation of revolutionaries who came to Marxist science at the end of the 1960s. These were the children of “Leninist tactics for the educational crisis”, a work of Cervetto’s that in the history of our party’s development represents a milestone, a «practical step» on the long road that has led us to the present day."
-  };
-  public readonly items = [this.about, this.hotToUse, this.sergioMotosi];
+  private readonly repository = inject(ArticleRepository);
+  private readonly localeHost = inject(LocaleHost);
+  private readonly lang = this.localeHost.language;
+  private readonly articleResource = resource({
+    request: () => ({lang: this.lang()}),
+    loader: ({request: {lang}}) => this.repository.getAll(lang)
+  })
+  public readonly articles: Signal<Result<Article[]> | undefined> = computed(() => this.articleResource.value());
 }

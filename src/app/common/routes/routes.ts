@@ -77,12 +77,20 @@ function createRoute(item: RouteItem): Route {
     resolve: createContext(item.userRole),
     data: createRouteData(item.textKey, item.userRole, item.isMenuItem),
     children: [{loadComponent: item.loadComponent, path: ''}, ...item.children.map(c => createRoute(c)), redirectRoute],
+    canDeactivate: item.checkIfSaved ? [(component: IFormContent) => {
+      console.log(component);
+      return !(component.isEditing?.() ?? false) || confirm('You have unsaved changes. Do you want to drop them?');
+    }] : undefined
     // canActivate: [authRoleGuard(item.userRole)],
   } : {
     loadComponent: item.loadComponent,
     path: item.path,
     resolve: createContext(item.userRole),
     data: createRouteData(item.textKey, item.userRole, item.isMenuItem),
+    canDeactivate: item.checkIfSaved ? [(component: IFormContent) => {
+      console.log(component);
+      return !(component.isEditing?.() ?? false) || confirm('You have unsaved changes. Do you want to drop them?');
+    }] : undefined
     // canActivate: [authRoleGuard(item.userRole)],
   }
 }
@@ -94,6 +102,11 @@ export interface RouteItem {
   userRole?: UserRoles | undefined;
   children?: RouteItem[] | undefined;
   isMenuItem?: boolean;
+  checkIfSaved?: boolean;
+}
+
+export interface IFormContent {
+  isEditing(): boolean;
 }
 
 export const routes = createRoutes([
@@ -177,6 +190,7 @@ export const routes = createRoutes([
                     loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/articles-content/article-content/article-content.component').then(m => m.ArticleContentComponent),
                     path: ':pid',
                     textKey: 'articleContent',
+                    checkIfSaved: true,
                   }
                 ]
               }
