@@ -6,6 +6,7 @@ import {MatIcon} from '@angular/material/icon';
 import {RouterLink} from '@angular/router';
 import {Base64ToImage} from '@common/help/pipelines/Base64ToImage';
 import {UserService} from "@common/permission-system/UserService";
+import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-directive.directive";
 
 @Component({
   selector: 'app-newspaper-preview',
@@ -16,7 +17,7 @@ import {UserService} from "@common/permission-system/UserService";
         <h1 class="title-text">{{ v.title }}</h1>
         <div class="title-panel">
           @if (!readonly()) {
-            <button (click)="onDelete(v)" color="warn" mat-icon-button>
+            <button (appConfirmed)="onDelete(v)" color="warn" mat-icon-button>
               <mat-icon>delete</mat-icon>
             </button>
           }
@@ -33,7 +34,7 @@ import {UserService} from "@common/permission-system/UserService";
   `,
   styleUrl: './newspaper-preview.component.css',
   providers: [SubscriptionHandlerProvider],
-  imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, Base64ToImage],
+  imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, Base64ToImage, ConfirmationDirectiveDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewspaperPreviewComponent implements OnDestroy {

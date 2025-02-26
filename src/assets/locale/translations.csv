@@ -18,4 +18,8 @@ articlesContent,Articles content,Contenuto articoli,Содержание ста�
 homeContent,Home content,Contenuto homepage,Содержание домашней страницы,Contenu de la page d'accueil
 contentManager,Content manager,Manager contenuti,Менеджер контента,Manager de contenu
 bannerContent,Banner content,Contenuto banner,Содержание баннера,Contenu du banner
+buttonCancel,Cancel,Annulla,Отмена,Annuler
+buttonOk,Ok,Ok,Ок,Ok
+defaultConfirmationText,Are you sure?,Sei sicuro?,Вы уверены?,Etes-vous certain(e)
+defaultConfirmationTitle,Confirmation,Conferma,Подтверждение,Confirmation
 

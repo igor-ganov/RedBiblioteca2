@@ -10,6 +10,7 @@ import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
 import {Article} from "@app/features/home/services/article";
 import {OrderByPipe} from "@common/pipelines/order-by.pipe";
 import {DatePipe} from "@angular/common";
+import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-directive.directive";
 
 @Component({
   selector: 'app-articles-content',
@@ -20,7 +21,8 @@ import {DatePipe} from "@angular/common";
     MatTableModule,
     MatButtonModule,
     OrderByPipe,
-    DatePipe
+    DatePipe,
+    ConfirmationDirectiveDirective
   ],
   template: `
     <div *ifSuccess="articles() as articles" class="container">
@@ -45,7 +47,7 @@ import {DatePipe} from "@angular/common";
           <mat-header-cell *matHeaderCellDef> Panel</mat-header-cell>
           <mat-cell *matCellDef="let element">
             <a [routerLink]="[element.pid]" mat-raised-button>Open</a>
-            <button (click)="onDelete(element)" mat-raised-button>Delete</button>
+            <button (appConfirmed)="onDelete(element)" mat-raised-button>Delete</button>
           </mat-cell>
         </ng-container>
 

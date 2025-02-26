@@ -1,4 +1,8 @@
 export interface TextDictionary {
+  buttonCancel: string;
+  buttonOk: string;
+  defaultConfirmationText: string;
+  defaultConfirmationTitle: string;
   bannerContent: string;
   articleContent: string;
   articlesContent: string;
