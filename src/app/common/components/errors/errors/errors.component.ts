@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject, input, OnInit} from '@angular/core';
 import {ErrorResult} from '@common/help/services/Result';
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 
 @Component({
   selector: 'app-errors',

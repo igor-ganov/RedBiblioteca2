@@ -1,0 +1,31 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+::ng-deep.mat-mdc-snack-bar-container {
+  &.info-panel {
+
+    --mdc-snackbar-container-color: var(--info-backgraound);
+    --mdc-snackbar-supporting-text-color: var(--info-text);
+    --mat-snack-bar-button-color: var(--info-button-text);
+
+    & .mat-mdc-snack-bar-action {
+      background-color: var(--info-button);
+    }
+  }
+
+  &.error-panel {
+    --mdc-snackbar-container-color: var(--error-backgraound);
+    --mdc-snackbar-supporting-text-color: var(--error-text);
+    --mat-snack-bar-button-color: var(--error-button-text);
+
+    & .mat-mdc-snack-bar-action {
+      background-color: var(--error-button);
+    }
+  }
+
+  &.trace-panel {
+    & .mat-mdc-snack-bar-action {
+      background-color: var(--trace-button);
+    }
+  }
+}

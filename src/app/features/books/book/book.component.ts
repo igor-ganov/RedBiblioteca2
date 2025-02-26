@@ -5,7 +5,7 @@ import {IfSuccess} from '@common/components/errors/if-success.directive';
 import {BookViewComponent} from '../book-view/book-view.component';
 import {LocaleHost} from "@common/lang-system/LocaleHost";
 import {Result} from "@common/help/services/Result";
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 
 @Component({
   selector: 'app-book',

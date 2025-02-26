@@ -5,7 +5,7 @@ import {LocaleHost} from "@common/lang-system/LocaleHost";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleContentEditorComponent} from "./article-content-editor/article-content-editor.component";
 import {IfSuccess} from "@common/components/errors/if-success.directive";
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 import {IFormContent} from "@common/routes/routes";
 import {Article} from "@app/features/home/services/article";
 

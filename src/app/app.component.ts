@@ -6,6 +6,9 @@ import {MainComponent} from './layout/main/main.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {AsyncPipe} from '@angular/common';
 import {RouteBarComponent} from "@app/layout/route-bar/route-bar.component";
+import {
+  EventMessageQueueComponent
+} from "@common/event-message-queue/event-message-queue/event-message-queue.component";
 
 @Component({
   selector: 'app-root',
@@ -30,7 +33,7 @@ import {RouteBarComponent} from "@app/layout/route-bar/route-bar.component";
         </footer>
       }
     </section>
-
+    <app-event-message-queue/>
   `,
   styles: `
     :host {
@@ -77,7 +80,7 @@ import {RouteBarComponent} from "@app/layout/route-bar/route-bar.component";
       grid-area: foot;
     }
   `,
-  imports: [TopBarComponent, SideMenuComponent, MainComponent, FooterComponent, AsyncPipe, RouteBarComponent],
+  imports: [TopBarComponent, SideMenuComponent, MainComponent, FooterComponent, AsyncPipe, RouteBarComponent, EventMessageQueueComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {

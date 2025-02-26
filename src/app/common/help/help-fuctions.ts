@@ -5,7 +5,10 @@ export function log<T>(value: T) {
 
 export function errorAlert(error: string | Error) {
   console.error(error);
-  return undefined;
+}
+
+export function sendInfo(message: string) {
+  console.info(message);
 }
 
 export function errorThrow<T>(error: string | Error): T {

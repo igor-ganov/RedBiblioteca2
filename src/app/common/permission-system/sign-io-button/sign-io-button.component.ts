@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject, input, OnDestroy} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {EventMessageQueue} from '../../help/services/EventMassageQueue';
+import {EventMessageQueue} from '../../event-message-queue/EventMassageQueue';
 import {SubscriptionManager} from '../../help/services/SubscriptionManager';
 import {LocaleHost} from '../../lang-system/LocaleHost';
 import {UserService} from '../UserService';
@@ -12,35 +12,35 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
 @Component({
   selector: 'app-sign-io-button',
   template: `
-@if (lang(); as lang) {
-  @if (horizontal()) {
-    @if (userService.currentUser === undefined) {
-      <button color="basic" class="theme-button icon-button"
-              (click)="onSignIn(lang)" mat-icon-button>
-        <mat-icon>login</mat-icon>
-      </button>
-    } @else {
-      <button color="basic" class="theme-button icon-button" (click)="onSignOut(lang)" mat-icon-button>
-        <mat-icon>logout</mat-icon>
-      </button>
+    @if (lang(); as lang) {
+      @if (horizontal()) {
+        @if (userService.currentUser === undefined) {
+          <button color="basic" class="theme-button icon-button"
+                  (click)="onSignIn(lang)" mat-icon-button>
+            <mat-icon>login</mat-icon>
+          </button>
+        } @else {
+          <button color="basic" class="theme-button icon-button" (click)="onSignOut(lang)" mat-icon-button>
+            <mat-icon>logout</mat-icon>
+          </button>
+        }
+      } @else {
+        @if (userService.currentUser === undefined) {
+          <button color="basic" class="theme-button vertical"
+                  (click)="onSignIn(lang)" mat-stroked-button extended>
+            <span>Log In</span>
+            <mat-icon>login</mat-icon>
+          </button>
+        } @else {
+          <button color="basic" class="theme-button vertical" (click)="onSignOut(lang)" mat-stroked-button extended>
+            <span>Log Out</span>
+            <mat-icon>logout</mat-icon>
+          </button>
+        }
+      }
     }
-  } @else {
-    @if (userService.currentUser === undefined) {
-      <button color="basic" class="theme-button vertical"
-              (click)="onSignIn(lang)" mat-stroked-button extended>
-        <span>Log In</span>
-        <mat-icon>login</mat-icon>
-      </button>
-    } @else {
-      <button color="basic" class="theme-button vertical" (click)="onSignOut(lang)" mat-stroked-button extended>
-        <span>Log Out</span>
-        <mat-icon>logout</mat-icon>
-      </button>
-    }
-  }
-}
 
-`,
+  `,
   styleUrl: './sign-io-button.component.css',
   providers: [SubscriptionManager],
   imports: [MatIconButton, MatIcon, MatButton],

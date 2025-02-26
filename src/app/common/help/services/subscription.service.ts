@@ -1,7 +1,7 @@
 import {DestroyRef, inject, Injectable} from "@angular/core";
 import {catchError, firstValueFrom, Observable, Subscription, throwError} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 import {toError} from "@common/help/help-fuctions";
 
 @Injectable()

@@ -44,7 +44,7 @@ export class ConfirmationDialogComponent {
   public constructor() {
     const textHost = inject(TextHost);
 
-    this.text$ = textHost.getText('confirmationDialogText');
+    this.text$ = textHost.getText('confirmationDialog');
   }
 
   public onNoClick(): void {

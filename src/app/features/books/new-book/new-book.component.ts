@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 import {routsPaths} from '@common/routes/routes';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {BookViewComponent} from '../book-view/book-view.component';
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 
 @Component({
   selector: 'app-new-book',

@@ -6,7 +6,7 @@ import {
 import {IfSuccess} from "@common/components/errors/if-success.directive";
 import {LocaleHost} from "@common/lang-system/LocaleHost";
 import {Result, toResult} from "@common/help/services/Result";
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 import {computedWhenDefined} from "@common/help/functions/signals/computed-when-defined";
 import {HomeBanner, HomeBannerRepository} from "@app/features/home/services/banner.repository";
 

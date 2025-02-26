@@ -8,7 +8,7 @@ import {UserData, UserDataRepository} from "./UserDataRepository";
 import {FirebaseAppService} from "@common/help/services/firebase-app.service";
 import {toObservable} from "@angular/core/rxjs-interop";
 import {isPlatformBrowser} from "@angular/common";
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 
 @Injectable({providedIn: 'root'})
 export class UserService {

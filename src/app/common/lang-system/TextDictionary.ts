@@ -1,4 +1,5 @@
 export interface TextDictionary {
+  dismiss: string;
   buttonCancel: string;
   buttonOk: string;
   defaultConfirmationText: string;

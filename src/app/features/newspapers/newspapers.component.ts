@@ -9,7 +9,7 @@ import {Newspaper} from "@app/features/newspapers/models/Newspaper";
 import {LocaleHost} from "@common/lang-system/LocaleHost";
 import {Result} from "@common/help/services/Result";
 import {IfSuccess} from "@common/components/errors/if-success.directive";
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 
 @Component({
   selector: 'app-newspapers',

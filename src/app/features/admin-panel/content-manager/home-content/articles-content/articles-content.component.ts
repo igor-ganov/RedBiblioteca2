@@ -6,7 +6,7 @@ import {Result} from "@common/help/services/Result";
 import {MatAnchor, MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {RouterLink} from "@angular/router";
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 import {Article} from "@app/features/home/services/article";
 import {OrderByPipe} from "@common/pipelines/order-by.pipe";
 import {DatePipe} from "@angular/common";

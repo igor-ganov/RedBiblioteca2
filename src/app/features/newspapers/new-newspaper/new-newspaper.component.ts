@@ -7,7 +7,7 @@ import {routsPaths} from '@common/routes/routes';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {DatePipe} from '@angular/common';
 import {NewspaperViewComponent} from '../newspaper-view/newspaper-view.component';
-import {EventMessageQueue} from "@common/help/services/EventMassageQueue";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
 
 @Component({
   selector: 'app-new-newspaper',
