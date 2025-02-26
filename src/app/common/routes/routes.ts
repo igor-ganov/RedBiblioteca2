@@ -23,7 +23,7 @@ export const routsPaths = {
   contentManager: 'content-manager',
   homeContent: 'home-content',
   articlesContent: 'articles-content',
-
+  bannerContent: 'banner-content'
 }
 
 export const authRoleGuard = (role: UserRoles = UserRoles.GUEST) => (route: ActivatedRouteSnapshot) => {
@@ -193,6 +193,12 @@ export const routes = createRoutes([
                     checkIfSaved: true,
                   }
                 ]
+              },
+              {
+                loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/banner-content/banner-content.component').then(m => m.BannerContentComponent),
+                path: routsPaths.bannerContent,
+                textKey: 'bannerContent',
+                checkIfSaved: true,
               }
             ]
           },
@@ -212,5 +218,4 @@ export const routes = createRoutes([
     isMenuItem: true,
     textKey: 'about'
   },
-
 ]);

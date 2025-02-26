@@ -16,6 +16,8 @@ import {NgClass} from "@angular/common";
   `,
   styles: `
     .route-link {
+      text-wrap-mode: nowrap;
+
       text-decoration: none;
 
       display: block;

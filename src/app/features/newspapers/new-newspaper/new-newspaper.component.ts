@@ -38,7 +38,6 @@ export class NewNewspaperComponent {
 
   public async onPublish(newspaper: Newspaper) {
     this.isUpdating.set(true);
-    newspaper.id = newspaper.title.toLocaleLowerCase().replaceAll(' ', '-').replaceAll('\n', '');
     const result = await this.repository.add(this.lang(), newspaper);
     if (result.successeful) {
       await this.redirectTo(newspaper);

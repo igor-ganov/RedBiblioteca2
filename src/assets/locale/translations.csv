@@ -6,6 +6,7 @@ signIn,Sign in,Accedi,Вход,Connectez
 login,Login,Login,Вход,Login
 book,Book,Libro,Книга,Livre
 books,Books,Libri,Книги,Livres
+firebasePanel,Firebase panel,Panel firebase,Панель firebase,Panel firebase
 newbook,New Book,Nuovo Libro,Новая книга,Nouveau livre
 newspapers,"Newspapers","Giornali","Газеты","Journaux"
 newspaper,"Newspaper","Giornale","Газета","Journal"
@@ -16,4 +17,5 @@ articleContent,Article content,Contenuto articolo,Содержание стат�
 articlesContent,Articles content,Contenuto articoli,Содержание статей,Contenu des articles
 homeContent,Home content,Contenuto homepage,Содержание домашней страницы,Contenu de la page d'accueil
 contentManager,Content manager,Manager contenuti,Менеджер контента,Manager de contenu
-firebasePanel,Firebase panel,Panel firebase,Панель firebase,Panel firebase
+bannerContent,Banner content,Contenuto banner,Содержание баннера,Contenu du banner
+

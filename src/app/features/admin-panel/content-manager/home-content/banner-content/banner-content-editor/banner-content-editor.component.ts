@@ -1,14 +1,14 @@
 import {ChangeDetectionStrategy, Component, input, output, signal} from '@angular/core';
-import {FormsModule, NgForm} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {outputFromObservable, toObservable} from "@angular/core/rxjs-interop";
-import {Article} from "@app/features/home/services/article";
 import {PreventDropDirective} from "@common/directives/prevent-drop.directive";
+import {HomeBanner} from "@app/features/home/services/banner.repository";
 
 @Component({
-  selector: 'app-article-content-editor',
+  selector: 'app-banner-content-editor',
   imports: [
     FormsModule,
     MatFormFieldModule,
@@ -18,23 +18,23 @@ import {PreventDropDirective} from "@common/directives/prevent-drop.directive";
   ],
   template: `
     @let v = value();
-    <form #form="ngForm" (appPreventDrop)="isEditing.set($event)" (ngSubmit)="onSubmit(form, v)" class="container"
+    <form #form="ngForm" (appPreventDrop)="isEditing.set($event)" (ngSubmit)="onSubmit(v)" class="container"
           method="dialog">
       <div class="fields">
         <mat-form-field>
           <mat-label>Title</mat-label>
-          <input type="text" matInput [(ngModel)]="v.title" name="title">
+          <textarea matInput [(ngModel)]="v.title" name="title" required></textarea>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Home page order</mat-label>
-          <input type="number" matInput [(ngModel)]="v.homePageOrder" name="homePageOrder">
+          <mat-label>Subtitle</mat-label>
+          <textarea matInput [(ngModel)]="v.subtitle" name="subtitle" required></textarea>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Content</mat-label>
-          <textarea matInput [(ngModel)]="v.content" name="description"></textarea>
+          <mat-label>Text</mat-label>
+          <textarea matInput [(ngModel)]="v.content" name="text" required></textarea>
         </mat-form-field>
       </div>
-      <button mat-raised-button color="primary" [disabled]="(!v.title || !v.content) || !isEditing()">
+      <button mat-raised-button color="primary" [disabled]="!form.valid || !isEditing()">
         Publish
       </button>
     </form>
@@ -56,14 +56,14 @@ import {PreventDropDirective} from "@common/directives/prevent-drop.directive";
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArticleContentEditorComponent {
+export class BannerContentEditorComponent {
   public readonly isUpdating = input.required<boolean>();
-  public readonly published = output<Article>();
-  public readonly value = input.required<Article>();
+  public readonly published = output<HomeBanner>();
+  public readonly value = input.required<HomeBanner>();
   public readonly isEditing = signal(false);
   public readonly isEditingChange = outputFromObservable(toObservable(this.isEditing));
 
-  public onSubmit(form: NgForm, value: Article) {
+  public onSubmit(value: HomeBanner) {
     this.published.emit(value);
   }
 }

@@ -1,4 +1,5 @@
 export interface TextDictionary {
+  bannerContent: string;
   articleContent: string;
   articlesContent: string;
   homeContent: string;

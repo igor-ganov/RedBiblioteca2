@@ -39,6 +39,8 @@ export class FirestoreService {
     const docRef = doc(this.firestore, table, id);
     try {
       const d = await getDoc(docRef);
+      const data = d.data();
+      if (data == undefined) return result404(`object with id ${id} wasn't find in the table ${table}`);
       return toResult(d.data() as T);
     } catch (e) {
       return result500(toError(e).message);
@@ -60,7 +62,8 @@ export class FirestoreService {
 
   public async add<T extends { id: string; }>(table: string, data: T): Promise<Result<T>> {
     const dataSet = this.getDataSet(table);
-    const id = data.id == null ? data.id : (data.id = generateId());
+    console.log('data', data.id == null, data);
+    const id = data.id != null ? data.id : (data.id = generateId());
     try {
       await setDoc(doc(dataSet, id), data);
     } catch (e) {

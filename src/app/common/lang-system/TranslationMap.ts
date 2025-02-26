@@ -17,6 +17,7 @@ import {
 import {
   ArticleContentTextFactory
 } from "@app/features/admin-panel/content-manager/home-content/articles-content/article-content/locale";
+import {BannerContentTextFactory} from "@app/features/admin-panel/content-manager/home-content/banner-content/locale";
 
 export const translationMap = {
   login: {factory: new LoginTextFactory()},
@@ -34,4 +35,5 @@ export const translationMap = {
   homeContent: {factory: new HomeContentTextFactory()},
   articlesContent: {factory: new ArticlesContentTextFactory()},
   articleContent: {factory: new ArticleContentTextFactory()},
+  bannerContent: {factory: new BannerContentTextFactory()},
 }

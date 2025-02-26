@@ -5,10 +5,10 @@ import {MatTableModule} from "@angular/material/table";
 import {routsPaths} from "@common/routes/routes";
 
 @Component({
-    selector: 'app-home-content',
-    template: `
+  selector: 'app-home-content',
+  template: `
     <div class="container">
-      <mat-table class="table" [dataSource]="[{title: 'Articles', panel: this.articlesContent}]">
+      <mat-table class="table" [dataSource]="contentPages">
 
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
@@ -27,7 +27,7 @@ import {routsPaths} from "@common/routes/routes";
       </mat-table>
     </div>
   `,
-    styles: `
+  styles: `
     .container {
       padding: 3em;
       display: flex;
@@ -41,14 +41,17 @@ import {routsPaths} from "@common/routes/routes";
       min-width: 500px;
     }
   `,
-    imports: [
-        RouterLink,
-        MatAnchor,
-        MatTableModule
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [
+    RouterLink,
+    MatAnchor,
+    MatTableModule
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeContentComponent {
-  public readonly articlesContent = routsPaths.articlesContent;
   public readonly displayedColumns = ['title', 'panel'];
+  public readonly contentPages = [
+    {title: 'Banner', panel: routsPaths.bannerContent},
+    {title: 'Articles', panel: routsPaths.articlesContent},
+  ];
 }
