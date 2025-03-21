@@ -1,26 +1,34 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, resource, Signal} from '@angular/core';
+import {HomeBanner, HomeBannerRepository} from "@app/features/home/services/banner.repository";
+import {LocaleHost} from "@common/lang-system/LocaleHost";
+import {IfSuccess} from "@common/components/errors/if-success.directive";
+import {Result} from "@common/help/services/Result";
 
 @Component({
   selector: 'app-top-banner',
   template: `
-<div class="container">
-    <div class="banner">
+    <div class="container">
+      <div *ifSuccess="banner() as banner" class="banner">
         <div class="title-panel">
-            <div class="title">{{title}}</div>
-            <div class="description">{{description}}</div>
+          <div class="title">{{ banner.title }}</div>
+          <div class="description">{{ banner.subtitle }}</div>
         </div>
-        <div class="quote">{{quote}}</div>
+        <div class="quote">{{ banner.content }}</div>
+      </div>
     </div>
-</div>
-`,
+  `,
   styleUrl: './top-banner.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    IfSuccess
+  ]
 })
 export class TopBannerComponent {
-  public readonly description = `Institute
-                  for the Study of
-                  International
-                  Working-Class Movement`;
-  public readonly title = `Sergio Motosi`;
-  public readonly quote = `for "the in-depth study of the history of the working-class movement throughout the world, with particular reference to the forms of political and trade union organisations from their inception to the present day"`;
+  private readonly homeBannerRepository = inject(HomeBannerRepository);
+  private readonly localeHost = inject(LocaleHost);
+  private readonly homeBannerResource = resource({
+    request: () => ({lang: this.localeHost.language()}),
+    loader: ({request: {lang}}) => this.homeBannerRepository.get(lang),
+  })
+  public readonly banner: Signal<Result<HomeBanner> | undefined> = this.homeBannerResource.value.asReadonly()
 }
