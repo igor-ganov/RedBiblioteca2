@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Actions
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows"
+    schedule:
+      interval: "weekly"
+
+  # Angular (npm)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
