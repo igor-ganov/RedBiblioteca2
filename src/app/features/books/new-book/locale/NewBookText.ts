@@ -4,9 +4,6 @@ import {IMenuItem} from "@common/menu-system/IMenuItem";
 
 
 export class NewBookTextFactory implements ITitleFactory, ITextFactory<NewBookText> {
-  public constructor() {
-  }
-
   public getText(dictionary: TextDictionary): NewBookText {
     return {
       title: dictionary.newbook,

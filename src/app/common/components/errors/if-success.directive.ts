@@ -25,7 +25,7 @@ export class IfSuccess<T> {
 
   public set ifSuccess(value: Result<T> | null | undefined) {
     this._data = value ?? undefined;
-    if (value === null || value === undefined) {
+    if (value === null || value === undefined) { /* empty */
     } else if (value.successeful) {
       this.context.$implicit = this.context.ifSuccess = value.result;
     } else {
@@ -65,7 +65,7 @@ export class IfSuccess<T> {
 
   public static ngTemplateContextGuard<T>(
     dir: IfSuccess<T>,
-    ctx: any,
+    ctx: unknown,
   ): ctx is IfSuccessContext<T> {
     return true;
   }

@@ -26,7 +26,7 @@ import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-
         </div>
       </div>
       <div class="subtitle"><h2>{{ v.month }}, {{ v.year }}</h2></div>
-      <div class="image"><img [src]="v.cover | base64toImage" fill alt="cover"></div>
+      <div class="image"><img [src]="v.cover | base64toImage" alt="cover"></div>
       <div class="description"><span>{{ v.description }}</span></div>
     </div>
 
