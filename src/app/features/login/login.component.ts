@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core'
 import {Observable} from 'rxjs';
 import {TextHost} from '@common/lang-system/TextHost';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
-import {SubscriptionManager} from '@common/help/services/SubscriptionManager';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ISignInData} from "@common/permission-system/ISignInData";
 import {UserService} from '@common/permission-system/UserService';
@@ -55,7 +54,6 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
       grid-auto-flow: row;
       grid-template-rows: max-content;
     }`,
-  providers: [SubscriptionManager],
   imports: [FormsModule, MatFormField, MatLabel, MatInput, MatIconButton, MatSuffix, MatIcon, MatButton, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

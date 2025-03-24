@@ -40,23 +40,42 @@ export function getElementTypeName<T>(value: T): string {
 
 //can't copy inner array, maps
 export function simpleFieldClone<TSrc, TDst>(
-  src: TSrc, dst: TDst,
+  src: TSrc, dst: TDst | null | undefined,
   {
     skipCollections = false,
     copyAll = false,
-  }: SimpeCloneOptions = {}): TDst {
-  const srcObject = src as any;
-  const dstObject = dst as any;
-  const typeName = srcObject?.constructor?.name;
-  if (is(typeName, [Array.name, Map.name]) && !skipCollections) errorThrow('Copy of collection not supported');
-  if (typeof src === 'object' && isNot(typeName, [Date.name])) dst != null ?
-    Object.keys((copyAll ? src : dst) as object).forEach(prop =>
-      dstObject[prop] = processIfLeftNotNull(
-        srcObject[prop], dstObject[prop],
-        (s, d) => simpleFieldClone(s, d, {skipCollections, copyAll})
-      )) : errorThrow('Inner objects must be inizialized before clone method invoked');
-  else dst = src as any as TDst;
-  return dst;
+  }: SimpeCloneOptions = {}
+): TDst {
+  const typeName = (src as { constructor: { name: string } }).constructor.name;
+
+  if (is(typeName, [Array.name, Map.name]) && !skipCollections) {
+    errorThrow('Copy of collection not supported');
+  }
+
+  if (typeof src === 'object' && isNot(typeName, [Date.name])) {
+    return assignDst<TSrc, TDst>(dst, copyAll, src, skipCollections);
+  } else {
+    return src as unknown as TDst;
+  }
+}
+
+export type Recordify<T> = { [K in keyof T]: Recordify<T[K]> | null | undefined };
+
+function assignDst<TSrc, TDst>(dst: Recordify<TDst> | null | undefined, copyAll: boolean, src: Recordify<TSrc>, skipCollections: boolean) {
+  if (dst !== null && dst !== undefined) {
+    for (const prop of getKeys(copyAll ? src : dst)) {
+      dst[prop] = processIfLeftNotNull(
+        src[prop], dst[prop],
+        (s: Recordify<TSrc[typeof prop]>, d: Recordify<TDst[typeof prop]> | null | undefined) => simpleFieldClone(s, d, {
+          skipCollections,
+          copyAll
+        })
+      );
+    }
+  } else {
+    errorThrow('Inner objects must be initialized before clone method invoked');
+  }
+  return (dst ?? {}) as TDst;
 }
 
 export function processIfLeftNotNull<TLeft, TRight>(

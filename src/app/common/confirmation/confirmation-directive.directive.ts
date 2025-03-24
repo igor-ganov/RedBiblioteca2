@@ -9,8 +9,8 @@ import {ConfirmationDialogComponent} from "@common/confirmation/confirmation-dia
 export class ConfirmationDirectiveDirective implements OnDestroy {
   private readonly dialog = inject(MatDialog);
 
-  public readonly confirmationText = input<string | undefined>(undefined, {alias: 'confirmation-text'});
-  public readonly confirmationTitle = input<string | undefined>(undefined, {alias: 'confirmation-title'});
+  public readonly confirmationText = input<string | undefined>(undefined);
+  public readonly confirmationTitle = input<string | undefined>(undefined);
   public readonly appConfirmed = output<MouseEvent>();
 
   public subscription?: Subscription;

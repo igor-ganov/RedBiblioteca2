@@ -8,7 +8,6 @@ import {LoginComponent} from "@app/features/login/login.component";
 import {LoadingComponent} from "@common/components/loading/loading.component";
 
 @Component({
-  selector: 'root-path',
   template: `
     @if (getPermission() | async; as permission) {
       @if (permission.isPermited) {

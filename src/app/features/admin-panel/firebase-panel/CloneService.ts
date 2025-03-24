@@ -25,7 +25,7 @@ export class CloneService {
   }
 
   public async export(path: string, collectionDatas: StoreNode[]) {
-    const exportJson = Object.create({}) as {};
+    const exportJson = Object.create({}) as object;
     for (const collectionData of collectionDatas) {
       const elements = await this.getElements(collectionData, `${path}/${collectionData.name}`);
       addField(exportJson, collectionData.name, elements);
@@ -50,7 +50,7 @@ export class CloneService {
     return element;
   }
 
-  private async addChildren<T>(element: T, fields: StoreNode[] | undefined, path: string) {
+  private async addChildren<T extends object>(element: T, fields: StoreNode[] | undefined, path: string) {
     if (!fields) return;
     for (const field of fields.filter(f => f.type === 'collection' || f.type === 'object')) {
       const value = field.type === 'collection' ?
@@ -67,11 +67,12 @@ export class CloneService {
   }
 }
 
-export function addField<T>(object: any, name: string, value: T): T {
-  return object[name] = value;
+export function addField<T>(object: object, name: string, value: T): T {
+  if (!(name in object)) throw new Error(`Object doesn't have field ${name}`);
+  return (object as Record<string, T>)[name] = value;
 }
 
-export function* getNodes(element: {}, parent: string, id?: string): Iterable<NodeValue> {
+export function* getNodes(element: object, parent: string, id?: string): Iterable<NodeValue> {
   const currentPath = id === undefined ? parent : `${parent}/${id}`;
   if (Array.isArray(element)) yield* getNodesFromArray(element, currentPath);
   else {

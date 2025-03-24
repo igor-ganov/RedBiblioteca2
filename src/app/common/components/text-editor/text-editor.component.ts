@@ -5,35 +5,11 @@ import {NgClass} from '@angular/common';
 @Component({
   selector: 'app-text-editor',
   template: `
-<div class="edit-text" [ngClass]="inline()? 'inline' : ''" [textContent]="value" (input)="onEditing($event)"
-     contenteditable>
-  {{ editingValue() }}
-</div>
-
-<!-- <div [ngClass]="orientationClass" class="text-view edit-view" *ngIf="editing; else readonly">
-    <div class="edit-text" [textContent]="editingValue" (input)="onEditing($event)" contenteditable>
-        {{editingValue}}
+    <div class="edit-text" [ngClass]="inline()? 'inline' : ''" [textContent]="value" (input)="onEditing($event)"
+         contenteditable>
+      {{ editingValue() }}
     </div>
-    <div class="read-buttons-container">
-        <div class="buttons">
-            <button color="primary" mat-icon-button (click)="onApply()"><mat-icon>done</mat-icon></button>
-            <button color="primary" mat-icon-button (click)="onCancel()"><mat-icon>cancel</mat-icon></button>
-        </div>
-    </div>
-</div>
-
-<ng-template #readonly>
-    <div [ngClass]="orientationClass" class="text-view read-view">
-        <div class="read-text">{{value}}</div>
-        <div class="read-buttons-container">
-            <div class="buttons">
-                <button color="primary" mat-icon-button (click)="onEdit()"><mat-icon>edit</mat-icon></button>
-            </div>
-        </div>
-    </div>
-</ng-template> -->
-
-`,
+  `,
   styleUrl: './text-editor.component.css',
   imports: [NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,7 +39,8 @@ export class TextEditorComponent {
       case 'right':
         return 'buttons-orientation-right';
       default:
-        return errorAlert('unexpected values of Position:' + value)!;
+        errorAlert('unexpected values of Position:' + value);
+        return 'top';
     }
   }
 
@@ -97,24 +74,8 @@ export class TextEditorComponent {
   }
 
   public onEditing(event: Event) {
-    const newText = (event.target as HTMLElement).textContent ?? '';
     //this.editingValue = newText;
-    this.value = newText;
-  }
-
-  private onEdit() {
-    this.editing = true;
-    this.editingValue.set(this.value);
-  }
-
-  private onApply() {
-    this.editing = false;
-    this.value = this.editingValue();
-  }
-
-  private onCancel() {
-    this.editing = false;
-    this.editingValue.set(this.value);
+    this.value = (event.target as HTMLElement).textContent ?? '';
   }
 }
 

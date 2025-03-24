@@ -2,6 +2,7 @@ import {AfterViewInit, Directive, ElementRef, input} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {scrollOffset} from '@app/Configuration';
 
+// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({selector: '[scrollTo]'})
 export class ScrollToDirective implements AfterViewInit {
   public readonly id = input.required<string>({alias: "scrollTo"});

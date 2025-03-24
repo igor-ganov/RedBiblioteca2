@@ -1,7 +1,6 @@
-import {ChangeDetectionStrategy, Component, computed, inject, input, OnDestroy, output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, input, output} from '@angular/core';
 import {Book} from '../models/Book';
 import {UserService} from '@common/permission-system/UserService';
-import {SubscriptionHandler, SubscriptionHandlerProvider} from '@common/help/services/SubscriptionHandler';
 import {MatIconAnchor, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {RouterLink} from '@angular/router';
@@ -33,23 +32,17 @@ import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-
 
   `,
   styleUrl: './book-preview.component.css',
-  providers: [SubscriptionHandlerProvider],
   imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, Base64ToImage, ConfirmationDirectiveDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookPreviewComponent implements OnDestroy {
+export class BookPreviewComponent {
   public readonly value = input.required<Book>();
   private readonly userService = inject(UserService);
   public readonly readonly = computed(() => this.userService.currentUser() == undefined);
-  private readonly subscriptionHandler = inject(SubscriptionHandler);
 
   public readonly deleteRequested = output<Book>();
 
   public onDelete(value: Book) {
     this.deleteRequested.emit(value);
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptionHandler.destroy();
   }
 }

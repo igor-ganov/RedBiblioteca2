@@ -66,8 +66,7 @@ export class LocalStorage {
 
   public get<T>(key: string): T | undefined {
     const json = localStorage.getItem(key);
-    const item = json != null ? JSON.parse(json) as T : undefined;
-    return item;
+    return json != null ? JSON.parse(json) as T : undefined;
   }
 
   public getLast<T>(key: string): T | undefined {

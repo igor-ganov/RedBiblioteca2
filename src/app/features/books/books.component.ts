@@ -4,7 +4,6 @@ import {MatIconAnchor} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
 import {BookPreviewComponent} from './book-preview/book-preview.component';
-import {createSubscriptionService} from "@common/help/services/subscription.service";
 import {Book} from "@app/features/books/models/Book";
 import {BookRepository} from "@app/features/books/services/BookRepository";
 import {LocaleHost} from "@common/lang-system/LocaleHost";
@@ -55,7 +54,6 @@ import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooksComponent {
-  private readonly subscriptionService = createSubscriptionService();
   private readonly userService = inject(UserService);
   public readonly readonly = computed(() => this.userService.currentUser() == undefined);
   public readonly repository = inject(BookRepository);

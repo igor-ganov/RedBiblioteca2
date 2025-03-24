@@ -1,8 +1,5 @@
-import {ChangeDetectionStrategy, Component, inject, input, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input} from '@angular/core';
 import {NavigationExtras, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {EventMessageQueue} from '../../event-message-queue/EventMassageQueue';
-import {SubscriptionManager} from '../../help/services/SubscriptionManager';
 import {LocaleHost} from '../../lang-system/LocaleHost';
 import {UserService} from '../UserService';
 import {MatButton, MatIconButton} from '@angular/material/button';
@@ -14,7 +11,7 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
   template: `
     @if (lang(); as lang) {
       @if (horizontal()) {
-        @if (userService.currentUser === undefined) {
+        @if (userService.currentUser() === undefined) {
           <button color="basic" class="theme-button icon-button"
                   (click)="onSignIn(lang)" mat-icon-button>
             <mat-icon>login</mat-icon>
@@ -25,7 +22,7 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
           </button>
         }
       } @else {
-        @if (userService.currentUser === undefined) {
+        @if (userService.currentUser() === undefined) {
           <button color="basic" class="theme-button vertical"
                   (click)="onSignIn(lang)" mat-stroked-button extended>
             <span>Log In</span>
@@ -42,11 +39,10 @@ import {createSubscriptionService} from "@common/help/services/subscription.serv
 
   `,
   styleUrl: './sign-io-button.component.css',
-  providers: [SubscriptionManager],
   imports: [MatIconButton, MatIcon, MatButton],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignIoButtonComponent implements OnDestroy {
+export class SignIoButtonComponent {
   public readonly horizontal = input(true);
 
   private readonly router = inject(Router);
@@ -73,21 +69,5 @@ export class SignIoButtonComponent implements OnDestroy {
     };
     await this.router.navigateByUrl('/', {skipLocationChange: true});
     await this.router.navigate([`/${url}`], navigationExtras);
-  }
-
-  //Common
-  private readonly subscriptionManager = inject(SubscriptionManager);
-  private readonly eventMessageQueue = inject(EventMessageQueue);
-
-  private subscribe<T>(observable: Observable<T>, handler: ((value: T) => void) | undefined = undefined) {
-    this.subscriptionManager.createSubscriptionFor(observable, handler, (e) => this.alertError(e));
-  }
-
-  private alertError(error: string | Error) {
-    this.eventMessageQueue.pushError(error);
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptionManager.clearSubscriptions();
   }
 }

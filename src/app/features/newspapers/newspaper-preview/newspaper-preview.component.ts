@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, Component, computed, inject, input, OnDestroy, output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, input, output} from '@angular/core';
 import {Newspaper} from '../models/Newspaper';
-import {SubscriptionHandler, SubscriptionHandlerProvider} from '@common/help/services/SubscriptionHandler';
 import {MatIconAnchor, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {RouterLink} from '@angular/router';
@@ -33,23 +32,17 @@ import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-
 
   `,
   styleUrl: './newspaper-preview.component.css',
-  providers: [SubscriptionHandlerProvider],
   imports: [MatIconButton, MatIcon, MatIconAnchor, RouterLink, Base64ToImage, ConfirmationDirectiveDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewspaperPreviewComponent implements OnDestroy {
+export class NewspaperPreviewComponent {
   public readonly value = input.required<Newspaper>();
   private readonly userService = inject(UserService);
   public readonly readonly = computed(() => this.userService.currentUser() == undefined);
-  private readonly subscriptionHandler = inject(SubscriptionHandler);
 
   public readonly deleteRequested = output<Newspaper>();
 
   public onDelete(value: Newspaper) {
     this.deleteRequested.emit(value);
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptionHandler.destroy();
   }
 }

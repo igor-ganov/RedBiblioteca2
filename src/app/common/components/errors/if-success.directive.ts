@@ -5,6 +5,7 @@ import {LoadingComponent} from '../loading/loading.component';
 
 // eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({selector: '[ifSuccess]'})
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class IfSuccess<T> {
 
   public constructor(

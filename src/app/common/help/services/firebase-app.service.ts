@@ -5,7 +5,8 @@ import {environment} from "../../../../environments/environment";
 @Injectable({providedIn: 'root'})
 export class FirebaseAppService {
   public readonly appValue: FirebaseApp;
-  constructor() {
+
+  public constructor() {
     this.appValue = initializeApp(environment.firebase);
   }
 }

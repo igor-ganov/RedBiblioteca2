@@ -1,10 +1,10 @@
-import { UserRoles } from "./UserRoles";
+import {UserRoles} from "./UserRoles";
 
-export class User{
-    id = '';
-    userName = '';
-    description = '';
-    roles = UserRoles.NONE;
-    password = '';
+export class User {
+  public id = '';
+  public userName = '';
+  public description = '';
+  public roles = UserRoles.NONE;
+  public password = '';
 }
 

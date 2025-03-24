@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+// @ts-nocheck
 export interface TextDictionary {
   dismiss: string;
   buttonCancel: string;

@@ -1,26 +1,11 @@
-import {EventEmitter, Injectable} from "@angular/core";
+import {Injectable, signal} from "@angular/core";
 
 @Injectable({providedIn: 'root'})
 export class RootHrefService {
-  private baseRoot = '/';
-  private readonly observable;
-
-  constructor() {
-    this.observable = this.baseRootChanged.asObservable();
+  public setBaseRoot(path: string) {
+    this._baseRoot.set(`/${path}/`);
   }
 
-  setBaseRoot(path: string) {
-    this.baseRoot = `/${path}/`;
-    this.baseRootChanged.emit(this.baseRoot);
-  }
-
-  getBaseRoot() {
-    return this.baseRoot;
-  }
-
-  public baseRootChanged = new EventEmitter<string>();
-
-  getBaseRootAsync() {
-    return this.observable;
-  }
+  private readonly _baseRoot = signal('/');
+  public readonly baseRoot = this._baseRoot.asReadonly();
 }
