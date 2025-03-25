@@ -15,12 +15,11 @@
   border-image: linear-gradient(var(--background-card) 2%, var(--foreground-text) 15%, var(--foreground-text) 85%, var(--background-card) 98%) 10;
   max-width: 80em;
   display: grid;
-  grid-template-areas: "title title"
+  grid-template: "title title"
                          "description image"
                          "description subtitle"
-                         "buttons buttons";
+                         "buttons buttons" / 3fr 1fr;
   grid-template-rows: min-content min-content 1fr;
-  grid-template-columns: 3fr 1fr;
 }
 
 .title {
@@ -90,13 +89,12 @@
 @media (width <= 1145px) {
   .card {
     max-width: 90vw;
-    grid-template-areas: "title"
-                             "image"
-                             "subtitle"
-                             "description"
-                             "buttons";
+    grid-template: "title"
+                   "image"
+                   "subtitle"
+                   "description"
+                   "buttons" / 1fr;
     grid-template-rows: min-content min-content min-content 1fr;
-    grid-template-columns: 1fr;
   }
 
   .image {

@@ -6,9 +6,6 @@
 
 .link-button:hover {
   filter: brightness(95%);
-}
-
-.link-button:hover {
   color: var(--primary-default);
 }
 
