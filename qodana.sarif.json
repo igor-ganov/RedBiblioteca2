@@ -11,6 +11,10 @@
           "rules": [],
           "taxa": [
             {
+              "id": "EditorConfig",
+              "name": "EditorConfig"
+            },
+            {
               "id": "JavaScript and TypeScript",
               "name": "JavaScript and TypeScript"
             },
@@ -21,7 +25,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -31,10 +35,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "id": "EditorConfig",
-              "name": "EditorConfig"
             },
             {
               "id": "HTTP Client",
@@ -63,7 +63,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -79,13 +79,13 @@
               "name": "JSON and JSON5"
             },
             {
-              "id": "JavaScript and TypeScript/Code style issues",
-              "name": "Code style issues",
+              "id": "JavaScript and TypeScript/General",
+              "name": "General",
               "relationships": [
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -97,13 +97,13 @@
               ]
             },
             {
-              "id": "JavaScript and TypeScript/General",
-              "name": "General",
+              "id": "JavaScript and TypeScript/Code style issues",
+              "name": "Code style issues",
               "relationships": [
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -121,7 +121,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -139,7 +139,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -157,7 +157,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -173,17 +173,13 @@
               "name": "HTML"
             },
             {
-              "id": "Cucumber",
-              "name": "Cucumber"
-            },
-            {
               "id": "JavaScript and TypeScript/Unused symbols",
               "name": "Unused symbols",
               "relationships": [
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -195,13 +191,17 @@
               ]
             },
             {
+              "id": "Cucumber",
+              "name": "Cucumber"
+            },
+            {
               "id": "JavaScript and TypeScript/Data flow",
               "name": "Data flow",
               "relationships": [
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -219,7 +219,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -237,7 +237,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -277,7 +277,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -295,7 +295,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -313,7 +313,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -331,7 +331,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -375,25 +375,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
-                    "toolComponent": {
-                      "name": "QDJS"
-                    }
-                  },
-                  "kinds": [
-                    "superset"
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "JavaScript and TypeScript/Function metrics",
-              "name": "Function metrics",
-              "relationships": [
-                {
-                  "target": {
-                    "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -407,6 +389,24 @@
             {
               "id": "Structural search",
               "name": "Structural search"
+            },
+            {
+              "id": "JavaScript and TypeScript/Function metrics",
+              "name": "Function metrics",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "JavaScript and TypeScript",
+                    "index": 1,
+                    "toolComponent": {
+                      "name": "QDJS"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
             },
             {
               "id": "Dependency analysis",
@@ -427,7 +427,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -475,7 +475,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -493,7 +493,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -533,7 +533,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -551,7 +551,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -569,7 +569,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -587,7 +587,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -605,7 +605,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -651,7 +651,7 @@
                 {
                   "target": {
                     "id": "JavaScript and TypeScript",
-                    "index": 0,
+                    "index": 1,
                     "toolComponent": {
                       "name": "QDJS"
                     }
@@ -680,6 +680,1004 @@
         },
         "extensions": [
           {
+            "name": "org.editorconfig.editorconfigjetbrains",
+            "version": "243.25516",
+            "rules": [
+              {
+                "id": "EditorConfigCharClassRedundancy",
+                "shortDescription": {
+                  "text": "Unnecessary character class"
+                },
+                "fullDescription": {
+                  "text": "Reports character classes that consist of a single character. Such classes can be simplified to a character, for example '[a]'→'a'.",
+                  "markdown": "Reports character classes that consist of a single character. Such classes can be simplified to a character, for example `[a]`→`a`."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigCharClassRedundancy",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigRootDeclarationUniqueness",
+                "shortDescription": {
+                  "text": "Extra top-level declaration"
+                },
+                "fullDescription": {
+                  "text": "Reports multiple top-level declarations. There can be only one optional “root=true” top-level declaration in the EditorConfig file. Using multiple top-level declarations is not allowed.",
+                  "markdown": "Reports multiple top-level declarations. There can be only one optional \"root=true\" top-level declaration in the EditorConfig file. Using multiple top-level declarations is not allowed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigRootDeclarationUniqueness",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigNumerousWildcards",
+                "shortDescription": {
+                  "text": "Too many wildcards"
+                },
+                "fullDescription": {
+                  "text": "Reports sections that contain too many wildcards. Using a lot of wildcards may lead to performance issues.",
+                  "markdown": "Reports sections that contain too many wildcards. Using a lot of wildcards may lead to performance issues."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigNumerousWildcards",
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate",
+                    "codeQualityCategory": "Performance"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigPartialOverride",
+                "shortDescription": {
+                  "text": "Overlapping sections"
+                },
+                "fullDescription": {
+                  "text": "Reports subsets of files specified in the current section that overlap with other subsets in other sections. For example: '[{foo,bar}]' and '[{foo,bas}]' both contain “foo”.",
+                  "markdown": "Reports subsets of files specified in the current section that overlap with other subsets in other sections. For example: `[{foo,bar}]` and `[{foo,bas}]` both contain \"foo\"."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigPartialOverride",
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigEmptySection",
+                "shortDescription": {
+                  "text": "Empty section"
+                },
+                "fullDescription": {
+                  "text": "Reports sections that do not contain any EditorConfig properties.",
+                  "markdown": "Reports sections that do not contain any EditorConfig properties."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigEmptySection",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigShadowingOption",
+                "shortDescription": {
+                  "text": "Overriding property"
+                },
+                "fullDescription": {
+                  "text": "Reports properties that override the same properties defined earlier in the file. For example: '[*.java]\nindent_size=4\n[{*.java,*.js}]\nindent_size=2' The second section includes the same files as '[*.java]' but also sets indent_size to value 2. Thus the first declaration 'indent_size=4'will be ignored.",
+                  "markdown": "Reports properties that override the same properties defined earlier in the file.\n\nFor example:\n\n\n    [*.java]\n    indent_size=4\n    [{*.java,*.js}]\n    indent_size=2\n\nThe second section includes the same files as `[*.java]` but also sets indent_size to value 2. Thus the first declaration `indent_size=4`will be ignored."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigShadowingOption",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigListAcceptability",
+                "shortDescription": {
+                  "text": "Unexpected value list"
+                },
+                "fullDescription": {
+                  "text": "Reports lists of values that are used in properties in which lists are not supported. In this case, only a single value can be specified.",
+                  "markdown": "Reports lists of values that are used in properties in which lists are not supported. In this case, only a single value can be specified."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigListAcceptability",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigKeyCorrectness",
+                "shortDescription": {
+                  "text": "Unknown property"
+                },
+                "fullDescription": {
+                  "text": "Reports properties that are not supported by the IDE. Note: some “ij” domain properties may require specific language plugins.",
+                  "markdown": "Reports properties that are not supported by the IDE. Note: some \"ij\" domain properties may require specific language plugins."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigKeyCorrectness",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigPatternEnumerationRedundancy",
+                "shortDescription": {
+                  "text": "Unnecessary braces"
+                },
+                "fullDescription": {
+                  "text": "Reports pattern lists that are either empty '{}' or contain just one pattern, for example '{foo}' in contrast to a list containing multiple patterns, for example '{foo,bar}'. In this case braces are handled as a part of the name. For example, the pattern '*.{a}' will match the file 'my.{a}' but not 'my.a'.",
+                  "markdown": "Reports pattern lists that are either empty `{}` or contain just one pattern, for example `{foo}` in contrast to a list containing multiple patterns, for example `{foo,bar}`. In this case braces are handled as a part of the name. For example, the pattern `*.{a}` will match the file `my.{a}` but not `my.a`."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigPatternEnumerationRedundancy",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigEncoding",
+                "shortDescription": {
+                  "text": "File encoding doesn't match EditorConfig charset"
+                },
+                "fullDescription": {
+                  "text": "Checks that current file encoding matches the encoding defined in \"charset\" property of .editorconfig file.",
+                  "markdown": "Checks that current file encoding matches the encoding defined in \"charset\" property of .editorconfig file."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigEncoding",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigRootDeclarationCorrectness",
+                "shortDescription": {
+                  "text": "Unexpected top-level declaration"
+                },
+                "fullDescription": {
+                  "text": "Reports unexpected top-level declarations. Top-level declarations other than “root=true” are not allowed in the EditorConfig file.",
+                  "markdown": "Reports unexpected top-level declarations. Top-level declarations other than \"root=true\" are not allowed in the EditorConfig file."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigRootDeclarationCorrectness",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigReferenceCorrectness",
+                "shortDescription": {
+                  "text": "Invalid reference"
+                },
+                "fullDescription": {
+                  "text": "Reports identifiers that are either unknown or have a wrong type.",
+                  "markdown": "Reports identifiers that are either unknown or have a wrong type."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigReferenceCorrectness",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigPairAcceptability",
+                "shortDescription": {
+                  "text": "Unexpected key-value pair"
+                },
+                "fullDescription": {
+                  "text": "Reports key-value pairs that are not allowed in the current context.",
+                  "markdown": "Reports key-value pairs that are not allowed in the current context."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigPairAcceptability",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigPatternRedundancy",
+                "shortDescription": {
+                  "text": "Duplicate or redundant pattern"
+                },
+                "fullDescription": {
+                  "text": "Reports file patterns that are redundant as there already are other patterns that define the same scope of files or even a broader one. For example, in '[{*.java,*}]' the first '*.java' pattern defines a narrower scope compared to '*'. That is why it is redundant and can be removed.",
+                  "markdown": "Reports file patterns that are redundant as there already are other patterns that define the same scope of files or even a broader one. For example, in `[{*.java,*}]` the first `*.java` pattern defines a narrower scope compared to `*`. That is why it is redundant and can be removed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigPatternRedundancy",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigNoMatchingFiles",
+                "shortDescription": {
+                  "text": "No matching files"
+                },
+                "fullDescription": {
+                  "text": "Reports sections with wildcard patterns that do not match any files under the directory in which the '.editorconfig' file is located.",
+                  "markdown": "Reports sections with wildcard patterns that do not match any files under the directory in which the `.editorconfig` file is located."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigNoMatchingFiles",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigDeprecatedDescriptor",
+                "shortDescription": {
+                  "text": "Deprecated property"
+                },
+                "fullDescription": {
+                  "text": "Reports EditorConfig properties that are no longer supported.",
+                  "markdown": "Reports EditorConfig properties that are no longer supported."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigDeprecatedDescriptor",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigWildcardRedundancy",
+                "shortDescription": {
+                  "text": "Redundant wildcard"
+                },
+                "fullDescription": {
+                  "text": "Reports wildcards that become redundant when the “**” wildcard is used in the same section. The “**” wildcard defines a broader set of files than any other wildcard. That is why, any other wildcard used in the same section has no affect and can be removed.",
+                  "markdown": "Reports wildcards that become redundant when the \"\\*\\*\" wildcard is used in the same section.\n\n\nThe \"\\*\\*\" wildcard defines a broader set of files than any other wildcard.\nThat is why, any other wildcard used in the same section has no affect and can be removed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigWildcardRedundancy",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigHeaderUniqueness",
+                "shortDescription": {
+                  "text": "EditorConfig section is not unique"
+                },
+                "fullDescription": {
+                  "text": "Reports sections that define the same file pattern as other sections.",
+                  "markdown": "Reports sections that define the same file pattern as other sections."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigHeaderUniqueness",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigShadowedOption",
+                "shortDescription": {
+                  "text": "Overridden property"
+                },
+                "fullDescription": {
+                  "text": "Reports properties that are already defined in other sections. For example: '[*.java]\nindent_size=4\n[{*.java,*.js}]\nindent_size=2' The second section includes all '*.java' files too but it also redefines indent_size. As a result the value 2 will be used for files matching '*.java'.",
+                  "markdown": "Reports properties that are already defined in other sections.\n\nFor example:\n\n\n    [*.java]\n    indent_size=4\n    [{*.java,*.js}]\n    indent_size=2\n\nThe second section includes all `*.java` files too but it also redefines indent_size. As a result the value 2 will be used for files matching `*.java`."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigShadowedOption",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigEmptyHeader",
+                "shortDescription": {
+                  "text": "Empty header"
+                },
+                "fullDescription": {
+                  "text": "Reports sections with an empty header. Section header must contain file path globs in the format similar to one supported by 'gitignore'.",
+                  "markdown": "Reports sections with an empty header. Section header must contain file path globs in the format similar to one supported by `gitignore`."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigEmptyHeader",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigValueCorrectness",
+                "shortDescription": {
+                  "text": "Invalid property value"
+                },
+                "fullDescription": {
+                  "text": "Reports property values that do not meet value restrictions. For example, some properties may be only “true” or “false”, others contain only integer numbers etc. If a value has a limited set of variants, use code completion to see all of them.",
+                  "markdown": "Reports property values that do not meet value restrictions. For example, some properties may be only \"true\" or \"false\", others contain only integer numbers etc. If a value has a limited set of variants, use code completion to see all of them."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigValueCorrectness",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigVerifyByCore",
+                "shortDescription": {
+                  "text": "Invalid .editorconfig file"
+                },
+                "fullDescription": {
+                  "text": "Verifies the whole file using the backing EditorConfig core library and reports any failures. Any such failure would prevent EditorConfig properties from being correctly applied.",
+                  "markdown": "Verifies the whole file using the backing EditorConfig core library and reports any failures. Any such failure would prevent EditorConfig properties from being correctly applied."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigVerifyByCore",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigValueUniqueness",
+                "shortDescription": {
+                  "text": "Non-unique list value"
+                },
+                "fullDescription": {
+                  "text": "Reports duplicates in lists of values.",
+                  "markdown": "Reports duplicates in lists of values."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigValueUniqueness",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigMissingRequiredDeclaration",
+                "shortDescription": {
+                  "text": "Required declarations are missing"
+                },
+                "fullDescription": {
+                  "text": "Reports properties that miss the required declarations. Refer to the documentation for more information.",
+                  "markdown": "Reports properties that miss the required declarations. Refer to the documentation for more information."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigMissingRequiredDeclaration",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigCharClassLetterRedundancy",
+                "shortDescription": {
+                  "text": "Duplicate character class letter"
+                },
+                "fullDescription": {
+                  "text": "Reports wildcard patterns in the EditorConfig section that contain a duplicate character in the character class, for example '[aa]'.",
+                  "markdown": "Reports wildcard patterns in the EditorConfig section that contain a duplicate character in the character class, for example `[aa]`."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigCharClassLetterRedundancy",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigSpaceInHeader",
+                "shortDescription": {
+                  "text": "Space in file pattern"
+                },
+                "fullDescription": {
+                  "text": "Reports space characters in wildcard patterns that affect pattern matching. If these characters are not intentional, they should be removed.",
+                  "markdown": "Reports space characters in wildcard patterns that affect pattern matching. If these characters are not intentional, they should be removed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigSpaceInHeader",
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigOptionRedundancy",
+                "shortDescription": {
+                  "text": "Redundant property"
+                },
+                "fullDescription": {
+                  "text": "Reports properties that are redundant when another applicable section already contains the same property and value. For example: '[*]\nindent_size=4\n[*.java]\nindent_size=4' are both applicable to '*.java' files and define the same 'indent_size' value.",
+                  "markdown": "Reports properties that are redundant when another applicable section already contains the same property and value.\n\n\nFor example:\n\n\n    [*]\n    indent_size=4\n    [*.java]\n    indent_size=4\n\nare both applicable to `*.java` files and define the same `indent_size` value."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigOptionRedundancy",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigUnusedDeclaration",
+                "shortDescription": {
+                  "text": "Unused declaration"
+                },
+                "fullDescription": {
+                  "text": "Reports unused declarations. Such declarations can be removed.",
+                  "markdown": "Reports unused declarations. Such declarations can be removed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigUnusedDeclaration",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "EditorConfigUnexpectedComma",
+                "shortDescription": {
+                  "text": "Unexpected comma"
+                },
+                "fullDescription": {
+                  "text": "Reports commas that cannot be used in the current context. Commas are allowed only as separators for values in lists.",
+                  "markdown": "Reports commas that cannot be used in the current context. Commas are allowed only as separators for values in lists."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "EditorConfigUnexpectedComma",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "EditorConfig",
+                      "index": 0,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "language": "en-US",
+            "contents": [
+              "localizedData",
+              "nonLocalizedData"
+            ],
+            "isComprehensive": false
+          },
+          {
             "name": "JavaScript",
             "version": "243.25516",
             "rules": [
@@ -706,7 +1704,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -752,6 +1750,40 @@
                 ]
               },
               {
+                "id": "JSValidateJSDoc",
+                "shortDescription": {
+                  "text": "Syntax errors and unresolved references in JSDoc"
+                },
+                "fullDescription": {
+                  "text": "Reports a syntax discrepancy in a documentation comment.",
+                  "markdown": "Reports a syntax discrepancy in a documentation comment."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "JSValidateJSDoc",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "NonBlockStatementBodyJS",
                 "shortDescription": {
                   "text": "Statement body without braces"
@@ -774,7 +1806,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -808,41 +1840,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "JSValidateJSDoc",
-                "shortDescription": {
-                  "text": "Syntax errors and unresolved references in JSDoc"
-                },
-                "fullDescription": {
-                  "text": "Reports a syntax discrepancy in a documentation comment.",
-                  "markdown": "Reports a syntax discrepancy in a documentation comment."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "JSValidateJSDoc",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1012,7 +2010,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 17,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1114,7 +2112,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1148,7 +2146,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1420,7 +2418,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 32,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1488,7 +2486,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1522,7 +2520,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1568,6 +2566,40 @@
                 ]
               },
               {
+                "id": "JSObjectNullOrUndefined",
+                "shortDescription": {
+                  "text": "Object is 'null' or 'undefined'"
+                },
+                "fullDescription": {
+                  "text": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is 'undefined' or 'null'.",
+                  "markdown": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "JSObjectNullOrUndefined",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 2,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "TypeScriptMissingConfigOption",
                 "shortDescription": {
                   "text": "Missing tsconfig.json option "
@@ -1602,40 +2634,6 @@
                 ]
               },
               {
-                "id": "JSObjectNullOrUndefined",
-                "shortDescription": {
-                  "text": "Object is 'null' or 'undefined'"
-                },
-                "fullDescription": {
-                  "text": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is 'undefined' or 'null'.",
-                  "markdown": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "JSObjectNullOrUndefined",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSXUnresolvedComponent",
                 "shortDescription": {
                   "text": "Unresolved JSX component"
@@ -1658,41 +2656,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "ES6ShorthandObjectProperty",
-                "shortDescription": {
-                  "text": "Property can be replaced with shorthand"
-                },
-                "fullDescription": {
-                  "text": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it. Example: 'var obj = {foo:foo}' After applying the quick-fix the code looks as follows: 'var obj = {foo}'",
-                  "markdown": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it.\n\nExample:\n\n\n    var obj = {foo:foo}\n\nAfter applying the quick-fix the code looks as follows:\n\n\n    var obj = {foo}\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "suppressToolId": "ES6ShorthandObjectProperty",
-                    "ideaSeverity": "INFORMATION",
-                    "qodanaSeverity": "Info",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1726,7 +2690,41 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ES6ShorthandObjectProperty",
+                "shortDescription": {
+                  "text": "Property can be replaced with shorthand"
+                },
+                "fullDescription": {
+                  "text": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it. Example: 'var obj = {foo:foo}' After applying the quick-fix the code looks as follows: 'var obj = {foo}'",
+                  "markdown": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it.\n\nExample:\n\n\n    var obj = {foo:foo}\n\nAfter applying the quick-fix the code looks as follows:\n\n\n    var obj = {foo}\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "suppressToolId": "ES6ShorthandObjectProperty",
+                    "ideaSeverity": "INFORMATION",
+                    "qodanaSeverity": "Info",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1930,7 +2928,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1998,7 +2996,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2100,7 +3098,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2180,40 +3178,6 @@
                 ]
               },
               {
-                "id": "PointlessBooleanExpressionJS",
-                "shortDescription": {
-                  "text": "Pointless statement or boolean expression"
-                },
-                "fullDescription": {
-                  "text": "Reports a pointless or pointlessly complicated boolean expression or statement. Example: 'let a = !(false && x);\n  let b = false || x;' After the quick fix is applied the result looks like: 'let a = true;\n  let b = x;'",
-                  "markdown": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "PointlessBooleanExpressionJS",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSReferencingMutableVariableFromClosure",
                 "shortDescription": {
                   "text": "Referencing mutable variable from closure"
@@ -2236,7 +3200,41 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PointlessBooleanExpressionJS",
+                "shortDescription": {
+                  "text": "Pointless statement or boolean expression"
+                },
+                "fullDescription": {
+                  "text": "Reports a pointless or pointlessly complicated boolean expression or statement. Example: 'let a = !(false && x);\n  let b = false || x;' After the quick fix is applied the result looks like: 'let a = true;\n  let b = x;'",
+                  "markdown": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "PointlessBooleanExpressionJS",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2372,7 +3370,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2406,7 +3404,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2508,7 +3506,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2576,7 +3574,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 32,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2724,40 +3722,6 @@
                 ]
               },
               {
-                "id": "JSConstantReassignment",
-                "shortDescription": {
-                  "text": "Attempt to assign to const or readonly variable"
-                },
-                "fullDescription": {
-                  "text": "Reports reassigning a value to a constant or a readonly variable.",
-                  "markdown": "Reports reassigning a value to a constant or a readonly variable."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "JSConstantReassignment",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Validity issues",
-                      "index": 25,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "TypeScriptCheckImport",
                 "shortDescription": {
                   "text": "Unresolved imported name"
@@ -2781,6 +3745,40 @@
                     "target": {
                       "id": "JavaScript and TypeScript/TypeScript",
                       "index": 24,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSConstantReassignment",
+                "shortDescription": {
+                  "text": "Attempt to assign to const or readonly variable"
+                },
+                "fullDescription": {
+                  "text": "Reports reassigning a value to a constant or a readonly variable.",
+                  "markdown": "Reports reassigning a value to a constant or a readonly variable."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "JSConstantReassignment",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Validity issues",
+                      "index": 25,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2882,7 +3880,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2916,7 +3914,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3052,7 +4050,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 17,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3370,40 +4368,6 @@
                 ]
               },
               {
-                "id": "TextLabelInSwitchStatementJS",
-                "shortDescription": {
-                  "text": "Text label in 'switch' statement"
-                },
-                "fullDescription": {
-                  "text": "Reports a labeled statement inside a 'switch' statement, which often results from a typo. Example: 'switch(x)\n    {\n        case 1:\n        case2:   //typo!\n        case 3:\n            break;\n    }'",
-                  "markdown": "Reports a labeled statement inside a `switch` statement, which often results from a typo.\n\nExample:\n\n\n        switch(x)\n        {\n            case 1:\n            case2:   //typo!\n            case 3:\n                break;\n        }\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "TextLabelInSwitchStatementJS",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Switch statement issues",
-                      "index": 46,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ES6PossiblyAsyncFunction",
                 "shortDescription": {
                   "text": "'await' in non-async function"
@@ -3427,6 +4391,40 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Async code and promises",
                       "index": 48,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "TextLabelInSwitchStatementJS",
+                "shortDescription": {
+                  "text": "Text label in 'switch' statement"
+                },
+                "fullDescription": {
+                  "text": "Reports a labeled statement inside a 'switch' statement, which often results from a typo. Example: 'switch(x)\n    {\n        case 1:\n        case2:   //typo!\n        case 3:\n            break;\n    }'",
+                  "markdown": "Reports a labeled statement inside a `switch` statement, which often results from a typo.\n\nExample:\n\n\n        switch(x)\n        {\n            case 1:\n            case2:   //typo!\n            case 3:\n                break;\n        }\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "TextLabelInSwitchStatementJS",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Switch statement issues",
+                      "index": 46,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3596,7 +4594,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3800,7 +4798,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 32,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3834,7 +4832,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4004,7 +5002,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4038,7 +5036,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4174,7 +5172,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4242,7 +5240,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4344,7 +5342,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4548,7 +5546,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4650,7 +5648,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4684,7 +5682,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4854,7 +5852,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4888,7 +5886,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4922,41 +5920,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "JSAnnotator",
-                "shortDescription": {
-                  "text": "ECMAScript specification is not followed"
-                },
-                "fullDescription": {
-                  "text": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters. Generally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors.",
-                  "markdown": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "JSAnnotator",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5002,6 +5966,40 @@
                 ]
               },
               {
+                "id": "JSAnnotator",
+                "shortDescription": {
+                  "text": "ECMAScript specification is not followed"
+                },
+                "fullDescription": {
+                  "text": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters. Generally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors.",
+                  "markdown": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "suppressToolId": "JSAnnotator",
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical",
+                    "codeQualityCategory": "Sanity"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "JSLastCommaInObjectLiteral",
                 "shortDescription": {
                   "text": "Unneeded last comma in object literal"
@@ -5024,7 +6022,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5160,7 +6158,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5262,7 +6260,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5330,7 +6328,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 32,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5500,7 +6498,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5602,7 +6600,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5738,7 +6736,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5840,7 +6838,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 32,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5908,7 +6906,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 32,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5942,7 +6940,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6044,7 +7042,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6112,7 +7110,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 32,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6180,7 +7178,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6214,7 +7212,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6248,7 +7246,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6282,7 +7280,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6384,7 +7382,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6418,7 +7416,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6520,7 +7518,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6588,7 +7586,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6622,7 +7620,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6724,7 +7722,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6758,7 +7756,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6860,41 +7858,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "IfStatementWithIdenticalBranchesJS",
-                "shortDescription": {
-                  "text": "'if' statement with identical branches"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'if' statement with identical 'then' and 'else' branches. Such statements are almost certainly an error.",
-                  "markdown": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "IfStatementWithIdenticalBranchesJS",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6929,6 +7893,40 @@
                     "target": {
                       "id": "JavaScript and TypeScript/DOM issues",
                       "index": 47,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "IfStatementWithIdenticalBranchesJS",
+                "shortDescription": {
+                  "text": "'if' statement with identical branches"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'if' statement with identical 'then' and 'else' branches. Such statements are almost certainly an error.",
+                  "markdown": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "IfStatementWithIdenticalBranchesJS",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Reliability"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7178,40 +8176,6 @@
                 ]
               },
               {
-                "id": "TrivialConditionalJS",
-                "shortDescription": {
-                  "text": "Redundant conditional expression"
-                },
-                "fullDescription": {
-                  "text": "Reports a conditional expression of the form 'condition ? true : false\ncondition ? false : true' These expressions may be safely converted to 'condition\n!condition'",
-                  "markdown": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "RedundantConditionalExpressionJS",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "TypeScriptDuplicateUnionOrIntersectionType",
                 "shortDescription": {
                   "text": "Duplicate union or intersection type component"
@@ -7235,6 +8199,40 @@
                     "target": {
                       "id": "JavaScript and TypeScript/TypeScript",
                       "index": 24,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "TrivialConditionalJS",
+                "shortDescription": {
+                  "text": "Redundant conditional expression"
+                },
+                "fullDescription": {
+                  "text": "Reports a conditional expression of the form 'condition ? true : false\ncondition ? false : true' These expressions may be safely converted to 'condition\n!condition'",
+                  "markdown": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "RedundantConditionalExpressionJS",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7438,7 +8436,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7506,7 +8504,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7540,7 +8538,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7654,40 +8652,6 @@
                 ]
               },
               {
-                "id": "JSUnusedLocalSymbols",
-                "shortDescription": {
-                  "text": "Unused local symbol"
-                },
-                "fullDescription": {
-                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
-                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "JSUnusedLocalSymbols",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 17,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ReturnFromFinallyBlockJS",
                 "shortDescription": {
                   "text": "'return' inside 'finally' block"
@@ -7722,6 +8686,40 @@
                 ]
               },
               {
+                "id": "JSUnusedLocalSymbols",
+                "shortDescription": {
+                  "text": "Unused local symbol"
+                },
+                "fullDescription": {
+                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "JSUnusedLocalSymbols",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Unused symbols",
+                      "index": 16,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "JSValidateTypes",
                 "shortDescription": {
                   "text": "Type mismatch"
@@ -7744,1005 +8742,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              }
-            ],
-            "language": "en-US",
-            "contents": [
-              "localizedData",
-              "nonLocalizedData"
-            ],
-            "isComprehensive": false
-          },
-          {
-            "name": "org.editorconfig.editorconfigjetbrains",
-            "version": "243.25516",
-            "rules": [
-              {
-                "id": "EditorConfigCharClassRedundancy",
-                "shortDescription": {
-                  "text": "Unnecessary character class"
-                },
-                "fullDescription": {
-                  "text": "Reports character classes that consist of a single character. Such classes can be simplified to a character, for example '[a]'→'a'.",
-                  "markdown": "Reports character classes that consist of a single character. Such classes can be simplified to a character, for example `[a]`→`a`."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigCharClassRedundancy",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigRootDeclarationUniqueness",
-                "shortDescription": {
-                  "text": "Extra top-level declaration"
-                },
-                "fullDescription": {
-                  "text": "Reports multiple top-level declarations. There can be only one optional “root=true” top-level declaration in the EditorConfig file. Using multiple top-level declarations is not allowed.",
-                  "markdown": "Reports multiple top-level declarations. There can be only one optional \"root=true\" top-level declaration in the EditorConfig file. Using multiple top-level declarations is not allowed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigRootDeclarationUniqueness",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigNumerousWildcards",
-                "shortDescription": {
-                  "text": "Too many wildcards"
-                },
-                "fullDescription": {
-                  "text": "Reports sections that contain too many wildcards. Using a lot of wildcards may lead to performance issues.",
-                  "markdown": "Reports sections that contain too many wildcards. Using a lot of wildcards may lead to performance issues."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigNumerousWildcards",
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate",
-                    "codeQualityCategory": "Performance"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigPartialOverride",
-                "shortDescription": {
-                  "text": "Overlapping sections"
-                },
-                "fullDescription": {
-                  "text": "Reports subsets of files specified in the current section that overlap with other subsets in other sections. For example: '[{foo,bar}]' and '[{foo,bas}]' both contain “foo”.",
-                  "markdown": "Reports subsets of files specified in the current section that overlap with other subsets in other sections. For example: `[{foo,bar}]` and `[{foo,bas}]` both contain \"foo\"."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigPartialOverride",
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigEmptySection",
-                "shortDescription": {
-                  "text": "Empty section"
-                },
-                "fullDescription": {
-                  "text": "Reports sections that do not contain any EditorConfig properties.",
-                  "markdown": "Reports sections that do not contain any EditorConfig properties."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigEmptySection",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigShadowingOption",
-                "shortDescription": {
-                  "text": "Overriding property"
-                },
-                "fullDescription": {
-                  "text": "Reports properties that override the same properties defined earlier in the file. For example: '[*.java]\nindent_size=4\n[{*.java,*.js}]\nindent_size=2' The second section includes the same files as '[*.java]' but also sets indent_size to value 2. Thus the first declaration 'indent_size=4'will be ignored.",
-                  "markdown": "Reports properties that override the same properties defined earlier in the file.\n\nFor example:\n\n\n    [*.java]\n    indent_size=4\n    [{*.java,*.js}]\n    indent_size=2\n\nThe second section includes the same files as `[*.java]` but also sets indent_size to value 2. Thus the first declaration `indent_size=4`will be ignored."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigShadowingOption",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigListAcceptability",
-                "shortDescription": {
-                  "text": "Unexpected value list"
-                },
-                "fullDescription": {
-                  "text": "Reports lists of values that are used in properties in which lists are not supported. In this case, only a single value can be specified.",
-                  "markdown": "Reports lists of values that are used in properties in which lists are not supported. In this case, only a single value can be specified."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigListAcceptability",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigKeyCorrectness",
-                "shortDescription": {
-                  "text": "Unknown property"
-                },
-                "fullDescription": {
-                  "text": "Reports properties that are not supported by the IDE. Note: some “ij” domain properties may require specific language plugins.",
-                  "markdown": "Reports properties that are not supported by the IDE. Note: some \"ij\" domain properties may require specific language plugins."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigKeyCorrectness",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigPatternEnumerationRedundancy",
-                "shortDescription": {
-                  "text": "Unnecessary braces"
-                },
-                "fullDescription": {
-                  "text": "Reports pattern lists that are either empty '{}' or contain just one pattern, for example '{foo}' in contrast to a list containing multiple patterns, for example '{foo,bar}'. In this case braces are handled as a part of the name. For example, the pattern '*.{a}' will match the file 'my.{a}' but not 'my.a'.",
-                  "markdown": "Reports pattern lists that are either empty `{}` or contain just one pattern, for example `{foo}` in contrast to a list containing multiple patterns, for example `{foo,bar}`. In this case braces are handled as a part of the name. For example, the pattern `*.{a}` will match the file `my.{a}` but not `my.a`."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigPatternEnumerationRedundancy",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigEncoding",
-                "shortDescription": {
-                  "text": "File encoding doesn't match EditorConfig charset"
-                },
-                "fullDescription": {
-                  "text": "Checks that current file encoding matches the encoding defined in \"charset\" property of .editorconfig file.",
-                  "markdown": "Checks that current file encoding matches the encoding defined in \"charset\" property of .editorconfig file."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigEncoding",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigRootDeclarationCorrectness",
-                "shortDescription": {
-                  "text": "Unexpected top-level declaration"
-                },
-                "fullDescription": {
-                  "text": "Reports unexpected top-level declarations. Top-level declarations other than “root=true” are not allowed in the EditorConfig file.",
-                  "markdown": "Reports unexpected top-level declarations. Top-level declarations other than \"root=true\" are not allowed in the EditorConfig file."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigRootDeclarationCorrectness",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigReferenceCorrectness",
-                "shortDescription": {
-                  "text": "Invalid reference"
-                },
-                "fullDescription": {
-                  "text": "Reports identifiers that are either unknown or have a wrong type.",
-                  "markdown": "Reports identifiers that are either unknown or have a wrong type."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigReferenceCorrectness",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigPairAcceptability",
-                "shortDescription": {
-                  "text": "Unexpected key-value pair"
-                },
-                "fullDescription": {
-                  "text": "Reports key-value pairs that are not allowed in the current context.",
-                  "markdown": "Reports key-value pairs that are not allowed in the current context."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigPairAcceptability",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigPatternRedundancy",
-                "shortDescription": {
-                  "text": "Duplicate or redundant pattern"
-                },
-                "fullDescription": {
-                  "text": "Reports file patterns that are redundant as there already are other patterns that define the same scope of files or even a broader one. For example, in '[{*.java,*}]' the first '*.java' pattern defines a narrower scope compared to '*'. That is why it is redundant and can be removed.",
-                  "markdown": "Reports file patterns that are redundant as there already are other patterns that define the same scope of files or even a broader one. For example, in `[{*.java,*}]` the first `*.java` pattern defines a narrower scope compared to `*`. That is why it is redundant and can be removed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigPatternRedundancy",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigNoMatchingFiles",
-                "shortDescription": {
-                  "text": "No matching files"
-                },
-                "fullDescription": {
-                  "text": "Reports sections with wildcard patterns that do not match any files under the directory in which the '.editorconfig' file is located.",
-                  "markdown": "Reports sections with wildcard patterns that do not match any files under the directory in which the `.editorconfig` file is located."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigNoMatchingFiles",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigDeprecatedDescriptor",
-                "shortDescription": {
-                  "text": "Deprecated property"
-                },
-                "fullDescription": {
-                  "text": "Reports EditorConfig properties that are no longer supported.",
-                  "markdown": "Reports EditorConfig properties that are no longer supported."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigDeprecatedDescriptor",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigWildcardRedundancy",
-                "shortDescription": {
-                  "text": "Redundant wildcard"
-                },
-                "fullDescription": {
-                  "text": "Reports wildcards that become redundant when the “**” wildcard is used in the same section. The “**” wildcard defines a broader set of files than any other wildcard. That is why, any other wildcard used in the same section has no affect and can be removed.",
-                  "markdown": "Reports wildcards that become redundant when the \"\\*\\*\" wildcard is used in the same section.\n\n\nThe \"\\*\\*\" wildcard defines a broader set of files than any other wildcard.\nThat is why, any other wildcard used in the same section has no affect and can be removed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigWildcardRedundancy",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigHeaderUniqueness",
-                "shortDescription": {
-                  "text": "EditorConfig section is not unique"
-                },
-                "fullDescription": {
-                  "text": "Reports sections that define the same file pattern as other sections.",
-                  "markdown": "Reports sections that define the same file pattern as other sections."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigHeaderUniqueness",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigShadowedOption",
-                "shortDescription": {
-                  "text": "Overridden property"
-                },
-                "fullDescription": {
-                  "text": "Reports properties that are already defined in other sections. For example: '[*.java]\nindent_size=4\n[{*.java,*.js}]\nindent_size=2' The second section includes all '*.java' files too but it also redefines indent_size. As a result the value 2 will be used for files matching '*.java'.",
-                  "markdown": "Reports properties that are already defined in other sections.\n\nFor example:\n\n\n    [*.java]\n    indent_size=4\n    [{*.java,*.js}]\n    indent_size=2\n\nThe second section includes all `*.java` files too but it also redefines indent_size. As a result the value 2 will be used for files matching `*.java`."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigShadowedOption",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigEmptyHeader",
-                "shortDescription": {
-                  "text": "Empty header"
-                },
-                "fullDescription": {
-                  "text": "Reports sections with an empty header. Section header must contain file path globs in the format similar to one supported by 'gitignore'.",
-                  "markdown": "Reports sections with an empty header. Section header must contain file path globs in the format similar to one supported by `gitignore`."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigEmptyHeader",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigValueCorrectness",
-                "shortDescription": {
-                  "text": "Invalid property value"
-                },
-                "fullDescription": {
-                  "text": "Reports property values that do not meet value restrictions. For example, some properties may be only “true” or “false”, others contain only integer numbers etc. If a value has a limited set of variants, use code completion to see all of them.",
-                  "markdown": "Reports property values that do not meet value restrictions. For example, some properties may be only \"true\" or \"false\", others contain only integer numbers etc. If a value has a limited set of variants, use code completion to see all of them."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigValueCorrectness",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigVerifyByCore",
-                "shortDescription": {
-                  "text": "Invalid .editorconfig file"
-                },
-                "fullDescription": {
-                  "text": "Verifies the whole file using the backing EditorConfig core library and reports any failures. Any such failure would prevent EditorConfig properties from being correctly applied.",
-                  "markdown": "Verifies the whole file using the backing EditorConfig core library and reports any failures. Any such failure would prevent EditorConfig properties from being correctly applied."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigVerifyByCore",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Sanity"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigValueUniqueness",
-                "shortDescription": {
-                  "text": "Non-unique list value"
-                },
-                "fullDescription": {
-                  "text": "Reports duplicates in lists of values.",
-                  "markdown": "Reports duplicates in lists of values."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigValueUniqueness",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigMissingRequiredDeclaration",
-                "shortDescription": {
-                  "text": "Required declarations are missing"
-                },
-                "fullDescription": {
-                  "text": "Reports properties that miss the required declarations. Refer to the documentation for more information.",
-                  "markdown": "Reports properties that miss the required declarations. Refer to the documentation for more information."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigMissingRequiredDeclaration",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigCharClassLetterRedundancy",
-                "shortDescription": {
-                  "text": "Duplicate character class letter"
-                },
-                "fullDescription": {
-                  "text": "Reports wildcard patterns in the EditorConfig section that contain a duplicate character in the character class, for example '[aa]'.",
-                  "markdown": "Reports wildcard patterns in the EditorConfig section that contain a duplicate character in the character class, for example `[aa]`."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigCharClassLetterRedundancy",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigSpaceInHeader",
-                "shortDescription": {
-                  "text": "Space in file pattern"
-                },
-                "fullDescription": {
-                  "text": "Reports space characters in wildcard patterns that affect pattern matching. If these characters are not intentional, they should be removed.",
-                  "markdown": "Reports space characters in wildcard patterns that affect pattern matching. If these characters are not intentional, they should be removed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigSpaceInHeader",
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigOptionRedundancy",
-                "shortDescription": {
-                  "text": "Redundant property"
-                },
-                "fullDescription": {
-                  "text": "Reports properties that are redundant when another applicable section already contains the same property and value. For example: '[*]\nindent_size=4\n[*.java]\nindent_size=4' are both applicable to '*.java' files and define the same 'indent_size' value.",
-                  "markdown": "Reports properties that are redundant when another applicable section already contains the same property and value.\n\n\nFor example:\n\n\n    [*]\n    indent_size=4\n    [*.java]\n    indent_size=4\n\nare both applicable to `*.java` files and define the same `indent_size` value."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigOptionRedundancy",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigUnusedDeclaration",
-                "shortDescription": {
-                  "text": "Unused declaration"
-                },
-                "fullDescription": {
-                  "text": "Reports unused declarations. Such declarations can be removed.",
-                  "markdown": "Reports unused declarations. Such declarations can be removed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigUnusedDeclaration",
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High",
-                    "codeQualityCategory": "Code Style"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "EditorConfigUnexpectedComma",
-                "shortDescription": {
-                  "text": "Unexpected comma"
-                },
-                "fullDescription": {
-                  "text": "Reports commas that cannot be used in the current context. Commas are allowed only as separators for values in lists.",
-                  "markdown": "Reports commas that cannot be used in the current context. Commas are allowed only as separators for values in lists."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "suppressToolId": "EditorConfigUnexpectedComma",
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical",
-                    "codeQualityCategory": "Reliability"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "EditorConfig",
-                      "index": 2,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11184,7 +11184,7 @@
                   {
                     "target": {
                       "id": "Structural search",
-                      "index": 32,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -12760,19 +12760,19 @@
                 ]
               },
               {
-                "id": "RegExpRepeatedSpace",
+                "id": "RegExpDuplicateAlternationBranch",
                 "shortDescription": {
-                  "text": "Consecutive spaces"
+                  "text": "Duplicate branch in alternation"
                 },
                 "fullDescription": {
-                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
-                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
+                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
                   "level": "warning",
                   "parameters": {
-                    "suppressToolId": "RegExpRepeatedSpace",
+                    "suppressToolId": "RegExpDuplicateAlternationBranch",
                     "ideaSeverity": "WARNING",
                     "qodanaSeverity": "High",
                     "codeQualityCategory": "Unspecified"
@@ -12794,19 +12794,19 @@
                 ]
               },
               {
-                "id": "RegExpDuplicateAlternationBranch",
+                "id": "RegExpRepeatedSpace",
                 "shortDescription": {
-                  "text": "Duplicate branch in alternation"
+                  "text": "Consecutive spaces"
                 },
                 "fullDescription": {
-                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
-                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
+                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
                   "level": "warning",
                   "parameters": {
-                    "suppressToolId": "RegExpDuplicateAlternationBranch",
+                    "suppressToolId": "RegExpRepeatedSpace",
                     "ideaSeverity": "WARNING",
                     "qodanaSeverity": "High",
                     "codeQualityCategory": "Unspecified"
@@ -12930,7 +12930,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -12964,7 +12964,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -12998,7 +12998,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -13032,7 +13032,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -13066,7 +13066,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -13100,7 +13100,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -13134,7 +13134,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -15624,7 +15624,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 11,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -15979,7 +15979,7 @@
       },
       "invocations": [
         {
-          "startTimeUtc": "2025-03-24T20:28:19.351026664Z",
+          "startTimeUtc": "2025-03-25T12:16:27.684374719Z",
           "exitCode": 0,
           "executionSuccessful": true
         }
@@ -15988,7 +15988,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/PForever/RedBiblioteca2.git",
-          "revisionId": "87b5410acfcbf99ecdec66233f81a15069d1e765",
+          "revisionId": "2ecdca13fdbb668280785c802df600853e16d9e8",
           "branch": "master",
           "properties": {
             "repoUrl": "https://github.com/PForever/RedBiblioteca2.git",
@@ -16047,6 +16047,7 @@
             "equalIndicator/v2": "da7df171bd72143e",
             "equalIndicator/v1": "1281e75f2c133d1432c19e8d2a11a0296222ae17a0201b0bdc1d817ea571f422"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16103,6 +16104,7 @@
             "equalIndicator/v2": "1ebdd6f0ed306a97",
             "equalIndicator/v1": "1c4e6eb4ffb5eaa86e0984b1a1a50dbb5357f03e6194311ea77e4f2f6e0eaa88"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16159,6 +16161,7 @@
             "equalIndicator/v2": "146b4ba1b608ab2d",
             "equalIndicator/v1": "1e27a1d7edbb463d53ca113401fd822322ec35f36ce3d0a5b1a60f8c316aae07"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16215,6 +16218,7 @@
             "equalIndicator/v2": "4dde0e86d267514c",
             "equalIndicator/v1": "4cbfc3bf09a67d5c471e03a1ede6af8fde4f5490fade6eada1b8596bf1ce853d"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16271,6 +16275,7 @@
             "equalIndicator/v2": "51efb262b63a2f1a",
             "equalIndicator/v1": "66cec8f98ee1803547af9f13795f6c02393d2c4abbc0f45c70f2e430d2314387"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16327,6 +16332,7 @@
             "equalIndicator/v2": "9bc7a1db61dec11b",
             "equalIndicator/v1": "88aa5ae53c8a9c7cbec841ebe20b8319a6fb749397d03f836557b1d45b6adf8d"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16383,6 +16389,7 @@
             "equalIndicator/v2": "5facbce3266b9f6c",
             "equalIndicator/v1": "bccf559ece1f1cf483d10de7e45d87b1809548d4106b9b839c0f6c398d9dc4f0"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16439,6 +16446,7 @@
             "equalIndicator/v2": "880e867fb4c5d044",
             "equalIndicator/v1": "fe1f03160e1bd261540da59b3ce776636e2812bb27a2b958a0e122abb26bc429"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16529,6 +16537,7 @@
             "equalIndicator/v2": "0385c64f325c8935",
             "equalIndicator/v1": "2077acb70c0a2feeb7b11d6dfe01b7649113a6afffc8d81dfcabfdb22d03bef5"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16579,6 +16588,7 @@
             "equalIndicator/v2": "53d79ccfbd67861c",
             "equalIndicator/v1": "46e2e3cc46e9e479e8f13cf65b931233658f615f9349b189ae6b9fa7e8916a05"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
@@ -16635,6 +16645,7 @@
             "equalIndicator/v2": "3ea6a6321e58b3a3",
             "equalIndicator/v1": "798f3929cf5328be977bc86b38912cc3faec57ace315f0edc6e78ed43990ee2b"
           },
+          "baselineState": "unchanged",
           "properties": {
             "ideaSeverity": "ERROR",
             "qodanaSeverity": "Critical",
@@ -16642,13 +16653,70 @@
               "TypeScript"
             ]
           }
+        },
+        {
+          "ruleId": "HardcodedPasswords",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Hardcoded password detected by \"Google API Key\" default rule",
+            "markdown": "Hardcoded password detected by \"Google API Key\" default rule"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "qodana.sarif.json",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 16611,
+                  "startColumn": 29,
+                  "charOffset": 735533,
+                  "charLength": 45,
+                  "snippet": {
+                    "text": "\"\\\"AIzaSyCJQVXmzPT7XO3_unt6UDd_yBFO9EX-i2o\\\"\""
+                  },
+                  "sourceLanguage": "JSON"
+                },
+                "contextRegion": {
+                  "startLine": 16609,
+                  "startColumn": 1,
+                  "charOffset": 735438,
+                  "charLength": 210,
+                  "snippet": {
+                    "text": "                  \"charLength\": 41,\n                  \"snippet\": {\n                    \"text\": \"\\\"AIzaSyCJQVXmzPT7XO3_unt6UDd_yBFO9EX-i2o\\\"\"\n                  },\n                  \"sourceLanguage\": \"TypeScript\""
+                  },
+                  "sourceLanguage": "JSON"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "d18b347a8abbe34c",
+            "equalIndicator/v1": "5e3621be3fa2e630bbc2cac70a1ef118e00175e9adc9256edbefb3f112cf85d6"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "ERROR",
+            "qodanaSeverity": "Critical",
+            "tags": [
+              "JSON"
+            ]
+          }
         }
       ],
       "automationDetails": {
-        "id": "project/qodana/2025-03-24",
-        "guid": "e0b627ca-5937-4434-ae01-74bbb0edd5a0",
+        "id": "project/qodana/2025-03-25",
+        "guid": "30829f1a-8514-4f64-8791-2565a5c21578",
         "properties": {
-          "jobUrl": "https://github.com/PForever/RedBiblioteca2/actions/runs/14045218833",
+          "jobUrl": "https://github.com/PForever/RedBiblioteca2/actions/runs/14059332138",
           "analysisKind": "regular"
         }
       },
@@ -16660,9 +16728,8 @@
         "configProfile": "recommended",
         "deviceId": "200820300000000-2488-17c5-9a3b-9a430d4f1240",
         "qodanaNewResultSummary": {
-          "moderate": 10,
           "critical": 1,
-          "total": 11
+          "total": 1
         }
       }
     }
