@@ -1,11 +1,9 @@
 import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TextHost} from '@common/lang-system/TextHost';
 import {LocaleHost} from '@common/lang-system/LocaleHost';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ISignInData} from "@common/permission-system/ISignInData";
 import {UserService} from '@common/permission-system/UserService';
-import {LoginText} from './locale/LoginText';
 import {FormsModule} from '@angular/forms';
 import {MatFormField, MatLabel, MatSuffix} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
@@ -13,6 +11,8 @@ import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {AsyncPipe} from '@angular/common';
 import {createSubscriptionService} from "@common/help/services/subscription.service";
+import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
+import {TextDictionary} from "@common/lang-system/TextDictionary";
 
 @Component({
   selector: 'app-login',
@@ -63,7 +63,7 @@ export class LoginComponent {
   private readonly router = inject(Router);
   private readonly localeHost = inject(LocaleHost);
 
-  public readonly text$: Observable<LoginText> = inject(TextHost).getText('login');
+  public readonly text$: Observable<TextDictionary> = inject(TextDictionaryService).textDictionary$;
   public readonly hidePassword = signal(true);
   private readonly _userService = inject(UserService);
   public readonly user: ISignInData = {email: '', password: ''};

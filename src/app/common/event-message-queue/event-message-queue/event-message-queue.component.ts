@@ -1,7 +1,6 @@
 import {Component, inject, OnDestroy} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {map, Subscription, switchMap, take} from 'rxjs';
-import {TextHost} from "@common/lang-system/TextHost";
 import {
   EventMessage,
   EventMessageLevel,
@@ -9,7 +8,8 @@ import {
   SourceType
 } from "@common/event-message-queue/EventMassageQueue";
 import {errorAlert, sendInfo} from "@common/help/help-fuctions";
-import {EventMessageQueueText} from "@common/event-message-queue/event-message-queue/locale";
+import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
+import {TextDictionary} from "@common/lang-system/TextDictionary";
 
 @Component({
   selector: 'app-event-message-queue',
@@ -19,19 +19,18 @@ import {EventMessageQueueText} from "@common/event-message-queue/event-message-q
 })
 export class EventMessageQueueComponent implements OnDestroy {
   private readonly snackBar = inject(MatSnackBar);
-  private readonly textHost = inject(TextHost);
 
   private readonly eventMessageQueueSubscription: Subscription;
 
   public constructor() {
     const eventMessageQueue = inject(EventMessageQueue);
-    const textHost = this.textHost;
+    const textDictionaryService = inject(TextDictionaryService);
 
     this.eventMessageQueueSubscription =
 
       eventMessageQueue.massagePushed$
         .pipe(
-          switchMap(m => textHost.getText('eventMessageQueue').pipe(take(1), map(t => {
+          switchMap(m => textDictionaryService.textDictionary$.pipe(map(t => t), take(1), map(t => {
             return {message: m, text: t}
           }))),
           map(m => {
@@ -49,7 +48,7 @@ export class EventMessageQueueComponent implements OnDestroy {
     this.eventMessageQueueSubscription.unsubscribe();
   }
 
-  public openSnackBar(message: EventMessage, text: EventMessageQueueText) {
+  public openSnackBar(message: EventMessage, text: TextDictionary) {
     this.snackBar.open(message.message, text.dismiss, {
       horizontalPosition: 'right',
       verticalPosition: 'bottom',

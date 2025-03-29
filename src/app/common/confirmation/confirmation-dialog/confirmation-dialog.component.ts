@@ -9,19 +9,21 @@ import {
 } from '@angular/material/dialog';
 import {MatButton} from '@angular/material/button';
 import {AsyncPipe} from '@angular/common';
-import {TextHost} from "@common/lang-system/TextHost";
+import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
+import {Observable} from "rxjs";
+import {TextDictionary} from "@common/lang-system/TextDictionary";
 
 @Component({
   selector: 'app-confirmation-dialog',
   template: `
     @if (text$ | async; as text) {
-      <h1 mat-dialog-title>{{ data.title ?? text.defaultTitle }}</h1>
+      <h1 mat-dialog-title>{{ data.title ?? text.defaultConfirmationTitle }}</h1>
       <div mat-dialog-content>
-        <p>{{ data.text ?? text.defaultText }}</p>
+        <p>{{ data.text ?? text.defaultConfirmationText }}</p>
       </div>
       <div class="buttons-container" mat-dialog-actions>
-        <button mat-button (click)="onNoClick()">{{ text.cancelButton }}</button>
-        <button mat-button mat-dialog-close="confirm" cdkFocusInitial>{{ text.okButton }}</button>
+        <button mat-button (click)="onNoClick()">{{ text.buttonCancel }}</button>
+        <button mat-button mat-dialog-close="confirm" cdkFocusInitial>{{ text.buttonOk }}</button>
       </div>
     }
   `,
@@ -39,12 +41,11 @@ export class ConfirmationDialogComponent {
   public dialogRef = inject<MatDialogRef<ConfirmationDialogComponent>>(MatDialogRef);
   public data = inject<ConfirmationDialogData>(MAT_DIALOG_DATA);
 
-  public text$;
+  public text$: Observable<TextDictionary>;
 
   public constructor() {
-    const textHost = inject(TextHost);
 
-    this.text$ = textHost.getText('confirmationDialog');
+    this.text$ = inject(TextDictionaryService).textDictionary$;
   }
 
   public onNoClick(): void {
