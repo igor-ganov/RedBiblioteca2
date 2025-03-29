@@ -1,27 +1,32 @@
 import {inject, Injectable} from "@angular/core";
 import {RouteService} from "@common/routes/RouteService";
-import {combineLatest, map, Observable, switchMap, zip} from "rxjs";
+import {combineLatest, filter, map, Observable, switchMap, zip} from "rxjs";
 import {Route, Router} from "@angular/router";
 import {TextHost} from "@common/lang-system/TextHost";
 import {IMenuItem} from "@common/menu-system/IMenuItem";
 import {UserRoles} from "@common/permission-system/UserRoles";
 import {RouteData} from "@common/routes/routes";
 import {UserService} from "@common/permission-system/UserService";
+import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
 
 
 @Injectable({providedIn: 'root'})
 export class MenuService {
+  private readonly dictionaryService = inject(TextDictionaryService);
   private readonly routeService = inject(RouteService);
   private readonly textHost = inject(TextHost);
   public readonly activatedItem$ = this.routeService.activatedRoute$.pipe(
     switchMap(a => a.data),
     map(d => d as RouteData),
-    map(d => d.textTag),
-    switchMap(t => this.textHost.getMenuItem(t)),
-    map(i => i.title),
+    map(d => d.header),
+    filter(h => h !== undefined),
+    switchMap(t => this.dictionaryService.textDictionary$.pipe(map(d => ({
+      title: t.title(d),
+      icon: t.icon
+    } as IMenuItem)))),
   );
   private readonly router = inject(Router);
-  private readonly _allItems = zip(this.router.config.find(r => r.path !== '**')!.children!.map(r => buildMenuItem(r, this.textHost)).filter(r => r !== undefined))
+  private readonly _allItems = zip(this.router.config.find(r => r.path !== '**')!.children!.map(r => buildMenuItem(r, this.textHost, this.dictionaryService)).filter(r => r !== undefined))
 
   private readonly userService = inject(UserService);
   public items = combineLatest({
@@ -34,11 +39,11 @@ export class MenuService {
 }
 
 
-function buildMenuItem(route: Route, textHost: TextHost): Observable<MenuItemReach | RootItem> | undefined {
+function buildMenuItem(route: Route, textHost: TextHost, dictionaryService: TextDictionaryService): Observable<MenuItemReach | RootItem> | undefined {
   const data = route.data as RouteData | undefined;
-  const item = data?.isMenuItem ? getMenuItem(route, textHost) : undefined;
+  const item = data?.isMenuItem ? getMenuItem(route, textHost, dictionaryService) : undefined;
   const role = data?.requiredRole ?? UserRoles.GUEST;
-  const children = buildChildren(route, textHost);
+  const children = buildChildren(route, textHost, dictionaryService);
   if (item && children) return zip([item, children]).pipe(
     map(([item, children]) => createReachMenuItem(item, children, route.path, role) as MenuItemReach));
   if (children) return children.pipe(map(children => {
@@ -68,15 +73,17 @@ export interface MenuItemReach {
   children: MenuItemReach[];
 }
 
-function getMenuItem(route: Route, textHost: TextHost) {
+function getMenuItem(route: Route, textHost: TextHost, dictionaryService: TextDictionaryService): Observable<IMenuItem> | undefined {
   const data = (route.data ?? route.children?.find(c => c.path === '')?.data) as RouteData | undefined;
-  const textKey = data?.textTag;
-  if (!textKey) return;
-  return textHost.getMenuItem(textKey);
+  const header = data?.header;
+  if (!header) return;
+  const icon = header.icon;
+  const title = header.title;
+  return dictionaryService.textDictionary$.pipe(map(d => ({title: title(d), icon: icon})));
 }
 
-function buildChildren(route: Route, textHost: TextHost): Observable<MenuItemReach[]> | undefined {
-  const children = getChildren(route)?.map(r => buildMenuItem(r, textHost)).filter(c => c !== undefined) as Observable<MenuItemReach>[];
+function buildChildren(route: Route, textHost: TextHost, dictionaryService: TextDictionaryService): Observable<MenuItemReach[]> | undefined {
+  const children = getChildren(route)?.map(r => buildMenuItem(r, textHost, dictionaryService)).filter(c => c !== undefined) as Observable<MenuItemReach>[];
   return children && children.length > 0 ? zip(children) : undefined;
 }
 

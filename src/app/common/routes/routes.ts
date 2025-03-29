@@ -5,8 +5,7 @@ import {UserRoles} from '../permission-system/UserRoles';
 import {PermissionService} from '@common/permission-system/UserService';
 import {map, Observable} from 'rxjs';
 import {TextDictionaryService} from "@common/lang-system/TextDictionaryService";
-import {TKeyOfFactory} from "@common/lang-system/TextHost";
-import {ITitleFactory} from "@common/menu-system/IHasTitle";
+import {TextDictionary} from "@common/lang-system/TextDictionary";
 
 export const rootPath = '/'
 
@@ -36,10 +35,15 @@ export interface RouteContext {
   requiredRole: UserRoles | undefined;
 }
 
+export interface RouteHeader {
+  title: (value: TextDictionary) => string;
+  icon: string;
+}
+
 export interface RouteData {
   requiredRole: UserRoles | undefined;
   isMenuItem: boolean | undefined;
-  textTag: TKeyOfFactory<ITitleFactory>;
+  header?: RouteHeader;
 }
 
 export interface RouteContextDependency {
@@ -47,11 +51,11 @@ export interface RouteContextDependency {
   textDictionaryService: TextDictionaryService;
 }
 
-function createRouteData<K extends TKeyOfFactory<ITitleFactory>>(textKey: K, requiredRole?: UserRoles, isMenuItem?: boolean): RouteData {
+function createRouteData(header?: RouteHeader, requiredRole?: UserRoles, isMenuItem?: boolean): RouteData {
   return {
     requiredRole: requiredRole,
     isMenuItem: isMenuItem,
-    textTag: textKey,
+    header: header
   }
 }
 
@@ -75,7 +79,7 @@ function createRoute(item: RouteItem): Route {
   return item.children && item.children.length > 0 ? {
     path: item.path,
     resolve: createContext(item.userRole),
-    data: createRouteData(item.textKey, item.userRole, item.isMenuItem),
+    data: createRouteData(item.header, item.userRole, item.isMenuItem),
     children: [{loadComponent: item.loadComponent, path: ''}, ...item.children.map(c => createRoute(c)), redirectRoute],
     canDeactivate: item.checkIfSaved ? [(component: IFormContent) => {
       console.log(component);
@@ -86,7 +90,7 @@ function createRoute(item: RouteItem): Route {
     loadComponent: item.loadComponent,
     path: item.path,
     resolve: createContext(item.userRole),
-    data: createRouteData(item.textKey, item.userRole, item.isMenuItem),
+    data: createRouteData(item.header, item.userRole, item.isMenuItem),
     canDeactivate: item.checkIfSaved ? [(component: IFormContent) => {
       console.log(component);
       return !(component.isEditing?.() ?? false) || confirm('You have unsaved changes. Do you want to drop them?');
@@ -96,7 +100,7 @@ function createRoute(item: RouteItem): Route {
 }
 
 export interface RouteItem {
-  textKey: TKeyOfFactory<ITitleFactory>;
+  header: RouteHeader;
   loadComponent?: () => Type<unknown> | Observable<Type<unknown> | DefaultExport<Type<unknown>>> | Promise<Type<unknown> | DefaultExport<Type<unknown>>>;
   path?: string | undefined;
   userRole?: UserRoles | undefined;
@@ -114,29 +118,44 @@ export const routes = createRoutes([
     loadComponent: () => import('@app/features/home/home.component').then(m => m.HomeComponent),
     path: routsPaths.home,
     isMenuItem: true,
-    textKey: 'home'
+    header: {
+      title: d => d.home,
+      icon: 'home'
+    }
   },
   {
     loadComponent: () => import('@app/features/test/test.component').then(m => m.TestComponent),
     path: routsPaths.test,
     userRole: UserRoles.DEVELOPER,
-    textKey: 'home'
+    header: {
+      title: d => d.home,
+      icon: 'home'
+    }
   },
   {
     path: routsPaths.newspapers,
     loadComponent: () => import('@app/features/newspapers/newspapers.component').then(m => m.NewspapersComponent),
     isMenuItem: true,
-    textKey: 'newspapers',
+    header: {
+      title: d => d.newspapers,
+      icon: 'Newspapers'
+    },
     children: [
       {
         loadComponent: () => import('@app/features/newspapers/new-newspaper/new-newspaper.component').then(m => m.NewNewspaperComponent),
         path: 'new',
-        textKey: 'newNewspaper'
+        header: {
+          title: d => d.newnewspaper,
+          icon: 'Newspaper'
+        }
       },
       {
         loadComponent: () => import('@app/features/newspapers/newspapers/newspaper.component').then(m => m.NewspaperComponent),
         path: ':newspaperId',
-        textKey: 'newspaper'
+        header: {
+          title: d => d.newspaper,
+          icon: 'Newspaper'
+        }
       }
     ],
   },
@@ -144,17 +163,26 @@ export const routes = createRoutes([
     path: routsPaths.books,
     loadComponent: () => import('@app/features/books/books.component').then(m => m.BooksComponent),
     isMenuItem: true,
-    textKey: 'books',
+    header: {
+      title: d => d.books,
+      icon: 'Books'
+    },
     children: [
       {
         loadComponent: () => import('@app/features/books/new-book/new-book.component').then(m => m.NewBookComponent),
         path: 'new',
-        textKey: 'newBook'
+        header: {
+          title: d => d.newbook,
+          icon: 'NewBook'
+        }
       },
       {
         loadComponent: () => import('@app/features/books/book/book.component').then(m => m.BookComponent),
         path: ':bookId',
-        textKey: 'book'
+        header: {
+          title: d => d.book,
+          icon: 'Book'
+        }
       }
     ],
 
@@ -164,32 +192,50 @@ export const routes = createRoutes([
     loadComponent: () => import('@app/features/admin-panel/admin-panel.component').then(m => m.AdminPanelComponent),
     userRole: UserRoles.DEVELOPER,
     isMenuItem: true,
-    textKey: 'adminPanel',
+    header: {
+      title: d => d.admin,
+      icon: 'Admin'
+    },
     children: [
       {
         loadComponent: () => import('@app/features/admin-panel/firebase-panel/firebase-panel.component').then(m => m.FirebasePanelComponent),
         path: routsPaths.firebase,
-        textKey: 'firebasePanel'
+        header: {
+          title: d => d.firebasePanel,
+          icon: 'FirebasePanel'
+        }
       },
       {
         loadComponent: () => import('@app/features/admin-panel/content-manager/content-manager.component').then(m => m.ContentManagerComponent),
         path: routsPaths.contentManager,
-        textKey: 'contentManager',
+        header: {
+          title: d => d.contentManager,
+          icon: 'ContentManager'
+        },
         children: [
           {
             loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/home-content.component').then(m => m.HomeContentComponent),
             path: routsPaths.homeContent,
-            textKey: 'homeContent',
+            header: {
+              title: d => d.homeContent,
+              icon: 'home'
+            },
             children: [
               {
                 loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/articles-content/articles-content.component').then(m => m.ArticlesContentComponent),
                 path: routsPaths.articlesContent,
-                textKey: 'articlesContent',
+                header: {
+                  title: d => d.articlesContent,
+                  icon: 'ArticlesContent'
+                },
                 children: [
                   {
                     loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/articles-content/article-content/article-content.component').then(m => m.ArticleContentComponent),
                     path: ':pid',
-                    textKey: 'articleContent',
+                    header: {
+                      title: d => d.articleContent,
+                      icon: 'ArticleContent'
+                    },
                     checkIfSaved: true,
                   }
                 ]
@@ -197,7 +243,10 @@ export const routes = createRoutes([
               {
                 loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/banner-content/banner-content.component').then(m => m.BannerContentComponent),
                 path: routsPaths.bannerContent,
-                textKey: 'bannerContent',
+                header: {
+                  title: d => d.bannerContent,
+                  icon: 'BannerContent'
+                },
                 checkIfSaved: true,
               }
             ]
@@ -210,12 +259,18 @@ export const routes = createRoutes([
     loadComponent: () => import('@app/features/login/login.component').then(m => m.LoginComponent),
     path: routsPaths.login,
     userRole: UserRoles.GUEST,
-    textKey: 'login'
+    header: {
+      title: d => d.login,
+      icon: 'Login'
+    }
   },
   {
     loadComponent: () => import('@app/features/about/about.component').then(m => m.AboutComponent),
     path: routsPaths.about,
     isMenuItem: true,
-    textKey: 'about'
+    header: {
+      title: d => d.about,
+      icon: 'About'
+    }
   },
 ]);
