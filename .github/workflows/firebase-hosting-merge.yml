@@ -1,7 +1,7 @@
 name: Deploy to Firebase Hosting on merge
 on:
   workflow_run:
-    workflows: [ Qodana ]
+    workflows: [ Build ]
     types: [ completed ]
     branches: [ master ]
 jobs:
