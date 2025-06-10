@@ -6,15 +6,15 @@ import {MatIcon} from '@angular/material/icon';
 @Component({
   selector: 'app-side-menu-button',
   template: `
-<button #menuButton
-        color="primary"
-        class="icon-button"
-        (click)="sideMenuService.opened = !sideMenuService.opened"
-        mat-stroked-button>
-  <mat-icon>menu</mat-icon>
-</button>
+    <button #menuButton
+            color="primary"
+            class="icon-button"
+            (click)="sideMenuService.opened = !sideMenuService.opened"
+            mat-stroked-button>
+      <mat-icon>menu</mat-icon>
+    </button>
 
-`,
+  `,
   styleUrl: './side-menu-button.component.css',
   imports: [MatButton, MatIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,6 +25,8 @@ export class SideMenuButtonComponent {
 
   @HostListener('window:click', ['$event'])
   public closeMenuIfClickAway(e: Event) {
-    if (this.sideMenuService.opened && !this.menu()._elementRef.nativeElement.contains(e.target)) this.sideMenuService.opened = false;
+    if (!this.sideMenuService.opened) return;
+    if (e.target instanceof Node && this.menu()._elementRef.nativeElement.contains(e.target)) return;
+    this.sideMenuService.opened = false;
   }
 }
