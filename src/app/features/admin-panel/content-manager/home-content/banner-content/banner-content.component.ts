@@ -33,8 +33,8 @@ export class BannerContentComponent implements IFormContent {
   private readonly repository = inject(HomeBannerRepository)
   private readonly localeHost = inject(LocaleHost)
   private readonly requestResource = resource({
-    request: () => ({lang: this.localeHost.language()}),
-    loader: ({request: {lang}}) => this.repository.get(lang),
+    params: () => ({lang: this.localeHost.language()}),
+    loader: ({params: {lang}}) => this.repository.get(lang),
   });
   private readonly isNew = computedWhenDefined(
     () => this.requestResource.value(),

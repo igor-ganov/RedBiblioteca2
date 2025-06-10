@@ -39,8 +39,8 @@ export class BookComponent {
   public readonly bookId = input.required<string>();
   private readonly repository = inject(BookRepository);
   private readonly bookResource = resource({
-    request: () => ({id: this.bookId(), lang: this.lang()}),
-    loader: ({request: {id, lang}}) => this.repository.findByPid(lang, id),
+    params: () => ({id: this.bookId(), lang: this.lang()}),
+    loader: ({params: {id, lang}}) => this.repository.findByPid(lang, id),
   });
   public readonly book: Signal<Result<Book> | undefined> = this.bookResource.value.asReadonly();
 }

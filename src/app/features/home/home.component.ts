@@ -49,8 +49,8 @@ export class HomeComponent {
   private readonly localeHost = inject(LocaleHost);
   private readonly lang = this.localeHost.language;
   private readonly articleResource = resource({
-    request: () => ({lang: this.lang()}),
-    loader: ({request: {lang}}) => this.repository.getAll(lang)
+    params: () => ({lang: this.lang()}),
+    loader: ({params: {lang}}) => this.repository.getAll(lang)
   })
   public readonly articles: Signal<Result<Article[]> | undefined> = computed(() => this.articleResource.value());
 }

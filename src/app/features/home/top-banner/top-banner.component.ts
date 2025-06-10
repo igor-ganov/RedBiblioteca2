@@ -27,8 +27,8 @@ export class TopBannerComponent {
   private readonly homeBannerRepository = inject(HomeBannerRepository);
   private readonly localeHost = inject(LocaleHost);
   private readonly homeBannerResource = resource({
-    request: () => ({lang: this.localeHost.language()}),
-    loader: ({request: {lang}}) => this.homeBannerRepository.get(lang),
+    params: () => ({lang: this.localeHost.language()}),
+    loader: ({params: {lang}}) => this.homeBannerRepository.get(lang),
   })
   public readonly banner: Signal<Result<HomeBanner> | undefined> = this.homeBannerResource.value.asReadonly()
 }

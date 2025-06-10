@@ -1,4 +1,4 @@
-import {importProvidersFrom, provideExperimentalZonelessChangeDetection} from "@angular/core";
+import {importProvidersFrom, provideZonelessChangeDetection} from "@angular/core";
 import {AppRoutingModule} from "@app/modules/app-routing.module";
 import {
   BrowserModule,
@@ -20,7 +20,7 @@ import {provideAnimations} from "@angular/platform-browser/animations";
 
 export const appConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     importProvidersFrom(AppRoutingModule, BrowserModule, CommonModule, FormsModule, MatButtonModule, MatFormFieldModule, MatMenuModule, MatIconModule, MatInputModule, MatButtonModule, MatDialogModule, ReactiveFormsModule, RouterOutlet, NgOptimizedImage),
     DatePipe,
     provideHttpClient(withFetch()),

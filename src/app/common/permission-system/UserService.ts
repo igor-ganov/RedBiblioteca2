@@ -27,8 +27,8 @@ export class UserService {
   private userData = inject(UserDataRepository);
   private readonly eventMessageQueue = inject(EventMessageQueue);
   private readonly currentUserResource = resource({
-    request: () => ({user: this.firebaseUser()}),
-    loader: async ({request: {user}}) => {
+    params: () => ({user: this.firebaseUser()}),
+    loader: async ({params: {user}}) => {
       // console.log(user);
       if (user === null) return null;
       if (user === undefined) return undefined;

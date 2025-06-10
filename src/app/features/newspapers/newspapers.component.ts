@@ -57,8 +57,8 @@ export class NewspapersComponent {
   public readonly repository = inject(NewspaperRepository);
   private readonly lang = inject(LocaleHost).language;
   private readonly collectionResource = resource({
-    request: () => ({lang: this.lang()}),
-    loader: ({request: {lang}}) => this.repository.getAll(lang)
+    params: () => ({lang: this.lang()}),
+    loader: ({params: {lang}}) => this.repository.getAll(lang)
   });
   public readonly result: Signal<Result<Newspaper[]> | undefined> = computed(() => this.collectionResource.value());
 

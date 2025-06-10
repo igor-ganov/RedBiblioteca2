@@ -68,8 +68,8 @@ export class ArticlesContentComponent {
   private readonly eventMessageQueue = inject(EventMessageQueue);
   private readonly lang = this.localeHost.language;
   private readonly articleResource = resource({
-    request: () => ({lang: this.lang()}),
-    loader: ({request: {lang}}) => this.repository.getAll(lang)
+    params: () => ({lang: this.lang()}),
+    loader: ({params: {lang}}) => this.repository.getAll(lang)
   })
   public readonly articles: Signal<Result<Article[]> | undefined> = computed(() => this.articleResource.value());
   public readonly displayedColumns: (keyof Article | "panel")[] = ["pid", "title", "datePublished", "homePageOrder", "panel"];

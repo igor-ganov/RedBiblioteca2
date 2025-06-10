@@ -34,8 +34,8 @@ export class ArticleContentComponent implements IFormContent {
   private readonly repository = inject(ArticleRepository)
   private readonly localeHost = inject(LocaleHost)
   private readonly requestResource = resource({
-    request: () => ({lang: this.localeHost.language(), pid: this.pid(), isNew: this.isNew()}),
-    loader: ({request: {lang, pid, isNew}}) => isNew ? this.createNew() : this.repository.findByPid(lang, pid),
+    params: () => ({lang: this.localeHost.language(), pid: this.pid(), isNew: this.isNew()}),
+    loader: ({params: {lang, pid, isNew}}) => isNew ? this.createNew() : this.repository.findByPid(lang, pid),
   });
   public requestResult: Signal<Result<Article> | undefined> = computed(() => this.requestResource.value());
 

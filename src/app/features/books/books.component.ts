@@ -59,8 +59,8 @@ export class BooksComponent {
   public readonly repository = inject(BookRepository);
   private readonly lang = inject(LocaleHost).language;
   private readonly collectionResource = resource({
-    request: () => ({lang: this.lang()}),
-    loader: ({request: {lang}}) => this.repository.getAll(lang),
+    params: () => ({lang: this.lang()}),
+    loader: ({params: {lang}}) => this.repository.getAll(lang),
   });
   public readonly result: Signal<Result<Book[]> | undefined> = computed(() => this.collectionResource.value());
 

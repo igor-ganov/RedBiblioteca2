@@ -41,8 +41,8 @@ export class NewspaperComponent {
   public readonly newspaperId = input.required<string>();
   private readonly repository = inject(NewspaperRepository);
   private readonly newspaperResource = resource({
-    request: () => ({newspaperId: this.newspaperId(), lang: this.lang()}),
-    loader: ({request: {newspaperId, lang}}) => this.repository.findByPid(lang, newspaperId),
+    params: () => ({newspaperId: this.newspaperId(), lang: this.lang()}),
+    loader: ({params: {newspaperId, lang}}) => this.repository.findByPid(lang, newspaperId),
   });
   public readonly newspaper: Signal<Result<Newspaper> | undefined> = this.newspaperResource.value.asReadonly();
 }
