@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, input, output, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, input, linkedSignal, output, signal} from '@angular/core';
 import {FormsModule, NgForm} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -23,7 +23,8 @@ import {Base64ToImage} from "@common/help/pipelines/Base64ToImage";
   ],
   template: `
     @let v = value();
-    <form #form="ngForm" (appPreventDrop)="isEditing.set($event)" (ngSubmit)="onSubmit(form, v)" class="container"
+    <form #form="ngForm" (appPreventDrop)="isEditing.set($event)" [ngFormOptions]="{updateOn: 'change'}"
+          (ngSubmit)="onSubmit(form, v)" class="container"
           method="dialog">
       <div class="fields">
         <mat-form-field>
@@ -47,7 +48,7 @@ import {Base64ToImage} from "@common/help/pipelines/Base64ToImage";
           <input #importImage hidden type="file" onclick="this.value=null"
                  (change)="onImageUploaded($event, v)" [accept]="'image/*'"/>
           <img tabindex="0" class="editable-image" (clickOrEnter)="importImage.click()"
-               [src]="v.cover | base64toImage" alt="cover">
+               [src]="cover() | base64toImage" alt="cover">
         </div>
       </div>
       <button mat-raised-button color="primary" [disabled]="form.invalid || !isEditing()">
@@ -99,12 +100,16 @@ export class NewspaperContentEditorComponent {
   public readonly value = input.required<Newspaper>();
   public readonly isEditing = signal(false);
   public readonly isEditingChange = outputFromObservable(toObservable(this.isEditing));
+  public readonly cover = linkedSignal(() => this.value().cover);
 
   public onImageUploaded(event: Event, newspaper: Newspaper) {
     const element = event.currentTarget as HTMLInputElement;
     const fileList: FileList | null = element.files;
     const image = fileList?.[0];
-    if (image) toBase64(image, v => newspaper.cover = v);
+    if (image) toBase64(image, v => {
+      newspaper.cover = v;
+      this.cover.set(v);
+    });
   }
 
   public onSubmit(form: NgForm, value: Newspaper) {
