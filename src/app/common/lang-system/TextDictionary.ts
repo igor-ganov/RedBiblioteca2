@@ -13,6 +13,7 @@ export interface TextDictionary {
   homeContent: string;
   contentManager: string;
   firebasePanel: string;
+  newspapersContent: string;
   newspapers: string;
   newspaper: string;
   newnewspaper: string;

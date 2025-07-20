@@ -5,11 +5,13 @@ import {routsPaths} from "@common/routes/routes";
 import {MatTableModule} from "@angular/material/table";
 
 @Component({
-    selector: 'app-content-manager',
-    template: `
+  selector: 'app-content-manager',
+  template: `
     <div class="container">
-      <mat-table class="table" [dataSource]="[{title: 'Home content', panel: this.homeContent}]">
-
+      <mat-table class="table" [dataSource]="[
+        {title: 'Home', panel: this.home},
+        {title: 'Newspapers', panel: this.newspapers},
+      ]">
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
@@ -27,7 +29,7 @@ import {MatTableModule} from "@angular/material/table";
       </mat-table>
     </div>
   `,
-    styles: `
+  styles: `
     .container {
       padding: 3em;
       display: flex;
@@ -41,14 +43,15 @@ import {MatTableModule} from "@angular/material/table";
       min-width: 500px;
     }
   `,
-    imports: [
-        RouterLink,
-        MatAnchor,
-        MatTableModule
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [
+    RouterLink,
+    MatAnchor,
+    MatTableModule
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentManagerComponent {
-  public readonly homeContent = routsPaths.homeContent;
+  public readonly home = routsPaths.homeContent;
+  public readonly newspapers = routsPaths.newspapersContent;
   public readonly displayedColumns = ['title', 'panel'];
 }

@@ -6,8 +6,17 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class OrderByPipe implements PipeTransform {
 
-  public transform<T>(value: T[], orderKey: keyof T): T[] {
+  public transform<T>(value: T[], ...orderKey: (keyof T)[]): T[] {
     console.log(value);
-    return value.sort((a, b) => a[orderKey] > b[orderKey] ? 1 : -1);
+    if (orderKey.length == 0) return value;
+    if (orderKey.length == 1) return value.sort((a, b) => a[orderKey[0]] > b[orderKey[0]] ? 1 : -1);
+    else return value.sort((a, b) => {
+      for (const key of orderKey) {
+        if (a[key] > b[key]) return 1;
+        if (a[key] < b[key]) return -1;
+      }
+      return 0;
+    });
+
   }
 }

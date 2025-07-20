@@ -62,8 +62,8 @@ export class FirestoreService {
 
   public async add<T extends { id: string; }>(table: string, data: T): Promise<Result<T>> {
     const dataSet = this.getDataSet(table);
-    console.log('data', data.id == null, data);
-    const id = data.id != null ? data.id : (data.id = generateId());
+    console.log('data', data.id == null, data.id === '', data);
+    const id = data.id || (data.id = generateId());
     try {
       await setDoc(doc(dataSet, id), data);
     } catch (e) {

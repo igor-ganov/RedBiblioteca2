@@ -21,6 +21,7 @@ export const routsPaths = {
   firebase: 'firebase',
   contentManager: 'content-manager',
   homeContent: 'home-content',
+  newspapersContent: 'newspapers-content',
   articlesContent: 'articles-content',
   bannerContent: 'banner-content'
 }
@@ -213,6 +214,25 @@ export const routes = createRoutes([
           icon: 'ContentManager'
         },
         children: [
+          {
+            loadComponent: () => import('@app/features/admin-panel/content-manager/newspapers-content/newspapers-content.component').then(m => m.NewspapersContentComponent),
+            path: routsPaths.newspapersContent,
+            header: {
+              title: d => d.newspapersContent,
+              icon: 'newspapers'
+            },
+            children: [
+              {
+                loadComponent: () => import('@app/features/admin-panel/content-manager/newspapers-content/newspaper-content/newspaper-content.component').then(m => m.NewspaperContentComponent),
+                path: ':pid',
+                header: {
+                  title: d => d.newspapersContent,
+                  icon: 'newspapers'
+                },
+                checkIfSaved: true,
+              }
+            ]
+          },
           {
             loadComponent: () => import('@app/features/admin-panel/content-manager/home-content/home-content.component').then(m => m.HomeContentComponent),
             path: routsPaths.homeContent,

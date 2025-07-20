@@ -1,32 +1,23 @@
 import {ChangeDetectionStrategy, Component, computed, inject, resource, Signal} from '@angular/core';
-import {ArticleRepository} from "@app/features/home/services/article.repository";
-import {LocaleHost} from "@common/lang-system/LocaleHost";
-import {IfSuccess} from "@common/components/errors/if-success.directive";
-import {Result} from "@common/help/services/Result";
-import {MatAnchor, MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {RouterLink} from "@angular/router";
-import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
-import {Article} from "@app/features/home/services/article";
+import {MatAnchor, MatButtonModule} from "@angular/material/button";
+import {IfSuccess} from "@common/components/errors/if-success.directive";
 import {OrderByPipe} from "@common/pipelines/order-by.pipe";
-import {DatePipe} from "@angular/common";
+import {LocaleHost} from "@common/lang-system/LocaleHost";
+import {EventMessageQueue} from "@common/event-message-queue/EventMassageQueue";
+import {Result} from "@common/help/services/Result";
+import {Article} from "@features/home/services/article";
 import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-directive.directive";
+import {NewspaperRepository} from "@features/newspapers/services/NewspaperRepository";
+import {Newspaper} from "@features/newspapers/models/Newspaper";
 
 @Component({
-  selector: 'app-articles-content',
-  imports: [
-    IfSuccess,
-    RouterLink,
-    MatAnchor,
-    MatTableModule,
-    MatButtonModule,
-    OrderByPipe,
-    DatePipe,
-    ConfirmationDirectiveDirective
-  ],
+  selector: 'app-newspapers-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div *ifSuccess="articles() as articles" class="container">
-      <mat-table class="table" [dataSource]="articles | orderBy: 'datePublished'">
+    <div *ifSuccess="items() as items" class="container">
+      <mat-table class="table" [dataSource]="items | orderBy: 'year':'month'">
         <ng-container matColumnDef="pid">
           <mat-header-cell *matHeaderCellDef> Id</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.pid }}</mat-cell>
@@ -35,13 +26,13 @@ import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-
           <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.title }}</mat-cell>
         </ng-container>
-        <ng-container matColumnDef="datePublished">
-          <mat-header-cell *matHeaderCellDef> Publish Date</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ toDate(element.datePublished) | date: 'medium' }}</mat-cell>
+        <ng-container matColumnDef="year">
+          <mat-header-cell *matHeaderCellDef> Year</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.year }}</mat-cell>
         </ng-container>
-        <ng-container matColumnDef="homePageOrder">
-          <mat-header-cell *matHeaderCellDef> Home Page Order</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.homePageOrder }}</mat-cell>
+        <ng-container matColumnDef="month">
+          <mat-header-cell *matHeaderCellDef> Month</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.month }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="panel">
           <mat-header-cell *matHeaderCellDef> Panel</mat-header-cell>
@@ -59,25 +50,35 @@ import {ConfirmationDirectiveDirective} from "@common/confirmation/confirmation-
       </div>
     </div>
   `,
-  styles: ``,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [
+    IfSuccess,
+    RouterLink,
+    MatAnchor,
+    MatTableModule,
+    MatButtonModule,
+    OrderByPipe,
+    ConfirmationDirectiveDirective
+  ],
+  styles: [`
+
+  `]
 })
-export class ArticlesContentComponent {
-  private readonly repository = inject(ArticleRepository);
+export class NewspapersContentComponent {
+  private readonly repository = inject(NewspaperRepository);
   private readonly localeHost = inject(LocaleHost);
   private readonly eventMessageQueue = inject(EventMessageQueue);
   private readonly lang = this.localeHost.language;
-  private readonly articleResource = resource({
+  private readonly resource = resource({
     params: () => ({lang: this.lang()}),
     loader: ({params: {lang}}) => this.repository.getAll(lang)
   })
-  public readonly articles: Signal<Result<Article[]> | undefined> = computed(() => this.articleResource.value());
-  public readonly displayedColumns: (keyof Article | "panel")[] = ["pid", "title", "datePublished", "homePageOrder", "panel"];
+  public readonly items: Signal<Result<Newspaper[]> | undefined> = computed(() => this.resource.value());
+  public readonly displayedColumns: (keyof Newspaper | "panel")[] = ["pid", "title", "month", "year", 'panel'];
 
   public async onDelete(value: Article) {
     const result = await this.repository.delete(this.lang(), value.id);
     if (result.successeful) {
-      this.articleResource.reload();
+      this.resource.reload();
       this.eventMessageQueue.pushInfo('Article deleted');
     } else {
       this.eventMessageQueue.pushError(result.errorMessage);

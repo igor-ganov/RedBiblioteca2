@@ -25,7 +25,7 @@ export class NewNewspaperComponent {
     id: '',
     title: 'Title',
     year: new Date().getFullYear().toString(),
-    pid: this.datePipe.transform(new Date(), 'dd-MM-YY')!,
+    pid: this.datePipe.transform(new Date(), 'dd-MM-yy')!,
     month: this.datePipe.transform(new Date(), 'MMMM')!,
     description: 'Description',
     cover: getFakeImage(),
